@@ -2,4 +2,4 @@
 
 # MySQL
 
-# Redis
+# NoSQL

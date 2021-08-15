@@ -47,6 +47,42 @@ Integer, Short, Character, Byte, Boolean, Long, Double, Float
 
 1. JDK
 
+核心接口：
+
+```java
+public interface InvocationHandler {
+  /**
+   * @param proxy 被代理的类实例
+   * @param method 调用被代理类的方法
+   * @param args 该方法需要的参数
+   */
+  public Object invoke(
+    Object proxy,
+    Method method,
+    Object[] args
+  ) throws Throwable;
+}
+```
+
+使用方法：
+
+实现该接口，重写invoke方法，在invoke方法调用被代理类的方法并获取返回值，并可以在调用方法的前后做一些其他的事情，实现动态代理。
+
+```java
+/**
+ * @param loader 被代理的类或加载器
+ * @param interfaces 被代理类的接口数组
+ * @param h 调用处理器类的对象实例
+ */
+public static Object newProxyInstance(
+  ClassLoader loader,
+  Class<?>[] interfaces,
+  InvocationHandler h
+) throws IllegalArgumentException
+```
+
+该方法会返回一个被修改过的类的实例，从而可以自由地调用该实例的方法。
+
 2. cglib
 
 3. javassist
