@@ -7,7 +7,22 @@
 
 ## Thread类
 
-- Runnable接口
+### 线程的状态
+
+- 创建（NEW）
+- 就绪（RUNNABLE）
+- 阻塞（BLOCKED）
+- 计时等待（TIME_WAITING）
+- 等待（WAITING）
+- 死亡（DEAD）
+
+### 上下文切换
+
+### 方法
+
+```java
+public void sleep() throws InterruptedException
+```
 
 ## synchronized关键字
 
