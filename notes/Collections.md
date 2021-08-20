@@ -14,6 +14,20 @@ HashMap底层为Entry数组+链表(JDK7)/Node数组+链表+红黑树(JDK8)。
 
 `resize()`：数组容量翻倍。扩容后，原数组中的所有元素需要找到在新数组中的位置。
 
+_注：JDK7以前使用拉链法解决冲突，JDK8以后改为当链表长度大于阙值（默认为8）且数组长度大于64时（小于64时会选择将数组进行扩容）转化为红黑树。_
+
+相关问题：
+
+1. 为什么HashMap的数组长度须为2的整数次幂？
+
+    为了能让HashMap存储高效，尽量减少碰撞，尽量让数组分配均匀。利用key的散列值对数组的长度进行取模运算可以得到数组的下标，当数组长度为2的整数次幂时，key的散列值对数组长度取余等价于key的散列值与数组长度减1的值相与。由于采用二进制位与操作，相对于%能够提高效率。
+
+2. 为什么默认负载因子为0.75？
+
+3. 为什么说HashMap线程不安全？
+
+    主要原因在于并发条件下的rehash会形成一个循环链表。JDK8解决了此问题，不过在并发条件下使用HashMap还是会存在其他问题诸如数据丢失。
+
 #### HashMap与HashTable的区别
 
 1. HashMap线程不安全，HashTable线程安全；
@@ -27,14 +41,50 @@ _注：不要在代码中使用HashTable，如果需要使用能保证并发安�
 
 ### HashSet
 
-底层是HashMap。
+底层是HashMap。如何检查重复：
 
+当把元素加入HashSet时，HashSet会先计算对象的hashCode值来判断元素加入的位置，同时也会与其他元素的hashCode值相比较。若没有相同的hashCode，hashSet会假设元素没有重复出现，否则调用equals方法来检查hashCode相等的对象是否真的相等。若两者相等则HashSet不会让加入操作成功。
+
+### `hashCode()`和`equals()`相关
+
+1. 如果两个对象相等，则hashCode相等
+2. 两个对象相等，equals放回true
+3. 两个对象hashCode相等，两个对象不一定相等
+4. 综上，`equals()`被覆盖，`hashCode()`必须被覆盖
+5. `hashCode()`默认行为是对堆上的对象产生独特值。若不重写`hashCode()`则两个对象无论如何都不会相等
 
 ### ConcurrentHashMap
 
 #### 实现原理
 
+JDK7和JDK8以后的ConcurrentHashMap实现底层不同。
+
+- JDK7
+
+    首先将数组分割成一段一段，每段配一把锁，当一个线程访问其中一个段的数据时，其他段的数据能被其他线程访问。
+
+    ConcurrentHashMap由Segment数组和HashEntry数据结构构成。Segment实现了ReentrantLock，所以Segment是一种可重入锁，HashEntry用于存储键值对数据：
+
+    ```java
+    static class Segment<K, V> extends ReentrantLock implements Serializable {}
+    ```
+
+    一个ConcurrentHashMap包含一个Segment数组，Segment结构与HashMap类似，是一种数组+链表的结构，一个Segment包含一个HashEntry数组，每个HashEntry是链表结构的元素，每个Segment守护着一个HashEntry数组的元素，当对HashEntry数组进行修改时须获得对应的Segment的锁。
+
+- JDK8
+
+    ConcurrentHashMap取消了Segment分段锁，采用CAS和synchronized来保证并发安全，数据结构与JDK8的HashMap类似，都是数组+链表/红黑树。在链表长度大于阙值（默认为8）时将链表转换为红黑树。
+
+    synchronized只锁当前的链表或者红黑树首节点。只要不发生hash冲突，就不会产生并发。
+
 #### ConcurrentHashMap与HashTable的区别
+
+1. HashTable底层采用数组+链表实现，JDK7的ConcurrentHashMap底层采用分段数组+链表实现，JDK8以后改为Node数组+链表+红黑树。
+
+2. 实现线程安全的方式不同：
+
+    1. JDK7的ConcurrentHashMap采用分段锁(`Segment`)对整个桶数组进行分割分段，每一把锁只锁容器其中一部分数据，多线程访问容器里不同数据段的数据，就不会存在锁竞争，提高并发访问率。但JDK8以后弃用分段锁的概念，而直接使用Node数组+链表+红黑树的数据结构来实现，并发控制使用synchronized和CAS来操作，整个看起来就像是优化过且线程安全的HashMap。即使在JDK8中还能看到Segment，但已经简化了属性，只是为了兼容旧版本。
+    2. HashTable使用synchronized来确保线程安全，但效率低下。当一个线程访问同步方法时，其他线程也访问同步方法可能会进入阻塞或轮询的状态（对整张表加锁），竞争激烈，并发效率低。
 
 ## List
 
