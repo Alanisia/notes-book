@@ -10,6 +10,4 @@
 
 ### RocketMQ
 
-## 注册中心
-
 ## ElasticSearch

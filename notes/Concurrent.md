@@ -3,7 +3,7 @@
 ## 进程&线程
 
 - 进程：程序运行的基本单位
-- 线程：
+- 线程：***TODO***
 
 ## Thread类
 
@@ -18,11 +18,15 @@
 
 ### 上下文切换
 
+***TODO***
+
 ### 方法
 
 ```java
 public void sleep() throws InterruptedException
 ```
+
+***TODO***
 
 ## synchronized关键字
 
@@ -43,6 +47,8 @@ public synchronized void method() {}
 _无论是对对象加锁还是对方法加锁，本质上都是对对象加锁。对于方法2，虚拟机会根据synchronized修饰的是实例方法还是静态方法，去取对应的实例对象或类对象进行加锁。_
 
 ### 实现原理
+
+***TODO***
 
 ### 锁升级过程
 
@@ -83,7 +89,6 @@ _无论是对对象加锁还是对方法加锁，本质上都是对对象加锁�
 
 2. 自适应自旋锁
 
-
 **重量级锁**
 
 轻量级锁膨胀后升级为重量级锁。重量级锁依赖对象内部的monitor锁实现，monitor锁又依赖于操作系统的MutexLock实现，所以重量级锁又被称为互斥锁。（JDK1.6以前的synchronized为重量级锁）
@@ -96,14 +101,15 @@ _无论是对对象加锁还是对方法加锁，本质上都是对对象加锁�
 
 重量级锁开销大的原因：
 
-
-
+***TODO***
 
 ### `wait()`&`notify()`&`notifyAll()`
 
 这三个方法是Object类当中用于进行线程调度的方法，都必须在synchronized标示的代码块中使用。
 
 ## 悲观锁
+
+***TODO***
 
 ## volatile
 
@@ -178,6 +184,8 @@ _注：尽量不要使用该方法创建线程池_
 
 - CAS(Compare And Swap，比较并替换)
 
+	***TODO***
+
 	**CAS缺点**
 
 	1. ABA问题
@@ -198,6 +206,7 @@ JUC下的原子类可以分为4类：
 
 4. 对象的属性修改类型
 
+***TODO***
 
 ## AQS(AbstractQueuedSynchronizer，抽象队列同步器)
 
@@ -230,28 +239,50 @@ private volatile int state; // 共享变量，使用volatile保证线程可见�
 
 ### Lock
 
-
+***TODO***
 
 #### Lock与synchronized区别
 
 1. synchronized是关键字，Lock是类
 2. synchronized在线程执行完毕或线程产生异常时释放锁，Lock需要手动释放锁否则容易产生死锁
-3.
-4.
-5.
+3. synchronized在需要同步的对象加入此控制，Lock一般使用ReentrantLock，手动加解锁
+4. synchronized不可判断锁的状态，Lock可以
+5. 对于synchronized，当一个线程获得锁，另一个线程需要等待，当获得锁的线程阻塞，则另一线程须一直等待；对于Lock，当一个线程获得锁，另一个线程会尝试判断，不会一直等待
 6. synchronized通过Object类的`wait()`/`notify()`/`notifyAll()`调度，Lock类通过Condition类调度
 7. synchronized是非公平锁，Lock是公平锁
-8. synchronized少量同步，Lock大量同步
-9. 
+8. synchronized不可中断， Lock可中断
+9. synchronized少量同步，Lock大量同步
 10. synchronized底层通过操作系统指令码控制，Lock通过CAS乐观锁实现
 
 ### Condition（条件变量）
 
+同步调度方法：
 
+```java
+await();
+```
+
+***TODO***
+
+```java
+signal();
+```
+
+***TODO***
+
+```java
+signalAll();
+```
+
+***TODO***
 
 ### ReentrantLock（可重入锁）
 
+***TODO***
+
 ### ReadWriteLock（读写锁）
+
+***TODO***
 
 ### Semaphore（信号量）
 
@@ -277,7 +308,7 @@ ThreadLocal类能够实现每一个线程都有自己的专属本地变量，让
 
 ### ThreadLocal原理
 
-
+***TODO***
 
 ### ThreadLocal内存泄露问题
 
