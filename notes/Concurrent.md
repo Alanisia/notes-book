@@ -1,10 +1,5 @@
 # Java并发
 
-## 进程&线程
-
-- 进程：程序运行的基本单位
-- 线程：***TODO***
-
 ## Thread类
 
 ### 线程的状态
@@ -315,3 +310,42 @@ ThreadLocal类能够实现每一个线程都有自己的专属本地变量，让
 ThreadLocalMap中使用的key是弱引用，而value是强引用，所以，如果ThreadLocal没有被外部强引用的情况下，在垃圾回收的时候，key会被清理掉而value没有被清理。这样一来ThreadLocalMap就会出现key为null的Entry，如果不做任何措施则value永远不会被GC，这个时候就容易产生内存泄露。
 
 ThreadLocalMap实现中已经考虑这种情况，在调用`set()`，`get()`，`remove()`时会清理掉key为null的记录。使用完ThreadLocal方法后最好手动调用`remove()`方法。
+
+## Future
+
+JUC包下的一个接口。对于某些耗时的操作，如果一直原地等待其执行完毕，会使得程序的执行效率大大降低，这时可以把该耗时任务放到子线程去执行，再通过Future去控制子线程执行的过程，最后获取结果，使程序执行效率提高，是一种异步思想。对于具体的Runnable或Callable任务的执行结果进行获取、取消、查询是否完成等操作，必要时可以通过`get()`方法获取执行结果，该方法会阻塞直到任务返回结果。
+
+```java
+boolean cancel(boolean mayInterruptIfRunning);
+```
+
+用来取消任务，取消成功返回`true`。参数`mayInterruptedRunning`表示是否允许取消正在执行却没有执行完毕的任务，如设置为`true`则表示可以取消。若任务已完成，则无论该参数为`true`或`false`，此方法肯定返回`false`；若任务尚未执行，则无论该参数为`true`或`false`，此方法肯定返回`true`；若参数`mayInterruptedRunning`设置为`true`，则该方法返回`true`，否则返回`false`。
+
+```java
+boolean isCancelled();
+```
+
+表示任务是否被取消成功，如果在任务正常完成前被取消成功，返回`true`。
+
+```java
+boolean isDone();
+```
+
+表示任务是否已经完成，若任务完成则返回`true`。
+
+```java
+V get() throws InterruptedException, ExecutionException;
+```
+
+用来获取执行结果，这个方法会产生阻塞，会一直等到任务执行完毕才返回。
+
+```java
+V get(long timeout, TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException;
+```
+
+用来获取执行结果，如果在指定时间内还未获取到结果，直接返回`null`。
+
+### FutureTask
+
+实现了`RunnableFuture`接口，而`RunnableFuture`接口继承了`Runnable`和`Future`接口。该类是`Future`接口的唯一实现类。
+
