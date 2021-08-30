@@ -4,7 +4,20 @@
 
 ### IOC/DI
 
-控制反转(Inverse of Control)/依赖注入(Dependency Injection)，
+控制反转(Inverse of Control)/依赖注入(Dependency Injection)，将传统的程序代码直接操控的对象的调用权交给容器，通过容器来实现对象组件的装配和管理。
+
+作用：
+
+1. 管理对象的创建和依赖关系的维护
+2. 解耦，由容器去维护具体的对象
+3. 托管了类的产生过程
+
+优点：
+
+1. IOC能把代码量降低
+2. 使应用容易测试，单元测试不再需要单例和JNDI查找机制
+3. 最小的代价和最小的侵入性使松散耦合得以实现
+4. IOC容器支持加载服务时的饿汉式初始化和懒加载
 
 ### Bean
 
@@ -35,6 +48,13 @@
 - Setter方法注入
 - 基于注解注入
 
+### 装配与自动装配
+
+`@Autowired`与`@Resource`的区别：
+
+1. `@Autowired`默认是按照类型装配注入的，默认情况下它要求依赖对象必须存在（可以设置其`required`属性为`false`；
+2. `@Resource`默认是按照名称来装配注入的，只有当找不到与名称匹配的bean才会按照类型来装配注入。
+
 ### 事务
 
 #### 隔离级别
@@ -49,7 +69,15 @@
 
 #### 事务传播
 
-***TODO***
+Spring事务传播行为指的是当多个事务同时存在时，Spring如何管理这些事务。
+
+1. `TransactionDefinition.PROPAGATION_REQUIRED`：如果当前没有事务，则新建一个事务，如果当前存在事务，就加入该事务
+2. `TransactionDefinition.PROPAGATION_SUPPORTS`：支持当前事务，如果当前存在事务，就加入该事务，否则以非事务执行
+3. `TransactionDefinition.PROPAGATION_MANDATORY`：支持当前事务，如果当前存在事务，就加入该事务，否则抛出异常
+4. `TransactionDefinition.PROPAGATION_REQUIRES_NEW`：创建新事务，无论当前存不存在事务
+5. `TransactionDefinition.PROPAGATION_NOT_SUPPORTED`：以非事务方式执行操作，若当前存在事务，就把当前事务挂起
+6. `TransactionDefinition.PROPAGATION_NEVER`：以非事务方式执行操作，若当前存在事务，则抛出异常
+7. `TransactionDefinition.PROPAGATION_NESTED`：如果当前存在事务，则在嵌套事务内执行；如果当前没有事务，则按REQUIRED属性执行
 
 ### 设计模式
 
@@ -72,7 +100,7 @@ AOP（Aspect-Oriented Programming，面向切面编程）
 - 通知(Advice)：“切面”对于某个“连接点”所产生的动作
 - 切入点(Pointcut)：匹配连接点的断言，在AOP中通知和一个切入点表达式关联
 - 目标对象(Target Object)：被一个或者多个切面所通知的对象
-- 织入(Weaving)
+- 织入(Weaving)：将切面应用到目标对象并导致代理对象创建的过程
 - AOP代理(AOP Proxy)：在Spring AOP中有两种代理方式，JDK动态代理和CGLIB代理
 
 #### AOP代理方式
@@ -125,12 +153,28 @@ MVC是Model-View-Controller的简称，是一种架构模式，它分离了表�
 
 1. 一级缓存
 
-***TODO***
+    基于PerpetualCache的HashMap本地缓存，其存储作用域为`session`，当`session`flush或close之后，该`session`中的所有cache就将清空，默认打开一级缓存；
 
 2. 二级缓存
 
-***TODO***
+    与一级缓存机制相同，默认也采用PerpetualCache，HashMap存储，不同在于其作用域为mapper(namespaces)，并且可自定义存储源，如EhCache；默认不打开二级缓存，要开启之，使用二级缓存属性类需要实现Serializable序列化接口（用来保存对象状态），可在其映射文件中配置。
+
+对于缓存更新机制，当某一作用域进行了C/U/D操作后，默认该作用域下所有select中的缓存将被clear。
 
 ## Netty
 
-***TODO***
+一款基于NIO（Nonblocking IO）开发的网络通信框架，对比BIO（Blocking IO），并发性能得到很大的提高，在快速和易用性的同时并未丧失可维护性和性能等优势。
+
+特点：
+
+1. 高并发
+2. 传输快
+3. 封装好
+
+重要组件：
+
+1. Channel
+2. EventLoop
+3. ChannelFuture
+4. ChannelHandler
+5. ChannelPipeline
