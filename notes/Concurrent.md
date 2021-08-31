@@ -301,7 +301,11 @@ signalAll();
 
 ### ReentrantLock（可重入锁）
 
-***TODO***
+可重入锁：如果当前线程已经获得执行序列中的锁，那么执行序列之后的所有方法都可以获得这个锁。
+
+ReentrantLock的可重入性基于`Thread.currentThread()`实现，如果当前线程已经获得锁，那么该线程下的所有方法都可以获得锁。ReentrantLock有两个内部类：`FairSync`（公平锁）和`NonFairSync`（非公平锁）。
+
+
 
 ### ReadWriteLock（读写锁）
 

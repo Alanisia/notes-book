@@ -1,3 +1,3 @@
-# java-notes
+# Java Notas
 
-Java面试知识点笔记
+Java后端开发知识点笔记（八股文）
