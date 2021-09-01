@@ -52,7 +52,7 @@
 
 `@Autowired`与`@Resource`的区别：
 
-1. `@Autowired`默认是按照类型装配注入的，默认情况下它要求依赖对象必须存在（可以设置其`required`属性为`false`；
+1. `@Autowired`默认是按照类型装配注入的，默认情况下它要求依赖对象必须存在（可以设置其`required`属性为`false`）；
 2. `@Resource`默认是按照名称来装配注入的，只有当找不到与名称匹配的bean才会按照类型来装配注入。
 
 ### 事务
@@ -178,3 +178,29 @@ MVC是Model-View-Controller的简称，是一种架构模式，它分离了表�
 3. ChannelFuture
 4. ChannelHandler
 5. ChannelPipeline
+
+### Netty事件驱动模型
+
+### Netty线程模型
+
+基于主从Reactors多线程模型，Netty对此作了修改，其中主从Reactor多线程模型有多个Reactor：
+
+- MainReactor：负责客户端的连接请求，并将请求转发给SubReactor
+- SubReactor：负责相应通道的IO读写请求
+- 非IO请求（具体逻辑处理）的任务会直接写入队列，等待worker threads进行处理
+
+```java
+EventLoopGroup bossGroup = new NioEventLoopGroup();
+EventLoopGroup workGroup = new NioEventLoopGroup();
+```
+
+以上代码中，`bossGroup`和`workGroup`均是线程池，
+
+- `bossGroup`线程池绑定某个端口后获得其中一个线程作为MainReactor，专门处理端口的accept事件，每个端口对应一个boss线程
+- `workGroup`线程池会被各个SubReactor和worker线程充分利用
+
+### 异步处理
+
+Netty的IO操作是异步的，包括`bind()`，`connect()`，`write()`等操作会简单地返回一个`ChannelFuture`，调用者不能立刻获得结果，通过Future-Listener机制，用户可以方便地主动获取或者通过通知机制获得IO操作结果。
+
+相比传统阻塞IO，异步处理的好处是不会造成线程阻塞，线程在IO操作期间可以执行别的程序，在高并发情形下会更稳定和更高的吞吐量。
