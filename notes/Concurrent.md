@@ -4,24 +4,93 @@
 
 ### 线程的状态
 
-- 创建（NEW）
-- 就绪（RUNNABLE）
-- 阻塞（BLOCKED）
-- 计时等待（TIME_WAITING）
-- 等待（WAITING）
-- 死亡（DEAD）
-
-### 上下文切换
-
-***TODO***
+- 创建（NEW）：初始状态，线程被构建，但尚未调用`start()`方法
+- 就绪（RUNNABLE）：运行状态，包含就绪和运行
+- 阻塞（BLOCKED）：阻塞状态，表示线程阻塞于锁
+- 等待（WAITING）：等待状态，表示当前线程需要等待其他线程做出一些特定动作（通知或中断）
+- 超时等待（TIME_WAITING）：超时等待状态，不同于WAITING，可以在指定时间自行返回
+- 死亡（TERMINATED）：终止状态，表示当前线程已执行完毕
 
 ### 方法
 
 ```java
-public void sleep() throws InterruptedException
+public static native void sleep(long millis) throws InterruptedException;
 ```
 
-***TODO***
+在指定的毫秒数使当前线程休眠，进入阻塞状态（暂停执行），若线程在睡眠状态被中断会抛出`InterruptedException`异常。另还有方法
+
+```java
+public static void sleep(long millis, int nanos) throws InterruptedException;
+```
+
+此方法在指定的毫秒数加指定的纳秒数让当前正在执行的线程休眠（暂停执行）。
+
+```java
+public final void join() throws InterruptedException;
+```
+
+主线程等待子线程的终止，在子线程调用了`join()`，之后的代码只能等到子线程结束了才能执行。
+
+```java
+public static native void yield();
+```
+
+使当前线程从执行状态（运行状态）变为可执行态（就绪状态）。当一个线程使用了这个方法之后，它会把自己CPU执行的时间让掉，让自己或者其它线程运行。
+
+```java
+public void interrupt();
+```
+
+给线程设置中断标志，中断调用该方法的Thread实例所代表的线程。
+
+```java
+public boolean isInterrupted();
+```
+
+检测调用该方法的Thread实例所代表的线程是否中断。
+
+```java
+public static boolean interrupted();
+```
+
+检测中断并清除中断状态，作用于当前线程。
+
+```java
+public final void setPriority(int newPriority);
+```
+
+用于设置更改线程的优先级，每个线程都有一个优先级，由1到10之间的整数表示，Thread类提供3个常量属性：
+
+```java
+public static final int MIN_PRIORITY = 1;  // 最大优先级
+public static final int NORM_PRIORITY = 5; // 普通优先级
+public static final int MAX_PRIORITY = 10; // 最小优先级
+```
+
+```java
+public final native void wait(long timeoutMillis) throws InterruptedException;
+public final void wait() throws InterruptedException; // 调用以上方法
+```
+
+该方法须在synchronized块中调用
+
+_`wait()`与`sleep()`的区别：_
+
+```java
+public final native void notify();
+```
+
+该方法须在synchronized块中调用
+
+```java
+public final native void notifyAll();
+```
+
+该方法须在synchronized块中调用
+
+_`notify()`与`notifyAll()`的区别：_
+
+1. 
 
 ## synchronized关键字
 
@@ -86,6 +155,8 @@ _无论是对对象加锁还是对方法加锁，本质上都是对对象加锁�
 
 2. 自适应自旋锁
 
+	***TODO***
+
 **重量级锁**
 
 轻量级锁膨胀后升级为重量级锁。重量级锁依赖对象内部的monitor锁实现，monitor锁又依赖于操作系统的MutexLock实现，所以重量级锁又被称为互斥锁。（JDK1.6以前的synchronized为重量级锁）
@@ -99,10 +170,6 @@ _无论是对对象加锁还是对方法加锁，本质上都是对对象加锁�
 重量级锁开销大的原因：
 
 ***TODO***
-
-### `wait()`&`notify()`&`notifyAll()`
-
-这三个方法是Object类当中用于进行线程调度的方法，都必须在synchronized标示的代码块中使用。
 
 ## 悲观锁
 
@@ -262,7 +329,15 @@ private volatile int state; // 共享变量，使用volatile保证线程可见�
 
 ### Lock
 
-***TODO***
+一个接口，实例化时通常使用`ReentrantLock`类：
+
+```java
+Lock lock = new ReentrantLock();
+```
+
+针对需要同步处理的代码设置对象监视器，比整个方法用synchronized修饰要好。通过Lock对象，用`lock.lock()`加锁，用`lock.unlock()`解锁，在二者之中放置需要同步处理的代码。
+
+使用Lock对象加锁时也是一个对象锁，持有对象监视器的线程才能同步执行代码，其他线程只能等待该线程释放对象监视器。
 
 #### Lock与synchronized区别
 
@@ -279,25 +354,32 @@ private volatile int state; // 共享变量，使用volatile保证线程可见�
 
 ### Condition（条件变量）
 
+由Lock对象所创建：
+
+```java
+Lock lock = new ReetrantLock();
+Condition condition = lock.newCondition();
+```
+
 同步调度方法：
 
 ```java
-await();
+void await() throws InterruptedException;
 ```
 
-***TODO***
+用以实现让线程等待，让线程进入阻塞，作用同`wait()`，需要在同步代码区使用。
 
 ```java
-signal();
+void signal();
 ```
 
-***TODO***
+唤醒线程，作用同`notify()`，需要在同步代码区使用。
 
 ```java
-signalAll();
+void signalAll();
 ```
 
-***TODO***
+作用同`notifyAll()`，需要在同步代码区使用。
 
 ### ReentrantLock（可重入锁）
 
@@ -305,11 +387,11 @@ signalAll();
 
 ReentrantLock的可重入性基于`Thread.currentThread()`实现，如果当前线程已经获得锁，那么该线程下的所有方法都可以获得锁。ReentrantLock有两个内部类：`FairSync`（公平锁）和`NonFairSync`（非公平锁）。
 
-
+***TODO***
 
 ### ReadWriteLock（读写锁）
 
-***TODO***
+读写锁分为两个锁，读锁和写锁。读锁与读锁之间是共享的，写锁与读锁之间是互斥的，写锁与写锁之间亦是互斥的。
 
 ### Semaphore（信号量）
 
@@ -385,3 +467,4 @@ V get(long timeout, TimeUnit unit) throws InterruptedException, ExecutionExcepti
 
 实现了`RunnableFuture`接口，而`RunnableFuture`接口继承了`Runnable`和`Future`接口。该类是`Future`接口的唯一实现类。
 
+***TODO***
