@@ -173,11 +173,12 @@ MVC是Model-View-Controller的简称，是一种架构模式，它分离了表�
 
 重要组件：
 
-1. Channel
-2. EventLoop
-3. ChannelFuture
-4. ChannelHandler
-5. ChannelPipeline
+1. Channel：Netty的网络操作接口，包括基本的IO操作如`bind()`、`connect()`、`read()`、`write()`等；常用的Channel接口实现类有`NioServerSocketChannel`和`NioSocketChannel`；
+2. EventLoop：定义了Netty的核心抽象，用于处理连接的生命周期中所发生的事件，即其主要作用为负责监听网络事件并调用事件处理器进行IO相关操作的处理；
+3. ChannelFuture：由于Netty是异步非阻塞的，无法立刻得到操作结果，可以通过该接口的`addListener()`注册一个`ChannelFutureListener`进行监听；
+4. ChannelHandler：消息的具体处理器，负责处理读写操作、客户端连接等；
+5. ChannelPipeline：ChannelHandler的链，提供了一个容器并定义了用于沿着链传播入站和出站时间流的API，当Channel被创建时，它被自动分配到它专属的ChannelPipeline；可以在ChannelPipeline上通过`addLast()`方法添加一个或多个ChannelHandler，因为一个数据或者事件可能会被多个handler处理，当一个ChannelHandler处理完数据之后就交给下一个ChannelHandler；
+6. Bootstrap/ServerBootstrap：前者是客户端的启动/引导类，后者是服务端的启动/引导类，Bootstrap只需配置一个线程组，ServerBootstrap需要配置两个，一个用于接受连接，一个用于具体的处理。
 
 ### Netty事件驱动模型
 
@@ -199,8 +200,29 @@ EventLoopGroup workGroup = new NioEventLoopGroup();
 - `bossGroup`线程池绑定某个端口后获得其中一个线程作为MainReactor，专门处理端口的accept事件，每个端口对应一个boss线程
 - `workGroup`线程池会被各个SubReactor和worker线程充分利用
 
+_EventLoopGroup与EventLoop关系：EventLoopGroup包含多个EventLoop（每个EventLoop通常包含一个线程），EventLoop处理的事件都将在它专有的线程上处理，从而保证线程安全。_
+
 ### 异步处理
 
 Netty的IO操作是异步的，包括`bind()`，`connect()`，`write()`等操作会简单地返回一个`ChannelFuture`，调用者不能立刻获得结果，通过Future-Listener机制，用户可以方便地主动获取或者通过通知机制获得IO操作结果。
 
 相比传统阻塞IO，异步处理的好处是不会造成线程阻塞，线程在IO操作期间可以执行别的程序，在高并发情形下会更稳定和更高的吞吐量。
+
+### 拆包与粘包处理
+
+Netty对解决拆包粘包问题做了抽象，提供一些解码器来解决拆包粘包问题，如：
+
+- `LineBasedFrameDecoder`：以行为单位（换行符）进行数据包的解码
+- `DelimiterBasedFrameDecoder`：以特殊符号作为分隔来进行数据包的解码
+- `FixedLengthFrameDecoder`：以固定长度进行数据包的解码
+- `LengthFieldBasedFrameDecoder`：适用于消息头包含消息长度的协议
+
+也可以通过自定义序列化编解码器来解决拆包粘包问题。
+
+### 零拷贝
+
+操作系统层面的零拷贝通常指避免在用户态和内核态之间来回拷贝数据，Netty层面主要体现在对数据操作的优化：
+
+- 使用了Netty提供的`CompositeByteBuf`类，可以将多个ByteBuf合并为一个逻辑上的ByteBuf，避免了各个ByteBuf的拷贝；
+- ByteBuf支持slice操作，因此可以将ByteBuf分解为多个共享同一个存储区域的ByteBuf，避免内存拷贝；
+- 通过`FileRegion`包装的`FileChannel.transferTo`实现文件传输，可以直接将文件缓冲区的数据发送到目标Channel，避免了传统通过循环write的方式导致的内存拷贝问题。

@@ -67,6 +67,8 @@ public static final int NORM_PRIORITY = 5; // 普通优先级
 public static final int MAX_PRIORITY = 10; // 最小优先级
 ```
 
+以下为Object类中的方法：
+
 ```java
 public final native void wait(long timeoutMillis) throws InterruptedException;
 public final void wait() throws InterruptedException; // 调用以上方法
@@ -75,6 +77,10 @@ public final void wait() throws InterruptedException; // 调用以上方法
 该方法须在synchronized块中调用
 
 _`wait()`与`sleep()`的区别：_
+
+1. _`sleep()`方法正在执行的线程主动让出CPU（不会释放同步锁），在sleep指定时间后CPU再回到该线程继续往下执行；`wait()`则是指当前线程让自己暂时退让同步资源锁，以便等其他等待该资源的线程得到该资源进而运行，只有调用了`notify()`或`notifyAll()`方法才能解除之前调用`wait()`方法的线程的WAIT状态，可以去参与竞争同步资源锁进而得到运行；_
+2. _`sleep()`可在任何地方使用，`wait()`只能在同步块或同步方法中使用；_
+3. _`sleep()`是`Thread`类中的方法，`wait()`是`Object`类中的方法。_
 
 ```java
 public final native void notify();
@@ -90,7 +96,11 @@ public final native void notifyAll();
 
 _`notify()`与`notifyAll()`的区别：_
 
-1. 
+> 等待池：假设一个线程调用了某个对象的`wait()`方法，该线程会释放对象的锁，进入那个对象的等待池，等待池中的线程不会去竞争该对象的锁。
+>
+> 锁池：只有获得了对象的锁，线程才能执行对象的synchronized代码，对象的锁每次只能有一个线程可以获得，其他线程只能在锁池等待。
+
+_`notify()`随机唤醒对象的等待池中的一个线程，进入锁池；`notifyAll()`唤醒对象的等待池中的所有线程，进入锁池。_
 
 ## synchronized关键字
 
@@ -141,6 +151,10 @@ _无论是对对象加锁还是对方法加锁，本质上都是对对象加锁�
 
 **轻量级锁**
 
+在没有多线程竞争的前提下，减少传统重量级锁使用操作系统互斥量产生的性能消耗，在使用轻量级锁时不需要申请互斥量，加解锁使用CAS操作。
+
+_如果存在锁竞争，除了互斥量开销外，还有额外的CAS操作，轻量级锁将比传统重量级锁更慢，锁竞争激烈时将膨胀为重量级锁。_
+
 偏向锁升级为轻量级锁后的Mark Word部分数据如下：
 
 |bit fields|锁标志位|
@@ -167,13 +181,13 @@ _无论是对对象加锁还是对方法加锁，本质上都是对对象加锁�
 |---|---|
 |指向Mutex的指针|10|
 
-重量级锁开销大的原因：
+_重量级锁开销大的原因：_
 
-***TODO***
+_监视器锁依赖于底层操作系统的`MutexLock`实现，Java的线程是映射到操作系统的原生线程上的，若要挂起或唤醒一个线程，都需要操作系统帮忙完成，而操作系统实现线程之间的切换时需要从用户态切换到内核态，这个状态之间的转换需要相对比较长的时间，时间成本高。_
 
 ## 悲观锁
 
-***TODO***
+总是假设最坏的情况，每次拿数据的时候都认为别人会修改，所以悲观锁在持有资源或数据的时候总会把资源或数据锁住，这样其他线程想要请求这个资源的时候就会阻塞，直到等到悲观锁把资源释放为止。`synchronized`和`ReentrantLock`就是悲观锁思想的实现，不管是否持有资源都会尝试加锁。
 
 ## volatile
 
