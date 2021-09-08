@@ -91,7 +91,11 @@ Spring事务传播行为指的是当多个事务同时存在时，Spring如何�
 
 ### AOP
 
-AOP（Aspect-Oriented Programming，面向切面编程）
+AOP（Aspect-Oriented Programming，面向切面编程）能够将那些与业务无关，却为业务模块所共同调用的逻辑或责任（如事务处理、日志管理、权限控制等）封装起来，便于减少系统的重复代码，降低模块间的耦合度，并有利于未来的可扩展性和可维护性。
+
+Spring AOP基于动态代理，若要代理的对象实现了某个接口，Spring AOP会使用JDK动态代理去创建代理对象，而对于没有实现接口的对象就无法使用JDK动态代理去代理了，此时Spring AOP会使用Cglib生成一个被代理对象的子类来进行代理。另外，Spring AOP已经集成AspectJ。
+
+使用AOP后可以把一些通用功能抽象出来，在需要用到的地方直接使用即可，这样大大简化了代码量，在需要增加新功能时也方便，并且提高了系统扩展性。日志功能、事务管理等场景都用到了AOP。
 
 #### AOP基本概念
 
@@ -103,11 +107,6 @@ AOP（Aspect-Oriented Programming，面向切面编程）
 - 织入(Weaving)：将切面应用到目标对象并导致代理对象创建的过程
 - AOP代理(AOP Proxy)：在Spring AOP中有两种代理方式，JDK动态代理和CGLIB代理
 
-#### AOP代理方式
-
-- JDK动态代理
-- CGLIB代理
-
 #### AOP通知类型
 
 1. 前置通知
@@ -115,6 +114,13 @@ AOP（Aspect-Oriented Programming，面向切面编程）
 3. 环绕通知
 4. 返回后通知
 5. 抛出异常后通知
+
+#### Spring AOP与AspectJ的区别
+
+1. Spring AOP属于运行时增强，AspectJ属于编译时增强；
+2. Spring AOP基于代理，AspectJ基于字节码操作；
+3. AspectJ相比Spring AOP功能更强大，但Spring AOP相对来说更简单；
+4. 切面较少时两者性能差异不大，切面太多时AspectJ比Spring AOP快。
 
 ## SpringMVC
 
