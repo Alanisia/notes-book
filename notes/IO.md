@@ -86,7 +86,7 @@ Reactor模型主要包含两个组件：
 
 1. 单线程单Reactor：该模式Reactor和Handler在同一线程中，若某个Handler阻塞会导致其他Handler无法执行，且无法充分利用多核的性能
 2. 多线程单Reactor：由于decode、compute、encode操作并非IO操作，多线程单Reactor思路就是充分发挥多核的特性，同时把非IO的操作剥离开，但由于单个Reactor承担了所有的事件监听、响应工作，若连接过多还是有可能存在性能问题
-3. 多线程多Reactor：为了解决单Reactor的性能问题产生的多Reactor模式，去中mainReactor建立连接，多个subReactor负责数据读写
+3. 多线程多Reactor：为了解决单Reactor的性能问题产生的多Reactor模式，其中mainReactor建立连接，多个subReactor负责数据读写
 
 ## AIO
 

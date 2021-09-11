@@ -58,7 +58,7 @@ _注：不要在代码中使用HashTable，如果需要使用能保证并发安�
 ### `hashCode()`和`equals()`相关
 
 1. 如果两个对象相等，则hashCode相等
-2. 两个对象相等，equals放回true
+2. 两个对象相等，`equals()`返回`true`
 3. 两个对象hashCode相等，两个对象不一定相等
 4. 综上，`equals()`被覆盖，`hashCode()`必须被覆盖
 5. `hashCode()`默认行为是对堆上的对象产生独特值。若不重写`hashCode()`则两个对象无论如何都不会相等

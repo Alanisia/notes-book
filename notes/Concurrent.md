@@ -74,7 +74,7 @@ public final native void wait(long timeoutMillis) throws InterruptedException;
 public final void wait() throws InterruptedException; // 调用以上方法
 ```
 
-该方法须在synchronized块中调用
+该方法须在synchronized块中调用。
 
 _`wait()`与`sleep()`的区别：_
 
@@ -86,13 +86,13 @@ _`wait()`与`sleep()`的区别：_
 public final native void notify();
 ```
 
-该方法须在synchronized块中调用
+该方法须在synchronized块中调用。
 
 ```java
 public final native void notifyAll();
 ```
 
-该方法须在synchronized块中调用
+该方法须在synchronized块中调用。
 
 _`notify()`与`notifyAll()`的区别：_
 
@@ -320,13 +320,19 @@ AQS核心思想是，如果被请求的共享资源空闲，则将请求资源�
 >
 > CLH队列是一个虚拟的双向队列（虚拟的双向队列即不存在队列实例，仅存在结点之间的关联关系）。AQS是将每条请求共享资源的线程封装成一个CLH锁队列的一个结点（Node）来实现锁的分配。
 
-AQS使用一个int成员变量来表示同步状态，通过内置的FIFO队列来完成获取资源线程的排队工作。AQS使用CAS对该同步状态进行原子操作实现对其值的修改。
+AQS使用一个int成员变量来表示同步状态（加锁状态），通过内置的FIFO队列来完成获取资源线程的排队工作。AQS使用CAS对该同步状态进行原子操作实现对其值的修改。
 
 ```java
 private volatile int state; // 共享变量，使用volatile保证线程可见性
 ```
 
-状态信息通过`protected`类型的`getState`，`setState`，`compareAndSetState`进行操作。
+状态信息通过`protected`类型的`getState`，`setState`，`compareAndSetState`进行操作。初始状态下，该值为0；加锁时，该值通过CAS操作加1，解锁时减1。
+
+```java
+private transient Thread exclusiveOwnerThread;
+```
+
+该变量用于记录当前加锁的是哪个线程，初始状态为null。加锁时将该变量赋值为当前加锁的线程。
 
 #### AQS对资源的共享方式
 
@@ -399,7 +405,15 @@ void signalAll();
 
 可重入锁：如果当前线程已经获得执行序列中的锁，那么执行序列之后的所有方法都可以获得这个锁。
 
-ReentrantLock的可重入性基于`Thread.currentThread()`实现，如果当前线程已经获得锁，那么该线程下的所有方法都可以获得锁。ReentrantLock有两个内部类：`FairSync`（公平锁）和`NonFairSync`（非公平锁）。
+ReentrantLock基于AQS实现。加锁时`state`变量加1，并把`exclusiveOwnerThread`设置为加锁线程；解锁时`state`变量减1。ReentrantLock的可重入性基于`Thread.currentThread()`实现，如果当前线程已经获得锁，那么该线程下的所有方法都可以获得锁。可重入加锁时会先判断当前加锁的线程，若当前加锁的线程是自己则会对`state`变量进行累加1。
+
+若`state`不为0，当前线程欲争得锁，此时会先判断`exclusiveOwnerThread`的值，若非当前线程则该线程会进入等待队列等待加锁的线程释放锁。进入等待队列的线程会通过调用`LockSupport.park()`被挂起，而唤醒时则是通过调用`LockSupport.unpark()`。
+
+ReentrantLock有两个内部类：`FairSync`（公平锁）和`NonFairSync`（非公平锁）。默认采用非公平锁，可在构造方法中传入`true`采用公平锁。
+
+非公平锁在调用`lock()`后，首先就会调用CAS进行一次抢锁，如果此时恰巧锁未被占用，直接获取锁并返回。CAS失败后会进入`tryAcquire()`方法，在`tryAcquire()`方法中如果发现锁这个时候被释放了，非公平锁会直接CAS抢锁，若CAS失败就进入等待队列；公平锁会判断等待队列是否有线程处于等待状态，如果有则不会抢锁而是进入等待队列。
+
+相对来说非公平锁会有更好的性能，因为它的吞吐量较大，但非公平锁让获取锁的时间变得更加不确定，可能会导致在阻塞队列中的线程长期处于饥饿状态。
 
 ***TODO***
 

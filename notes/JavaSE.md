@@ -71,7 +71,7 @@
 
 在进行序列化时加了一个`serialVersionUID`字段，此为序列化ID。
 
-Java序列化机制是通过判断运行时类的`serialVersionUID`来验证版本一致性的，在进行反序列化时，JVM会把穿进来的字节流中的`serialVersionUID`与本地实体类中的`serialVersionUID`进行比较，若相同则认为是一致的，便可以进行反序列化，否则报序列化版本不一致之异常。
+Java序列化机制是通过判断运行时类的`serialVersionUID`来验证版本一致性的，在进行反序列化时，JVM会把传进来的字节流中的`serialVersionUID`与本地实体类中的`serialVersionUID`进行比较，若相同则认为是一致的，便可以进行反序列化，否则报序列化版本不一致之异常。
 
 默认的序列化ID：若实体类中未显式定义一个名为`serialVersionUID`、类型为`long`的变量时，Java序列化机制会根据编译时的class自动生成一个`serialVersionUID`作为序列化版本比较，此种情况下只有同一次编译生成的class才会生成相同的`serialVersionUID`。如果需求改动，需要在本地类中增加字段，此时再反序列化时会出现`serialVersionUID`不一致导致反序列化失败。
 
