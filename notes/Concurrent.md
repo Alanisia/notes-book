@@ -175,7 +175,7 @@ _如果存在锁竞争，除了互斥量开销外，还有额外的CAS操作，�
 
 轻量级锁膨胀后升级为重量级锁。重量级锁依赖对象内部的monitor锁实现，monitor锁又依赖于操作系统的MutexLock实现，所以重量级锁又被称为互斥锁。（JDK1.6以前的synchronized为重量级锁）
 
-当轻量级所经过锁撤销等步骤升级为重量级锁之后，它的Mark Word部分数据大体如下：
+当轻量级锁经过锁撤销等步骤升级为重量级锁之后，它的Mark Word部分数据大体如下：
 
 |bit fields|锁标志位|
 |---|---|
@@ -441,11 +441,13 @@ ReentrantLock有两个内部类：`FairSync`（公平锁）和`NonFairSync`（�
 
 ## ThreadLocal
 
+线程局部变量，同一个ThreadLocal所包含的对象，在不同的线程中有不同的副本。
+
 ThreadLocal类能够实现每一个线程都有自己的专属本地变量，让每个线程绑定自己的值。创建一个ThreadLocal变量，那么访问该变量的每个线程都有这个变量的本地副本，并可以使用`get()`和`set()`来获取默认值或者将其值修改为当前线程所存副本之值，从而避免线程安全问题。
 
 ### ThreadLocal原理
 
-***TODO***
+`ThreadLocal`是一个泛型类，保证可以接受任何类型的对象。由于一个线程内可以存在多个`ThreadLocal`对象，`ThreadLocal`内部维护了一个`ThreadLocalMap`的静态类。ThreadLocal的`set()`/`get()`方法调用了`ThreadLocalMap`对应的`set()`/`get()`方法。即`ThreadLocal`其实为`ThreadLocalMap`的封装，传递了变量值。
 
 **为何将key设置为弱引用？**
 
@@ -453,9 +455,9 @@ ThreadLocal类能够实现每一个线程都有自己的专属本地变量，让
 
 ### ThreadLocal内存泄露问题
 
-ThreadLocalMap中使用的key是弱引用，而value是强引用，所以，如果ThreadLocal没有被外部强引用的情况下，在垃圾回收的时候，key会被清理掉而value没有被清理。这样一来ThreadLocalMap就会出现key为null的Entry，如果不做任何措施则value永远不会被GC，这个时候就容易产生内存泄露。
+`ThreadLocalMap`中使用的key是弱引用，而value是强引用，所以，如果ThreadLocal没有被外部强引用的情况下，在垃圾回收的时候，key会被清理掉而value没有被清理。这样一来ThreadLocalMap就会出现key为`null`的Entry，如果不做任何措施则value永远不会被GC，这个时候就容易产生内存泄露。
 
-ThreadLocalMap实现中已经考虑这种情况，在调用`set()`，`get()`，`remove()`时会清理掉key为null的记录。使用完ThreadLocal方法后最好手动调用`remove()`方法。
+`ThreadLocalMap`实现中已经考虑这种情况，在调用`set()`，`get()`，`remove()`时会清理掉key为`null`的记录。使用完ThreadLocal方法后最好手动调用`remove()`方法。
 
 ## Future
 
