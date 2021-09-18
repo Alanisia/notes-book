@@ -48,8 +48,8 @@
 
 ## 克隆
 
-- 浅克隆（Shallow Clone）：***TODO***
-- 深克隆（Deep Clone）：***TODO***
+- 浅克隆（Shallow Clone）：对基本数据类型进行值传递，对引用数据类型进行引用传递拷贝
+- 深克隆（Deep Clone）：对基本数据类型进行值传递，对引用数据类型，创建一个新的对象并复制其内容
 
 `Cloneable`接口和`clone()`方法
 

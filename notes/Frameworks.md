@@ -36,6 +36,8 @@
 
 #### 作用域
 
+可使用`@Scope`注解声明Bean作用域，默认`singleton`。
+
 1. singleton：唯一Bean实例，Spring中的Bean默认都是单例的；
 2. prototype：每次请求都会创建一个新的Bean实例；
 3. request：每一次HTTP请求都会产生一个新的Bean，该Bean仅在当前HTTP Request内有效；
@@ -132,13 +134,33 @@ MVC是Model-View-Controller的简称，是一种架构模式，它分离了表�
 
 ### Spring MVC工作原理
 
-***TODO***
+1. 客户端发送请求
+2. 前端控制器DispatcherServlet接受用户请求
+3. 找到处理器映射HandlerMapping解析请求对应的Handler
+4. HandlerAdaptor会根据Handler来调用真正的处理器处理请求，并处理相应的业务逻辑
+5. 处理器返回一个模型视图ModelAndView
+6. 视图解析器进行解析
+7. 返回一个视图对象
+8. 前端控制器DispatcherServlet渲染数据（Model）
+9. 将得到的视图对象返回给用户
 
 ### Spring MVC核心组件
 
-***TODO***
+- `DispatcherServlet`：前端控制器，相当于Spring MVC的中央处理器，是整个控制流程的中心，由它调用其它组件处理用户的请求，降低组件间的耦合性
+- `HandlerMapping`：处理器映射器，根据请求的URL查找Handler（Controller）
+- `HandlerAdaptor`：处理器适配器，按照特定规则（HandlerAdaptor要求的规则）去执行Handler，是适配器模式的应用，通过扩展适配器可以对更多类型的处理器进行执行
+- `Handler`：处理器，编写具体的业务逻辑
+- `ViewResolver`：视图解析器，进行视图解析，根据逻辑视图名解析成真正的视图（View），ViewResolver首先根据逻辑视图名解析成物理视图名即具体之页面地址，再生成View视图对象，最后对View进行渲染将处理结果通过页面展现给用户
+- `View`：视图，具体的页面
 
 ## Spring Boot
+
+Spring Boot是一个快速开发框架，快速地将一些常用的第三方依赖整合（通过Maven父子工程的形式），简化XML配置，全部采用注解形式，最终以Java应用程序进行执行。
+
+### 常用注解
+
+- `@SpringBootApplication`：可以看作是`@Configuration`、`@EnableAutoConfiguration`、`ComponentScan`
+- `@ImportAutoConfiguration`
 
 ***TODO***
 

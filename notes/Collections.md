@@ -55,7 +55,7 @@ _注：不要在代码中使用HashTable，如果需要使用能保证并发安�
 
 当把元素加入HashSet时，HashSet会先计算对象的hashCode值来判断元素加入的位置，同时也会与其他元素的hashCode值相比较。若没有相同的hashCode，hashSet会假设元素没有重复出现，否则调用equals方法来检查hashCode相等的对象是否真的相等。若两者相等则HashSet不会让加入操作成功。
 
-### `hashCode()`和`equals()`相关
+**`hashCode()`和`equals()`相关**
 
 1. 如果两个对象相等，则hashCode相等
 2. 两个对象相等，`equals()`返回`true`
