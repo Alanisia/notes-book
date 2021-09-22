@@ -159,7 +159,7 @@ Spring Boot是一个快速开发框架，快速地将一些常用的第三方依
 
 ### 常用注解
 
-- `@SpringBootApplication`：可以看作是`@Configuration`、`@EnableAutoConfiguration`、`ComponentScan`
+- `@SpringBootApplication`：可以看作是`@Configuration`、`@EnableAutoConfiguration`、`@ComponentScan`
 - `@ImportAutoConfiguration`
 
 ***TODO***

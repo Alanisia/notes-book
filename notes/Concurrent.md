@@ -138,7 +138,7 @@ _无论是对对象加锁还是对方法加锁，本质上都是对对象加锁�
 |---|---|---|
 |hash|0|01|
 
-偏向锁状态为01表示该对象尚未被加上偏向锁（1表示被加上偏向锁）。
+偏向锁状态为0表示该对象尚未被加上偏向锁（1表示被加上偏向锁）。
 
 **偏向锁**
 
@@ -236,46 +236,41 @@ volatile关键字用于保证程序指令的有序性和可见性。被volatile�
 
 两种创建线程池的方式：
 
-1. 通过创建ThreadPoolExecutor对象
+1. 通过创建`ThreadPoolExecutor`对象
 
-	ThreadPoolExecutor类的七个参数：
+	`ThreadPoolExecutor`类的七个参数：
 
-	- corePoolSize：线程池核心线程数量
-	- maximumPoolSize：线程池最大线程数量
-	- keepAliveTime：多余的空闲线程存活时间
-	- unit：keepAliveTime的单位
-	- workQueue：任务队列，用于保存等待任务的阻塞队列
-	- threadFactory：线程工厂
-	- handler(rejectPolicy)：拒绝策略
+	- `corePoolSize`：线程池核心线程数量
+	- `maximumPoolSize`：线程池最大线程数量
+	- `keepAliveTime`：多余的空闲线程存活时间
+	- `unit`：`keepAliveTime`的单位
+	- `workQueue`：任务队列，用于保存等待任务的阻塞队列
+	- `threadFactory`：线程工厂
+	- `handler`(`rejectPolicy`)：拒绝策略
 
 2. 通过Executors创建
 
-	1. Executors.newFixedThreadPool()
-
-	2. Executors.newSingleThreadPool()
-
-	3. Executors.newCachedThreadPool()
+	1. `Executors.newFixedThreadPool()`：***TODO***
+	2. `Executors.newSingleThreadPool()`：***TODO***
+	3. `Executors.newCachedThreadPool()`：***TODO***
 
 _注：尽量不要使用该方法创建线程池_
 
 ### 阻塞队列
 
-1. ArrayBlockingQueue
-
-2. LinkedBlockingQueue
-
-3. SynchronousQueue
-
-4. PriorityBlockingQueue
+1. `ArrayBlockingQueue`：***TODO***
+2. `LinkedBlockingQueue`：***TODO***
+3. `SynchronousQueue`：***TODO***
+4. `PriorityBlockingQueue`：***TODO***
 
 ### 拒绝策略
 
 四种拒绝策略：
 
-- DiscardOldestPolicy：丢弃队列里最近任务并执行
-- DiscardPolicy：丢弃任务
-- CallRunsPolicy：调用任务所在线程执行任务
-- AbortPolicy：抛出异常
+- `DiscardOldestPolicy`：丢弃队列里最近任务并执行
+- `DiscardPolicy`：丢弃任务
+- `CallRunsPolicy`：调用任务所在线程执行任务
+- `AbortPolicy`：抛出异常
 
 ## 乐观锁
 
@@ -299,11 +294,9 @@ _注：尽量不要使用该方法创建线程池_
 
 	**CAS缺点**
 
-	1. ABA问题
-
-	2. 循环时间开销过大
-
-	3. 只能保证一个共享变量的原子操作
+	1. ABA问题：***TODO***
+	2. 循环时间开销过大：***TODO***
+	3. 只能保证一个共享变量的原子操作：***TODO***
 
 ## Atomic类
 
