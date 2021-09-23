@@ -250,11 +250,15 @@ volatile关键字用于保证程序指令的有序性和可见性。被volatile�
 
 2. 通过Executors创建
 
-	1. `Executors.newFixedThreadPool()`：***TODO***
-	2. `Executors.newSingleThreadPool()`：***TODO***
-	3. `Executors.newCachedThreadPool()`：***TODO***
+	1. `Executors.newFixedThreadPool()`：定长线程池，可控制线程最大并发数；
+	2. `Executors.newSingleThreadPool()`：单线程线程池，只会用唯一的工作线程来执行任务，保证所有任务按指定顺序/优先级执行；
+	3. `Executors.newCachedThreadPool()`：可缓存线程池，若线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程；
+	4. `Executors.newScheduledThreadPool()`：定长线程池，支持定时及周期性任务执行。
 
-_注：尽量不要使用该方法创建线程池_
+_注：尽量不要使用该方法创建线程池，各个Executors的弊端如下：_
+
+- _`FixedThreadPool`和`SingleThreadPool`：主要问题是堆积的请求处理队列可能会耗费非常大的内存甚至OOM；_
+- _`CachedThreadPool`和`ScheduledThreadPool`：主要问题是线程数最大数是`Integer.MAX_VALUE	`，可能会创建数量非常多的线程甚至OOM。_
 
 ### 阻塞队列
 
