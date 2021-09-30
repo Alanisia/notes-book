@@ -80,13 +80,19 @@ public Object get(Object key);
 7. 哈希函数的实现？
 
     ```java
+    // JDK1.8
     static final int hash(Object key) {
         int h;
         return key == null ? 0 : (h = key.hashCode()) ^ (h >>> 16);
     }
+    //JDK 1.7
+    static int hash(int h) {
+        h ^= (h >>> 20) ^ (h >>> 12);
+        return h ^ (h >>> 7) ^ (h >>> 4);
+    }
     ```
 
-
+    使用扰动函数可以对一些实现比较差的`hashCode()`方法进行扰动以减少碰撞。
 
 #### HashMap与HashTable的区别
 
