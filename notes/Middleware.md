@@ -191,6 +191,6 @@
 
 ***TODO***
 
-## ElasticSearch
+## Druid
 
 ***TODO***

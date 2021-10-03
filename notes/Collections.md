@@ -113,9 +113,9 @@ _注：不要在代码中使用HashTable，如果需要使用能保证并发安�
 
 **`hashCode()`和`equals()`相关**
 
-1. 如果两个对象相等，则hashCode相等
+1. 如果两个对象相等，则`hashCode()`相等
 2. 两个对象相等，`equals()`返回`true`
-3. 两个对象hashCode相等，两个对象不一定相等
+3. 两个对象`hashCode()`相等，两个对象不一定相等
 4. 综上，`equals()`被覆盖，`hashCode()`必须被覆盖
 5. `hashCode()`默认行为是对堆上的对象产生独特值。若不重写`hashCode()`则两个对象无论如何都不会相等
 
@@ -181,10 +181,34 @@ ArrayList实现该接口的作用：
 
 ***TODO***
 
-## fail-fast
+### fail-fast & fail-safe
 
-***TODO***
+- fail-fast（快速失败）：直接在容器上遍历，在遍历过程中一旦发现容器中的数据被修改了，会立刻抛出`ConcurrentModificationException`导致遍历失败
 
-## fail-safe
+    常见的集合如ArrayList、HashMap都使用fail-fast机制，在单线程或多线程环境下都有可能出现快速失败。
 
-***TODO***
+    原理：迭代器在遍历时直接访问集合中的内容，并且在遍历过程中使用一个`modCount`变量，集合在被遍历期间如果内容发生变化就会改变`modCount`的值，每当迭代器使用`hashNext()`/`next()`遍历下一个元素之前，都会检测`modCount`变量和`expectedModCount`是否相等，若相等就返回遍历，否则抛出`ConcurrentModificationException`，终止遍历。
+
+    避免措施：使用迭代器上的修改数据的方法而不是集合内置的方法，但该方法不能指定元素，存在局限性。
+- fail-safe（安全失败）：这种遍历基于容器的一个克隆，因此对容器内容的修改不影响遍历
+
+    JUC下的容器均为安全失败，可以在多线程下并发使用、修改，常见的使用fail-safe方式遍历的容器有ConcurrentHashMap、CopyOnWriteArrayList等。
+
+    原理：遍历时不是直接在集合内容上访问，而是先复制原有集合内容，在拷贝的集合上进行遍历，由于迭代时是对原集合的拷贝进行遍历，所以在遍历过程中对原集合所做的修改不能被迭代器检测到，所以不会触发`ConcurrentModificationException`。
+
+    缺点：迭代器不能访问到修改后的内容，即迭代器遍历的是开始遍历那一刻拿到的集合拷贝，在遍历期间原集合发生的修改迭代器是不知道的。
+## 选用集合
+
+根据集合的特点进行选用：
+
+- 需要根据键值对获取元素值：Map
+    - 需要排序：TreeMap
+    - 不需要排序：HashMap
+    - 线程安全：ConcurrentHashMap
+- 需要存放元素值：Collection
+    - 需要保证元素唯一：Set
+        - 有序：TreeSet
+        - 无序：HashSet
+    - 不需要保证元素唯一：List
+        - 数组（查询快，插入/删除慢）：ArrayList
+        - 链表（查询慢，插入/删除快）：LinkedList
