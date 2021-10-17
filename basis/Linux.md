@@ -1,3 +1,19 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Linux](#linux)
+  - [内核空间&用户空间](#%E5%86%85%E6%A0%B8%E7%A9%BA%E9%97%B4%E7%94%A8%E6%88%B7%E7%A9%BA%E9%97%B4)
+  - [常用命令](#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4)
+  - [服务](#%E6%9C%8D%E5%8A%A1)
+  - [用户](#%E7%94%A8%E6%88%B7)
+  - [内核](#%E5%86%85%E6%A0%B8)
+  - [Shell](#shell)
+    - [管道](#%E7%AE%A1%E9%81%93)
+    - [重定向](#%E9%87%8D%E5%AE%9A%E5%90%91)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Linux
 
 ## 内核空间&用户空间

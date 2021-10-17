@@ -1,3 +1,19 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [I/O](#io)
+  - [BIO](#bio)
+  - [NIO](#nio)
+  - [IO多路复用](#io%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8)
+    - [Select/Poll](#selectpoll)
+    - [Epoll](#epoll)
+      - [水平触发&边缘触发](#%E6%B0%B4%E5%B9%B3%E8%A7%A6%E5%8F%91%E8%BE%B9%E7%BC%98%E8%A7%A6%E5%8F%91)
+    - [Reactor模型](#reactor%E6%A8%A1%E5%9E%8B)
+  - [AIO](#aio)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # I/O
 
 Java I/O分类：

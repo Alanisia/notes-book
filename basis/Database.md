@@ -1,3 +1,50 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [数据库](#%E6%95%B0%E6%8D%AE%E5%BA%93)
+  - [范式](#%E8%8C%83%E5%BC%8F)
+    - [优缺点](#%E4%BC%98%E7%BC%BA%E7%82%B9)
+  - [E-R图](#e-r%E5%9B%BE)
+  - [MySQL](#mysql)
+    - [SQL](#sql)
+    - [存储引擎](#%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E)
+    - [表空间](#%E8%A1%A8%E7%A9%BA%E9%97%B4)
+    - [索引](#%E7%B4%A2%E5%BC%95)
+      - [索引分类](#%E7%B4%A2%E5%BC%95%E5%88%86%E7%B1%BB)
+      - [索引底层](#%E7%B4%A2%E5%BC%95%E5%BA%95%E5%B1%82)
+      - [联合索引](#%E8%81%94%E5%90%88%E7%B4%A2%E5%BC%95)
+      - [聚簇索引&非聚簇索引](#%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E9%9D%9E%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95)
+      - [哈希索引](#%E5%93%88%E5%B8%8C%E7%B4%A2%E5%BC%95)
+      - [覆盖索引](#%E8%A6%86%E7%9B%96%E7%B4%A2%E5%BC%95)
+      - [索引失效](#%E7%B4%A2%E5%BC%95%E5%A4%B1%E6%95%88)
+      - [最左前缀原则](#%E6%9C%80%E5%B7%A6%E5%89%8D%E7%BC%80%E5%8E%9F%E5%88%99)
+      - [建立索引的原则](#%E5%BB%BA%E7%AB%8B%E7%B4%A2%E5%BC%95%E7%9A%84%E5%8E%9F%E5%88%99)
+    - [聚合函数](#%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0)
+    - [查询优化](#%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96)
+      - [SQL优化](#sql%E4%BC%98%E5%8C%96)
+      - [慢查询优化](#%E6%85%A2%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96)
+    - [事务](#%E4%BA%8B%E5%8A%A1)
+      - [并发事务带来的问题](#%E5%B9%B6%E5%8F%91%E4%BA%8B%E5%8A%A1%E5%B8%A6%E6%9D%A5%E7%9A%84%E9%97%AE%E9%A2%98)
+      - [事务隔离级别](#%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB)
+      - [事务日志](#%E4%BA%8B%E5%8A%A1%E6%97%A5%E5%BF%97)
+    - [锁机制](#%E9%94%81%E6%9C%BA%E5%88%B6)
+    - [MVCC](#mvcc)
+    - [连接池](#%E8%BF%9E%E6%8E%A5%E6%B1%A0)
+      - [工作原理](#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86)
+      - [主要参数](#%E4%B8%BB%E8%A6%81%E5%8F%82%E6%95%B0)
+      - [注意要点](#%E6%B3%A8%E6%84%8F%E8%A6%81%E7%82%B9)
+    - [切分](#%E5%88%87%E5%88%86)
+      - [分库分表带来的问题](#%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E5%B8%A6%E6%9D%A5%E7%9A%84%E9%97%AE%E9%A2%98)
+      - [何时考虑切分](#%E4%BD%95%E6%97%B6%E8%80%83%E8%99%91%E5%88%87%E5%88%86)
+    - [读写分离](#%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB)
+    - [主从复制](#%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6)
+    - [主从同步](#%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5)
+  - [NoSQL](#nosql)
+    - [MongoDB](#mongodb)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # 数据库
 
 ## 范式
@@ -59,6 +106,34 @@ SQL具有的功能：数据定义、数据操纵、数据控制。
     支持事务，支持全文索引（InnoDB 5.6之后），支持外键，支持表锁和行锁，支持MVCC。
 
     使用`count()`不会直接存储总行数，即对于`select count(*) from table;`需要一行行扫描。
+
+### 表空间
+
+用来存放数据的逻辑空间，也是存储数据的最大逻辑单元，其下还有段、区、页等逻辑数据类型。表空间设计是为了提升更高的IO、不同处理数据的解耦，便于管理。通过表空间来实现对数据文件的灵活控制。
+
+目前MySQL 8.0版本的表空间：
+
+- System Tablespace
+
+    系统表空间，change buffer的存储区域，若表在空间系统表空间创建，而不是在File-per-table或General表空间创建，则还包含表和索引数据。8.0.23之前的版本中，系统表空间包含InnoDB数据字典以及doublewrite缓冲区存储区域，从8.0.20开始分离出来生成单独的doublewrite文件。
+- File-per-table Tablespaces
+
+    独立表空间包含单个InnoDB表的数据和索引，并存储在文件系统中自己的数据文件中。默认的表空间类型，在创建InnoDB表时隐式使用。与系统表空间不同，在截断或删除在每个表文件表空间中创建的表后，磁盘空间返回给操作系统。
+
+    - 优势：***TODO***
+    - 缺点：***TODO***
+- General Tablespaces
+
+    通用表空间，共享表空间的扩展（只对于业务表）。独立于MySQL数据目录的目录中，可以在共享表空间、独立表空间、通用表空间进行数据转移，方便迁移数据，特别在空间不够的情况。
+- Undo Tablespaces
+
+    包含Undo日志，是Undo日志记录的集合，其中包含关于如何撤销事务对聚集索引记录的信息。Undo日志段包含在回滚段中。
+- Temporary Tablespaces
+
+    InnoDB使用会话临时表空间和全局临时表空间。
+    - Session Temporary Tablespace
+
+        当InnoDB被配置为磁盘内部临时表的存储引擎时，会话临时表空间存储了用户创建的临时表和优化器创建的内部临时表。
 
 ### 索引
 

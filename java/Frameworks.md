@@ -1,3 +1,41 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [框架](#%E6%A1%86%E6%9E%B6)
+  - [Spring](#spring)
+    - [IOC/DI](#iocdi)
+    - [Bean](#bean)
+      - [生命周期](#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F)
+      - [作用域](#%E4%BD%9C%E7%94%A8%E5%9F%9F)
+    - [常用注入方式](#%E5%B8%B8%E7%94%A8%E6%B3%A8%E5%85%A5%E6%96%B9%E5%BC%8F)
+    - [装配与自动装配](#%E8%A3%85%E9%85%8D%E4%B8%8E%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D)
+    - [事务](#%E4%BA%8B%E5%8A%A1)
+      - [隔离级别](#%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB)
+      - [事务传播](#%E4%BA%8B%E5%8A%A1%E4%BC%A0%E6%92%AD)
+    - [设计模式](#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F)
+    - [AOP](#aop)
+      - [AOP基本概念](#aop%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5)
+      - [AOP通知类型](#aop%E9%80%9A%E7%9F%A5%E7%B1%BB%E5%9E%8B)
+      - [Spring AOP与AspectJ的区别](#spring-aop%E4%B8%8Easpectj%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [SpringMVC](#springmvc)
+    - [Spring MVC工作原理](#spring-mvc%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86)
+    - [Spring MVC核心组件](#spring-mvc%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6)
+  - [Spring Boot](#spring-boot)
+    - [常用注解](#%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3)
+  - [MyBatis](#mybatis)
+    - [${}和#{}的区别](#%E5%92%8C%E7%9A%84%E5%8C%BA%E5%88%AB)
+    - [MyBatis分页](#mybatis%E5%88%86%E9%A1%B5)
+    - [MyBatis缓存](#mybatis%E7%BC%93%E5%AD%98)
+  - [Netty](#netty)
+    - [Netty事件驱动模型](#netty%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B)
+    - [Netty线程模型](#netty%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B)
+    - [异步处理](#%E5%BC%82%E6%AD%A5%E5%A4%84%E7%90%86)
+    - [拆包与粘包处理](#%E6%8B%86%E5%8C%85%E4%B8%8E%E7%B2%98%E5%8C%85%E5%A4%84%E7%90%86)
+    - [零拷贝](#%E9%9B%B6%E6%8B%B7%E8%B4%9D)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # 框架
 
 ## Spring

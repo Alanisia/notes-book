@@ -1,3 +1,35 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [数据结构与算法](#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95)
+  - [线性数据结构](#%E7%BA%BF%E6%80%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84)
+    - [数组](#%E6%95%B0%E7%BB%84)
+    - [栈](#%E6%A0%88)
+    - [队列](#%E9%98%9F%E5%88%97)
+    - [链表](#%E9%93%BE%E8%A1%A8)
+    - [哈希表](#%E5%93%88%E5%B8%8C%E8%A1%A8)
+    - [堆](#%E5%A0%86)
+  - [非线性数据结构](#%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84)
+    - [树](#%E6%A0%91)
+    - [二叉树](#%E4%BA%8C%E5%8F%89%E6%A0%91)
+      - [二叉搜索树](#%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91)
+      - [AVL](#avl)
+      - [红黑树](#%E7%BA%A2%E9%BB%91%E6%A0%91)
+      - [树堆](#%E6%A0%91%E5%A0%86)
+    - [B树](#b%E6%A0%91)
+      - [B+树](#b%E6%A0%91)
+    - [图](#%E5%9B%BE)
+  - [算法](#%E7%AE%97%E6%B3%95)
+    - [排序算法](#%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95)
+    - [查找算法](#%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95)
+    - [算法策略](#%E7%AE%97%E6%B3%95%E7%AD%96%E7%95%A5)
+      - [分治](#%E5%88%86%E6%B2%BB)
+      - [动态规划](#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92)
+      - [贪心](#%E8%B4%AA%E5%BF%83)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # 数据结构与算法
 
 ## 线性数据结构

@@ -1,3 +1,17 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [项目](#%E9%A1%B9%E7%9B%AE)
+  - [项目管理](#%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86)
+    - [Git](#git)
+    - [基本概念](#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5)
+  - [项目构建](#%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA)
+    - [Maven](#maven)
+    - [Gradle](#gradle)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # 项目
 
 ## 项目管理

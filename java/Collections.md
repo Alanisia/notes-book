@@ -1,3 +1,27 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [容器](#%E5%AE%B9%E5%99%A8)
+  - [Map](#map)
+    - [HashMap](#hashmap)
+      - [实现原理](#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86)
+      - [HashMap与HashTable的区别](#hashmap%E4%B8%8Ehashtable%E7%9A%84%E5%8C%BA%E5%88%AB)
+    - [HashSet](#hashset)
+    - [ConcurrentHashMap](#concurrenthashmap)
+      - [实现原理](#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86-1)
+      - [ConcurrentHashMap与HashTable的区别](#concurrenthashmap%E4%B8%8Ehashtable%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [List](#list)
+    - [ArrayList，Vector，LinkedList区别](#arraylistvectorlinkedlist%E5%8C%BA%E5%88%AB)
+    - [ArrayList与数组的区别](#arraylist%E4%B8%8E%E6%95%B0%E7%BB%84%E7%9A%84%E5%8C%BA%E5%88%AB)
+    - [RandomAccess接口](#randomaccess%E6%8E%A5%E5%8F%A3)
+    - [ArrayList扩容机制](#arraylist%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6)
+  - [迭代器（Iterator）](#%E8%BF%AD%E4%BB%A3%E5%99%A8iterator)
+    - [fail-fast & fail-safe](#fail-fast--fail-safe)
+  - [选用集合](#%E9%80%89%E7%94%A8%E9%9B%86%E5%90%88)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # 容器
 
 ## Map
