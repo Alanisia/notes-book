@@ -34,6 +34,27 @@
 
 ## Slice（切片）
 
+切片的底层结构：
+
+```go
+type slice struct {
+  array unsafe.Pointer // 指向数组的指针
+  len int // 长度
+  cap int // 容量
+}
+```
+
+**创建切片**
+
+- `make()`：***TODO***
+- 空切片：***TODO***
+
+**切片扩容**
+
+***TODO***
+
+**切片拷贝**
+
 ***TODO***
 
 ## 指针
