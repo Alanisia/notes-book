@@ -24,16 +24,151 @@ Linux以`PAGE_OFFSET`为界将4GB的虚拟内存空间分为两部分：地址`0
 
 ## 常用命令
 
-- 查询域名对应IP地址
-    - nslookup：用于查询互联网域名服务器
+- 网络
+  - 查询域名对应IP地址
+    - nslookup：检测网络中DNS服务器能否正确解析域名，用于查询互联网域名服务器
+
+      ```bash
+      nslookup <domain>
+      ```
     - dig：用于查询DNS名称
     - host：用于执行DNS查询
-    - ping：用于向网络主机发送ICMP请求应答数据包
+    - ping：用于向网络主机发送ICMP请求应答数据包，检测某服务器到其他服务器的网络连接情况
     - fping：用于向网络主机发送ICMP请求应答数据包
-- CPU指标 ***TODO***
-- 端口监听 ***TODO***
-- 文本处理 ***TODO***
-- 数据统计 ***TODO***
+  - ifconfig、ip：显示网卡挂载的信息
+
+    ```bash
+    ifconfig -a
+    ```
+  - telnet：检测某服务器的端口是否可以正常对外服务
+
+    ```bash
+    telnet <ip> <port>
+    ```
+  - nc：模拟开启TCP/IP的服务器，通常用于拦截HTTP传递的参数，帮助定位RESTful服务的问题
+  - mtr：检测网络连通性问题，并可以获取某一个域名或者IP的丢包率
+
+    ```bash
+    mtr -r <domain>
+    ```
+  - traceroute：跟踪网络传输的详细路径，显示每一级网关的信息
+
+    ```bash
+    traceroute <domain>
+    ```
+  - sar：为全面监控网络、磁盘、CPU、内存等信息的轻量级工具
+  - netstat、ss：用于查看网络端口的连接情况
+
+    ```bash
+    netstat -nap
+    ```
+  - tcpdump：可以拦截本机网卡上任何协议的通信内容，用于调试网络问题
+  - iptraf：用于获取网络I/O的传输速度及其他网络状态信息
+  - nmap：扫描某一服务器打开的端口
+
+    ```bash
+    nmap -v -A localhost
+    ```
+  - ethtool：查看网卡的配置或配置网卡
+  - curl：模拟HTTP调用，常用于RESTful服务的简单测试
+
+    ```bash
+    curl -i <URL> # 打印请求响应头信息
+    curl -v <URL> # 打印更多的调试信息
+    curl -d 'abc=def' <URL> # 使用POST方法提交HTTP请求
+    curl -I <URL> # 仅返回HTTP头
+    curl -sw '%{http_code}' <URL> # 打印HTTP响应码
+    ```
+- 进程 
+  - ps：显示系统内的进程
+  - top、htop：用于查看活动进程内的CPU和内存信息，能够实时显示系统中各个进程的资源占用情况，可以按照CPU、内存的使用情况和执行时间对进程进行排序
+  - pidstat：针对某一进程输出系统资源的使用情况，包括CPU、内存、I/O等
+
+    ```bash
+    pidstat -[u|r|d] -p <PID> # u=cpu, r=内存, d=磁盘I/O
+    ```
+  - pstack：打印进程内的调用堆栈
+
+    ```bash
+    pstack <PID>
+    ```
+  - strace：跟踪进程内的工作机制
+  - lsof：查看某个进程打开的文件句柄
+
+    ```bash
+    lsof -p <PID> # 查看某个进程打开的文件句柄
+    lsof -i:<PORT> # 查看某个端口的使用方式
+    ```
+  - ulimit：查看用户对资源使用的限制，如打开的最大文件句柄、创建的最大线程数等
+
+    ```bash
+    ulimit -a
+    ```
+- 内存
+  - free：查看系统的内存使用情况
+  - pmap：查看进程的详细的内存分配情况
+
+    ```bash
+    pmap -d <PID>
+    ```
+- CPU监控
+  - vmstat：查看系统的CPU利用率、负载、内存等信息
+  - mpstat：查看系统的CPU利用率、负载，并且按照CPU核心分别显示相关信息
+
+    ```bash
+    mpstat -P ALL
+    ```
+- 磁盘I/O监控
+  - iostat：查看磁盘I/O的信息及传输速度
+
+    ```bash
+    iostat -x
+    ```
+  - swapon：查看系统交换区的使用情况
+
+    ```bash
+    swapon -s
+    ```
+  - df：显示磁盘挂载的信息
+
+    ```bash
+    df -h
+    ```
+- 摘要
+  - md5sum：生成md5摘要
+  - sha256：生成sha256摘要
+  - base64：生成base64编码
+- 文本处理 
+  - grep：文本内容（关键字）查找
+
+      ```bash
+      # --color: 查找后着色
+      grep -5 'pattern' INPUT_FILE # 打印匹配行的前后5行
+      grep -C 5 'pattern' INPUT_FILE # 打印匹配行的前后5行
+      grep -A 5 'pattern' INPUT_FILE # 打印匹配行的后5行
+      grep -B 5 'pattern' INPUT_FILE # 打印匹配行的前5行
+      ```
+  - find：通过文件名查找文件所在位置，支持模糊匹配
+      ```bash
+      find . -name FILE_NAME
+      ```
+  - sed：文本编辑与替换
+  - tr：字符替换
+  - cut：选取，分析一段数据并取出想要的部分
+  - dos2unix、unix2dos：转换Windows和UNIX的换行符
+  - awk：文本分析工具，支持脚本处理
+- 数据处理与统计
+  - sort：排序
+  - uniq：去重或分组统计，与sort配合使用
+  - wc：统计字数和行数等
+- 文件传输
+  - scp：实现从本地到远程或从远程到本地的双向传输
+- 文件解压缩
+  - tar：创建或解压tar格式的包
+  - zip、unzip：压缩成zip格式的压缩包或解压
+  - rar、unrar：压缩成rar格式的压缩包或解压
+- 其他
+  - uptime：查看操作系统启动的时间、登录的用户、系统的负载等
 
 ## 服务
 

@@ -63,7 +63,16 @@ type slice struct {
 
 ## Map
 
-***TODO***
+无序键值对的集合，通过key进行快速检索，可以像迭代数组和切片那样进行迭代，但由于map无序，所以无法决定其返回顺序。
+
+定义map：
+
+- `make()`：`map_v := make(map[key_type]value_type)`
+- `map`：`var map_v map[key_type]value_type`
+
+_若不初始化map则会创建一个nil map，nil map不能用于存放键值对。_
+
+`delete(map, key)`：删除键值对
 
 ## 错误处理
 
