@@ -292,3 +292,8 @@ Netty对解决拆包粘包问题做了抽象，提供一些解码器来解决拆
 - 使用了Netty提供的`CompositeByteBuf`类，可以将多个ByteBuf合并为一个逻辑上的ByteBuf，避免了各个ByteBuf的拷贝；
 - ByteBuf支持slice操作，因此可以将ByteBuf分解为多个共享同一个存储区域的ByteBuf，避免内存拷贝；
 - 通过`FileRegion`包装的`FileChannel.transferTo`实现文件传输，可以直接将文件缓冲区的数据发送到目标Channel，避免了传统通过循环write的方式导致的内存拷贝问题。
+
+### 网络I/O框架与Web容器的比较
+
+- 网络I/O框架直接封装传输层的TCP/UDP协议，而Web容器是基于Servlet的，Servlet 3.0基于传输层，封装了应用层协议，包括HTTP；
+- 网络I/O框架无需Web容器的支持，可以直接在程序中应用这些框架实现客户端和服务器通信，而Web容器一般部署在服务器端，对Servlet 3.0提供了不同的实现。
