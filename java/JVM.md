@@ -436,10 +436,18 @@ Happens-before规则定义：
 
 ## JVM监控工具
 
-- jstack：线程快照
+- jstack：打印给定的Java进程ID的线程堆栈快照信息
 - jmap：内存监控
 - jps：查看当前Java进程
-- jstat：显示虚拟机运行数据
-- jinfo：虚拟机配置信息
-- jhat：分析heapdump文件
+- jstat：对Java应用程序的资源和性能进行实时的命令行监控
+- jinfo：输出并修改运行时的Java进程的环境变量和虚拟机参数
+- jhat：用户分析内存堆的快照文件
+- javah：生成Java类中本地方法的C头文件，一般用于JNI开发
+- jdb：远程调试，用于定位线上问题
+- jstatd：jstat的服务器版本
+- jad：反编译工具
+- btrace：动态跟踪Java运行时程序
 - jvisualvm：虚拟机监视和故障处理平台
+- jconsole：查看Java内存和线程堆栈（已过时）
+- jmat：Java性能跟踪、定位与分析工具
+- jprofiler：Java性能跟踪、定位与分析工具

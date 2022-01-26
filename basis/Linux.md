@@ -1,19 +1,3 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
-
-- [Linux](#linux)
-  - [内核空间&用户空间](#%E5%86%85%E6%A0%B8%E7%A9%BA%E9%97%B4%E7%94%A8%E6%88%B7%E7%A9%BA%E9%97%B4)
-  - [常用命令](#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4)
-  - [服务](#%E6%9C%8D%E5%8A%A1)
-  - [用户](#%E7%94%A8%E6%88%B7)
-  - [内核](#%E5%86%85%E6%A0%B8)
-  - [Shell](#shell)
-    - [管道](#%E7%AE%A1%E9%81%93)
-    - [重定向](#%E9%87%8D%E5%AE%9A%E5%90%91)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 # Linux
 
 ## 内核空间&用户空间
@@ -93,6 +77,12 @@ Linux以`PAGE_OFFSET`为界将4GB的虚拟内存空间分为两部分：地址`0
     pstack <PID>
     ```
   - strace：跟踪进程内的工作机制
+
+    ```bash
+    # 跟踪进程ID为PID的进程上与信号有关的系统调用
+    strace -e trace=signal -p PID
+    ```
+
   - lsof：查看某个进程打开的文件句柄
 
     ```bash
@@ -216,3 +206,121 @@ Linux的输入输出有3类：
 - `<`：输入重定向，从文件读取
 - `>>`：输出重定向，表示追加到文件中，不覆盖，当前输出内容会追加到文件尾部
 - `<<`：表示当前标准输入来自命令行的一对分隔号的中间内容
+
+## 信号
+
+信号就是一个通知（事件通知），用来通知某个进程发生了某一件事。信号是异步发生的，又称“软件中断”。
+
+信号的产生：
+
+- 某个进程发送给另一个进程或者发送给自己
+- 由内核发送给某个进程
+  - 通过在键盘上输入一些命令动作
+  - 内存访问异常
+
+### 信号处理相关动作
+
+- 执行系统默认动作
+- 忽略此信号
+- 捕捉该信号
+
+_注：信号SIGKILL与SIGSTOP是特权信号，不要试图捕捉此二信号，对此二信号的处理程序代码无效。_
+
+### kill命令
+
+```bash
+kill -n PID # n=信号编号，PID=进程ID
+```
+
+常用信号列举如下：***TODO***
+
+|信号编号|信号名称|信号含义|操作系统默认动作|
+|---|---|---|---|
+|1|SIGNUP|||
+|2|SIGINT|
+|3|SIGQUIT||终端退出|
+|4|
+|5|
+|6|
+|7|
+|8|
+|9|SIGKILL||终止|
+|10|
+|11|
+|12|
+|13|
+|14|
+|15|
+|16|
+|17|
+|18|SIGCOUT|
+|19|SIGSTOP|
+|20|SIGTSTP|
+|21|
+|22|
+|23|
+|24|
+
+### 信号编程
+
+信号相关的定义与函数包含在`signal.h`中，使用时需要引入头文件`signal.h`：
+
+```c
+#include <signal.h>
+// c++: #include <csignal>
+```
+
+相关函数：
+
+***TODO***
+
+#### 可重入函数
+
+***TODO***
+
+#### 信号集（信号屏蔽字）
+
+信号集可以表示为：0000000000,0000000000,0000000000...
+
+如果收到某个信号就把信号集上的对应位置1。信号集在Linux中表示为`sigset_t`：
+
+```c
+typedef struct {
+  unsigned long sig[2]; // 两个无符号32位
+} sigset_t;
+```
+
+相关函数：
+
+- `sigemptyset()`
+- `sigfillset()`
+- `sigaddset()`
+- `sigdelset()`
+- `sigprocmask()`
+- `sigismember()`
+
+## 会话
+
+***TODO***
+
+## 进程
+
+关闭终端后如何让进程不退出：
+
+- 拦截SIGHUP信号：***TODO***
+- setsid命令：启动一个进程，而且能够使启动的进程在一个新的session中
+- 后台执行
+  - `&`：***TODO***
+  - nohup：***TODO***
+
+### 子进程
+
+***TODO***
+
+#### fork函数
+
+***TODO***
+
+### 守护进程
+
+***TODO***
