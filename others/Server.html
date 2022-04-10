@@ -1,0 +1,275 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>服务器 - Notes</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">README</li><li class="chapter-item expanded "><a href="../basis.html"><strong aria-hidden="true">1.</strong> 基础</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basis/DataStructuresAndAlgorithms.html"><strong aria-hidden="true">1.1.</strong> 数据结构与算法</a></li><li class="chapter-item expanded "><a href="../basis/OS.html"><strong aria-hidden="true">1.2.</strong> 操作系统</a></li><li class="chapter-item expanded "><a href="../basis/Network.html"><strong aria-hidden="true">1.3.</strong> 计算机网络</a></li><li class="chapter-item expanded "><a href="../basis/Project.html"><strong aria-hidden="true">1.4.</strong> 项目管理</a></li></ol></li><li class="chapter-item expanded "><a href="../java.html"><strong aria-hidden="true">2.</strong> Java</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../java/JavaSE.html"><strong aria-hidden="true">2.1.</strong> 基础</a></li><li class="chapter-item expanded "><a href="../java/Collections.html"><strong aria-hidden="true">2.2.</strong> 集合</a></li><li class="chapter-item expanded "><a href="../java/Concurrent.html"><strong aria-hidden="true">2.3.</strong> 并发</a></li><li class="chapter-item expanded "><a href="../java/JVM.html"><strong aria-hidden="true">2.4.</strong> 虚拟机</a></li><li class="chapter-item expanded "><a href="../java/IO.html"><strong aria-hidden="true">2.5.</strong> 输入输出</a></li><li class="chapter-item expanded "><a href="../java/Frameworks.html"><strong aria-hidden="true">2.6.</strong> 框架</a></li><li class="chapter-item expanded "><a href="../java/DesignPatterns.html"><strong aria-hidden="true">2.7.</strong> 设计模式</a></li><li class="chapter-item expanded "><a href="../java/BigData.html"><strong aria-hidden="true">2.8.</strong> 大数据</a></li></ol></li><li class="chapter-item expanded "><a href="../database/Database.html"><strong aria-hidden="true">3.</strong> 数据库</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../database/SQL.html"><strong aria-hidden="true">3.1.</strong> SQL</a></li><li class="chapter-item expanded "><a href="../database/MySQL.html"><strong aria-hidden="true">3.2.</strong> MySQL</a></li></ol></li><li class="chapter-item expanded "><a href="../Linux.html"><strong aria-hidden="true">4.</strong> Linux</a></li><li class="chapter-item expanded "><a href="../go.html"><strong aria-hidden="true">5.</strong> Go</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../go/Go.html"><strong aria-hidden="true">5.1.</strong> 基础</a></li><li class="chapter-item expanded "><a href="../go/Goroutine.html"><strong aria-hidden="true">5.2.</strong> 协程</a></li></ol></li><li class="chapter-item expanded "><a href="../frontend.html"><strong aria-hidden="true">6.</strong> 前端</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../frontend/HTML&CSS.html"><strong aria-hidden="true">6.1.</strong> HTML &amp; CSS</a></li><li class="chapter-item expanded "><a href="../frontend/Browser.html"><strong aria-hidden="true">6.2.</strong> 浏览器</a></li></ol></li><li class="chapter-item expanded "><a href="../android.html"><strong aria-hidden="true">7.</strong> 安卓</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../android/Activity.html"><strong aria-hidden="true">7.1.</strong> 活动</a></li><li class="chapter-item expanded "><a href="../android/System.html"><strong aria-hidden="true">7.2.</strong> 系统</a></li></ol></li><li class="chapter-item expanded "><a href="../others.html"><strong aria-hidden="true">8.</strong> 其他</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../others/Distributed.html"><strong aria-hidden="true">8.1.</strong> 分布式</a></li><li class="chapter-item expanded "><a href="../others/Server.html" class="active"><strong aria-hidden="true">8.2.</strong> 服务器</a></li><li class="chapter-item expanded "><a href="../others/Middleware.html"><strong aria-hidden="true">8.3.</strong> 中间件</a></li><li class="chapter-item expanded "><a href="../others/Docker.html"><strong aria-hidden="true">8.4.</strong> Docker</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Notes</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="服务器"><a class="header" href="#服务器">服务器</a></h1>
+<h2 id="nginx"><a class="header" href="#nginx">Nginx</a></h2>
+<p>Nginx是一个轻量级/高性能的反向代理Web服务器，实现非常高效的反向代理与负载平衡，可以处理2-3万并发连接数，官方检测能支持5万并发。</p>
+<p>特点：</p>
+<ul>
+<li>跨平台，配置简单，响应快</li>
+<li>反向代理</li>
+<li>耗费内存少</li>
+<li>处理静态文件好</li>
+<li>高并发连接：可以处理2-3万并发连接数，官方检测能支持5万并发</li>
+<li>健康检查：若一个服务器宕机，会做一个健康检查，再发送的请求就不会发送到宕机的服务器了，重新提交到其他节点上</li>
+<li>节省宽带：支持gzip压缩，可以添加浏览器本地缓存</li>
+<li>稳定性高：宕机概率非常小</li>
+<li>接收用户请求是异步的</li>
+</ul>
+<p>缺点：动态处理差（指处理动态页面）</p>
+<p>应用场景：</p>
+<ul>
+<li>HTTP服务器</li>
+<li>虚拟主机</li>
+<li>反向代理，负载均衡</li>
+<li>安全管理</li>
+</ul>
+<h3 id="反向代理"><a class="header" href="#反向代理">反向代理</a></h3>
+<p><em><strong>TODO</strong></em></p>
+<h3 id="配置文件"><a class="header" href="#配置文件">配置文件</a></h3>
+<p><em><strong>TODO</strong></em></p>
+<h3 id="动静分离"><a class="header" href="#动静分离">动静分离</a></h3>
+<p>让动态网站里的动态网页根据一定规则把不变的资源和经常变的资源区分开，动静分离后可以根据静态资源的特点将其做缓存操作。</p>
+<p>动静分离的原因：</p>
+<ul>
+<li>网站优化重点在于静态化网站，静态化网站的关键点则为动静分离；</li>
+<li>Nginx静态处理能力强，但动态处理能力不足；</li>
+<li>静态资源如图片、JS、CSS等文件在Nginx中缓存，浏览器在请求一个静态资源时，Nginx就可以直接处理，无需将请求转发给后端服务器；若用户请求的动态文件则转发给后端服务器处理；</li>
+<li>让静态资源只走静态资源服务器，动态的走动态资源服务器。</li>
+</ul>
+<h3 id="负载均衡"><a class="header" href="#负载均衡">负载均衡</a></h3>
+<p>为避免服务器崩溃，会通过负载均衡的方式来分担服务器压力，将多台服务器组成一个集群，当用户访问时，先访问至一个转发服务器，再由转发服务器将访问分发到压力更小的服务器。</p>
+<p>负载均衡实现策略：</p>
+<ul>
+<li>轮询（默认）
+<ul>
+<li>每个请求按时间顺序逐一分配至不同的后端服务器，若后端某个服务器宕机，自动剔除故障系统；</li>
+</ul>
+</li>
+<li>权重（weight）
+<ul>
+<li>权值越大分配到的访问频率越高，主要用于后端每台服务器性能不均衡的情况下；</li>
+<li>为在主从的情况下设置不同的权值，达到合理有效地利用主机资源；</li>
+</ul>
+</li>
+<li>IP绑定（ip_hash）
+<ul>
+<li>每个请求按访问IP的哈希结果分配，使来自同一IP的访客固定访问一台后端服务器，且可以有效地解决动态网页存在的session共享问题；</li>
+</ul>
+</li>
+<li>fair（第三方插件）</li>
+<li>url_hash（第三方插件）</li>
+</ul>
+<h3 id="限流"><a class="header" href="#限流">限流</a></h3>
+<p>限制用户请求速度，防止服务器宕机。限流有以下几种：</p>
+<ul>
+<li>正常限制访问频率（正常流量）</li>
+<li>突发限制访问频率（突发流量）</li>
+<li>限制并发连接数</li>
+</ul>
+<h4 id="限流算法"><a class="header" href="#限流算法">限流算法</a></h4>
+<ul>
+<li>漏桶流算法</li>
+<li>令牌桶算法</li>
+</ul>
+<h3 id="虚拟主机"><a class="header" href="#虚拟主机">虚拟主机</a></h3>
+<ul>
+<li>基于域名的虚拟主机，通过域名来区分虚拟主机（如外部网站）</li>
+<li>基于端口的虚拟主机，通过端口来区分虚拟主机（如公司内部网站、外部网站的管理后台）</li>
+<li>基于IP的虚拟主机</li>
+</ul>
+<p><em><strong>TODO</strong></em></p>
+<h2 id="tomcat"><a class="header" href="#tomcat">Tomcat</a></h2>
+<p><em><strong>TODO</strong></em></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../others/Distributed.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../others/Middleware.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../others/Distributed.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../others/Middleware.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

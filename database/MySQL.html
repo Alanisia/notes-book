@@ -1,0 +1,906 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>MySQL - Notes</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">README</li><li class="chapter-item expanded "><a href="../basis.html"><strong aria-hidden="true">1.</strong> 基础</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basis/DataStructuresAndAlgorithms.html"><strong aria-hidden="true">1.1.</strong> 数据结构与算法</a></li><li class="chapter-item expanded "><a href="../basis/OS.html"><strong aria-hidden="true">1.2.</strong> 操作系统</a></li><li class="chapter-item expanded "><a href="../basis/Network.html"><strong aria-hidden="true">1.3.</strong> 计算机网络</a></li><li class="chapter-item expanded "><a href="../basis/Project.html"><strong aria-hidden="true">1.4.</strong> 项目管理</a></li></ol></li><li class="chapter-item expanded "><a href="../java.html"><strong aria-hidden="true">2.</strong> Java</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../java/JavaSE.html"><strong aria-hidden="true">2.1.</strong> 基础</a></li><li class="chapter-item expanded "><a href="../java/Collections.html"><strong aria-hidden="true">2.2.</strong> 集合</a></li><li class="chapter-item expanded "><a href="../java/Concurrent.html"><strong aria-hidden="true">2.3.</strong> 并发</a></li><li class="chapter-item expanded "><a href="../java/JVM.html"><strong aria-hidden="true">2.4.</strong> 虚拟机</a></li><li class="chapter-item expanded "><a href="../java/IO.html"><strong aria-hidden="true">2.5.</strong> 输入输出</a></li><li class="chapter-item expanded "><a href="../java/Frameworks.html"><strong aria-hidden="true">2.6.</strong> 框架</a></li><li class="chapter-item expanded "><a href="../java/DesignPatterns.html"><strong aria-hidden="true">2.7.</strong> 设计模式</a></li><li class="chapter-item expanded "><a href="../java/BigData.html"><strong aria-hidden="true">2.8.</strong> 大数据</a></li></ol></li><li class="chapter-item expanded "><a href="../database/Database.html"><strong aria-hidden="true">3.</strong> 数据库</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../database/SQL.html"><strong aria-hidden="true">3.1.</strong> SQL</a></li><li class="chapter-item expanded "><a href="../database/MySQL.html" class="active"><strong aria-hidden="true">3.2.</strong> MySQL</a></li></ol></li><li class="chapter-item expanded "><a href="../Linux.html"><strong aria-hidden="true">4.</strong> Linux</a></li><li class="chapter-item expanded "><a href="../go.html"><strong aria-hidden="true">5.</strong> Go</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../go/Go.html"><strong aria-hidden="true">5.1.</strong> 基础</a></li><li class="chapter-item expanded "><a href="../go/Goroutine.html"><strong aria-hidden="true">5.2.</strong> 协程</a></li></ol></li><li class="chapter-item expanded "><a href="../frontend.html"><strong aria-hidden="true">6.</strong> 前端</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../frontend/HTML&CSS.html"><strong aria-hidden="true">6.1.</strong> HTML &amp; CSS</a></li><li class="chapter-item expanded "><a href="../frontend/Browser.html"><strong aria-hidden="true">6.2.</strong> 浏览器</a></li></ol></li><li class="chapter-item expanded "><a href="../android.html"><strong aria-hidden="true">7.</strong> 安卓</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../android/Activity.html"><strong aria-hidden="true">7.1.</strong> 活动</a></li><li class="chapter-item expanded "><a href="../android/System.html"><strong aria-hidden="true">7.2.</strong> 系统</a></li></ol></li><li class="chapter-item expanded "><a href="../others.html"><strong aria-hidden="true">8.</strong> 其他</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../others/Distributed.html"><strong aria-hidden="true">8.1.</strong> 分布式</a></li><li class="chapter-item expanded "><a href="../others/Server.html"><strong aria-hidden="true">8.2.</strong> 服务器</a></li><li class="chapter-item expanded "><a href="../others/Middleware.html"><strong aria-hidden="true">8.3.</strong> 中间件</a></li><li class="chapter-item expanded "><a href="../others/Docker.html"><strong aria-hidden="true">8.4.</strong> Docker</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Notes</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="mysql"><a class="header" href="#mysql">MySQL</a></h1>
+<h2 id="权限与安全"><a class="header" href="#权限与安全">权限与安全</a></h2>
+<h3 id="权限表"><a class="header" href="#权限表">权限表</a></h3>
+<p>MySQL通过权限表来控制用户对数据库的访问，存放在<code>mysql</code>数据库中，由<code>mysql_install_db</code>脚本初始化，存储账户权限信息表主要有：</p>
+<ul>
+<li>
+<p><code>user</code>：记录允许连接到服务器的账号信息，里面的权限是全局级的，拥有42个字段，可分为4类：</p>
+<ul>
+<li>用户列：包括<code>Host</code>、<code>User</code>、<code>Password</code>，分别表示主机名、用户名、密码，此三字段之值为创建账户时保存的账户信息</li>
+<li>权限列：决定用户的权限，描述了在全局范围内允许对数据和数据库进行的操作，包括查询权限、修改权限等普通权限，还包括关闭服务器、超级权限和加载用户等高级权限</li>
+<li>安全列：包含6个字段，其中2个SSL（用于加密）相关，2个X509（用于标识用户）相关，两个授权插件（用于验证用户身份）相关</li>
+<li>资源控制列：包含4个字段，用来限制用户使用的资源：
+<ul>
+<li><code>max_questions</code>：用户每小时允许执行的查询操作次数</li>
+<li><code>max_updates</code>：用户每小时允许执行的更新操作次数</li>
+<li><code>max_connections</code>：用户每小时允许执行的连接操作次数</li>
+<li><code>max_user_connections</code>：用户允许同时建立的连接次数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>db</code>&amp;<code>host</code>：<code>db</code>存储了用户对某个数据库的操作权限，决定用户能从哪个主机存取哪个数据库；<code>host</code>存储了某个主机对数据库的操作权限，配合<code>db</code>对给定主机上数据库级操作权限做更细致的控制，字段分为2类：</p>
+<ul>
+<li>用户列：<code>db</code>包括<code>Host</code>、<code>User</code>、<code>Db</code>，标识从某个主机连接某个用户对某个操作数据库的操作权限，构成<code>db</code>联合主键；<code>host</code>只包括<code>Host</code>和<code>Db</code></li>
+<li>权限列：<code>create_routine_priv</code>和<code>alter_routine_priv</code>字段表明用户是否有创建和修改存储过程的权限</li>
+</ul>
+</li>
+<li>
+<p><code>tables_priv</code>&amp;<code>columns_priv</code>：<code>tables_priv</code>用来对表设置操作权限，<code>columns_priv</code>用来对表的某一列设置权限，前者包含8个字段：</p>
+<ul>
+<li><code>Host</code>、<code>Db</code>、<code>User</code>、<code>Table_name</code>：主机名、数据库名、用户名、表名</li>
+<li><code>Grantor</code>：修改该记录的用户</li>
+<li><code>Timestamp</code>：修改该记录的时间</li>
+<li><code>Table_priv</code>：表的操作权限</li>
+<li><code>Column_priv</code>：列的操作权限</li>
+</ul>
+<p>后者包含7个字段（比前者少了<code>Grantor</code>和<code>Table_priv</code>，多了<code>Column_name</code>），其中<code>Column_name</code>用来指定对哪些数据列具有操作权限</p>
+</li>
+<li>
+<p><code>procs_priv</code>：对存储过程和存储函数设置操作权限，包含8个字段：</p>
+<ul>
+<li><code>Host</code>、<code>Db</code>、<code>User</code>、<code>Routine_name</code>：主机名、数据库名、用户名、存储过程或函数名</li>
+<li><code>Routine_type</code>：存储过程或函数的类型，有二值<code>FUNCTION</code>/<code>PROCEDURE</code></li>
+<li><code>Grantor</code>：插入或修改该记录的用户</li>
+<li><code>Proc_priv</code>：拥有的权限，包括Execute、Alter Routine、Grant</li>
+<li><code>Timestamp</code>：记录更新时间</li>
+</ul>
+</li>
+</ul>
+<p><em>注：MySQL启动后会将权限表的信息缓存起来，手工修改权限信息后需要执行<code>FLUSH PRIVILEGES</code>重新刷新缓存中存储的权限信息，但当用户使用<code>grant</code>/<code>revoke</code>/<code>drop user</code>/<code>create user</code>修改用户权限时也会更新缓存中的权限信息。</em></p>
+<h3 id="访问控制"><a class="header" href="#访问控制">访问控制</a></h3>
+<p><em><strong>TODO</strong></em></p>
+<h3 id="安全问题"><a class="header" href="#安全问题">安全问题</a></h3>
+<p><em><strong>TOOD</strong></em></p>
+<h2 id="存储引擎"><a class="header" href="#存储引擎">存储引擎</a></h2>
+<p>MyISAM和InnoDB的主要区别：</p>
+<ul>
+<li>
+<p>MyISAM</p>
+<p>不支持事务，支持全文索引，不支持外键，只支持表锁，不支持MVCC。</p>
+<p>使用<code>count()</code>会直接存储总行数，即对于<code>select count(*) from table;</code>如果数据量大会瞬间返回。</p>
+</li>
+<li>
+<p>InnoDB</p>
+<p>支持事务，支持全文索引（InnoDB 5.6之后），支持外键，支持表锁和行锁，支持MVCC。</p>
+<p>使用<code>count()</code>不会直接存储总行数，即对于<code>select count(*) from table;</code>需要一行行扫描。</p>
+</li>
+</ul>
+<blockquote>
+<p>存储引擎比较：</p>
+<table><thead><tr><th>特点</th><th>InnoDB</th><th>MyISAM</th><th>MEMORY</th><th>MERGE</th><th>NDB</th></tr></thead><tbody>
+<tr><td>存储限制</td><td>64TB</td><td>有</td><td>有</td><td>没有</td><td>有</td></tr>
+<tr><td>事务安全</td><td>支持</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>锁机制</td><td>行锁</td><td>表锁</td><td>表锁</td><td>表锁</td><td>行锁</td></tr>
+<tr><td>B树索引</td><td>支持</td><td>支持</td><td>支持</td><td>支持</td><td>支持</td></tr>
+<tr><td>哈希索引</td><td></td><td></td><td>支持</td><td></td><td>支持</td></tr>
+<tr><td>全文索引</td><td>支持</td><td>支持</td><td></td><td></td><td></td></tr>
+<tr><td>集群索引</td><td>支持</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>数据缓存</td><td>支持</td><td></td><td>支持</td><td></td><td>支持</td></tr>
+<tr><td>索引缓存</td><td>支持</td><td>支持</td><td>支持</td><td>支持</td><td>支持</td></tr>
+<tr><td>数据可压缩</td><td></td><td>支持</td><td></td><td></td><td></td></tr>
+<tr><td>外键</td><td>支持</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>MVCC</td><td>支持</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>空间使用</td><td>高</td><td>低</td><td>N/A</td><td>低</td><td>低</td></tr>
+<tr><td>内存使用</td><td>高</td><td>低</td><td>中等</td><td>低</td><td>高</td></tr>
+<tr><td>批量插入速度</td><td>低</td><td>高</td><td>高</td><td>高</td><td>高</td></tr>
+</tbody></table>
+<p>查看当前默认的存储引擎可使用以下命令：</p>
+<pre><code class="language-sql">show variables like 'table_type';
+</code></pre>
+</blockquote>
+<h2 id="物理文件"><a class="header" href="#物理文件">物理文件</a></h2>
+<h3 id="日志文件"><a class="header" href="#日志文件">日志文件</a></h3>
+<p>日志文件主要记录数据库操作信息和错误信息。</p>
+<ul>
+<li>错误日志（Error Log）：记录MySQL Server运行过程中遇到的所有严重错误信息以及MySQL每次启动和关闭的详细信息；</li>
+<li>二进制日志（Binary Log）：又名binlog，记录了MySQL所有修改数据库的操作，以二进制形式记录在日志文件中，其中还包括每条语句所执行的时间和所消耗的资源以及相关事务信息；</li>
+<li>查询日志（Query Log）：记录所有的查询操作，包括所有的select查询信息，体积较大，开启后对性能有影响；</li>
+<li>慢查询日志（Slow Query Log）：指所有SQL执行时间超过<code>long_query_time</code>变量的语句和达到<code>min_examined_row_limit</code>条距离的语句，用户可以针对这部分语句性能调优；</li>
+<li>InnoDB在线Redo日志（InnoDB Redo Log）：记录InnoDB所做的所有物理变更和事务信息。</li>
+</ul>
+<h3 id="数据文件"><a class="header" href="#数据文件">数据文件</a></h3>
+<p>MySQL会在<code>data</code>目录下建立一个以数据库为名字的目录用以存储数据库中的表文件数据。不同数据库引擎，其表之扩展名亦不同。</p>
+<p><em>注：以下内容MySQL 5.5版本适用，对于5.5以上版本可能存在差异。</em></p>
+<ul>
+<li>“.frm”：主要存放与表相关的数据信息，主要包括表结构的定义信息，若数据库崩溃，用户可以通过frm文件来恢复数据表结构；</li>
+<li>“.MYD”：MyISAM创建表时生成，主要用以存放数据库的数据文件；</li>
+<li>“.MYI”：MyISAM表相关，可以被缓存的内容主要源于此种文件，主要用以存储表数据文件中任何索引的数据树；</li>
+<li>“.ibd”&amp;“.ibdata”：主要用以存储InnoDB的数据，其中主要包括索引信息，如果使用共享表空间方式存储数据则会采用ibdata文件来存储，所有的表共同使用一个或多个ibdata文件，如果采用独享表空间方式存储数据则会采用ibd文件来存储。</li>
+</ul>
+<h3 id="配置文件"><a class="header" href="#配置文件">配置文件</a></h3>
+<p><em><strong>TODO</strong></em></p>
+<h2 id="表空间"><a class="header" href="#表空间">表空间</a></h2>
+<p>用来存放数据的逻辑空间，也是存储数据的最大逻辑单元，其下还有段、区、页等逻辑数据类型。表空间设计是为了提升更高的I/O、不同处理数据的解耦，便于管理。通过表空间来实现对数据文件的灵活控制。</p>
+<p>目前MySQL 8.0版本的表空间：</p>
+<ul>
+<li>
+<p>System Tablespace</p>
+<p>系统表空间，change buffer的存储区域，若表在空间系统表空间创建，而不是在File-per-table或General表空间创建，则还包含表和索引数据。8.0.23之前的版本中，系统表空间包含InnoDB数据字典以及doublewrite缓冲区存储区域，从8.0.20开始分离出来生成单独的doublewrite文件。</p>
+</li>
+<li>
+<p>File-per-table Tablespaces</p>
+<p>独立表空间包含单个InnoDB表的数据和索引，并存储在文件系统中自己的数据文件中。默认的表空间类型，在创建InnoDB表时隐式使用。与系统表空间不同，在截断或删除在每个表文件表空间中创建的表后，磁盘空间返回给操作系统。</p>
+<ul>
+<li>优势：<em><strong>TODO</strong></em></li>
+<li>缺点：<em><strong>TODO</strong></em></li>
+</ul>
+</li>
+<li>
+<p>General Tablespaces</p>
+<p>通用表空间，共享表空间的扩展（只对于业务表）。独立于MySQL数据目录的目录中，可以在共享表空间、独立表空间、通用表空间进行数据转移，方便迁移数据，特别在空间不够的情况。</p>
+</li>
+<li>
+<p>Undo Tablespaces</p>
+<p>包含Undo日志，是Undo日志记录的集合，其中包含关于如何撤销事务对聚集索引记录的信息。Undo日志段包含在回滚段中。</p>
+</li>
+<li>
+<p>Temporary Tablespaces</p>
+<p>InnoDB使用会话临时表空间和全局临时表空间。</p>
+<ul>
+<li>
+<p>Session Temporary Tablespace</p>
+<p>当InnoDB被配置为磁盘内部临时表的存储引擎时，会话临时表空间存储了用户创建的临时表和优化器创建的内部临时表。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="索引"><a class="header" href="#索引">索引</a></h2>
+<h3 id="索引分类"><a class="header" href="#索引分类">索引分类</a></h3>
+<ul>
+<li>
+<p>从数据结构角度</p>
+<ol>
+<li>树索引</li>
+<li><a href="#%E5%93%88%E5%B8%8C%E7%B4%A2%E5%BC%95">Hash索引</a></li>
+</ol>
+</li>
+<li>
+<p>从物理存储角度</p>
+<ol>
+<li>聚集索引(clustered index)</li>
+<li>非聚集索引(non-clustered index)</li>
+</ol>
+</li>
+<li>
+<p>从逻辑角度</p>
+<ol>
+<li>普通索引</li>
+<li>唯一索引</li>
+<li>主键索引</li>
+<li><a href="#%E8%81%94%E5%90%88%E7%B4%A2%E5%BC%95">联合索引</a></li>
+<li><a href="#%E5%85%A8%E6%96%87%E7%B4%A2%E5%BC%95">全文索引</a></li>
+</ol>
+</li>
+</ul>
+<h3 id="索引底层"><a class="header" href="#索引底层">索引底层</a></h3>
+<p>InnoDB使用B+树作为索引结构，原因：</p>
+<ul>
+<li>很低的树高度，能够存储大量数据</li>
+<li>索引本身占用的内存很小</li>
+<li>能够很好地支持单点查询、范围查询、有序性查询</li>
+<li>很适合磁盘存储，能够充分利用局部性原理</li>
+</ul>
+<p><strong>不使用其他树作为索引结构的原因</strong></p>
+<ul>
+<li>二叉搜索树：
+<ul>
+<li>当数据量大时，树的高度会比较高，数据量大时查询较慢</li>
+<li>每个节点仅存储一个记录，可能导致一次查询有很多次磁盘I/O</li>
+</ul>
+</li>
+</ul>
+<h3 id="联合索引"><a class="header" href="#联合索引">联合索引</a></h3>
+<p>创建联合索引：</p>
+<pre><code class="language-sql">create index indexName on tableName(col1, col2, ..., colN);
+</code></pre>
+<p>联合索引可以建立多列（列数&gt;=2，建议不超过3）。</p>
+<p>好处：</p>
+<ol>
+<li>避免回表</li>
+<li>两列单独查返回行多而同时查返回行少的场景，联合索引更高效</li>
+</ol>
+<p><strong>最左前缀原则</strong></p>
+<p>最左优先，在检索数据时从联合索引的最左边开始匹配。在InnoDB中联合索引只有确定了前一个值后，才能确定下一个值，如果有范围查询则联合查询中使用范围查询的字段后的索引在该条SQL中都不会起作用。</p>
+<h3 id="聚簇索引"><a class="header" href="#聚簇索引">聚簇索引</a></h3>
+<p>将数据存储与索引放到了一块，索引结构的叶子节点保留了数据行，找到索引也就找到了数据。</p>
+<p>按照每张表的主键构建一颗B+树，同时叶子节点存放的就是整张表的行记录数据，也将聚集索引的叶子节点称为数据页。这个特性决定了索引组织表中数据也是索引的一部分，每张表只能有一个聚簇索引。</p>
+<p>InnoDB通过主键聚集数据，若未定义主键，InnoDB会选择非空的唯一索引代替。若无这样的索引，InnoDB会隐式定义一个主键来作为聚簇索引。InnoDB只聚集在同一个页面中的记录。包含相邻键值的页面可能相距甚远。如果已经设置了主键为聚簇索引，必须先删除主键，然后添加想要的聚簇索引，最后恢复设置主键即可。</p>
+<p>聚簇索引优缺点：</p>
+<ul>
+<li>
+<p>优点</p>
+<ol>
+<li>数据访问更快，因为聚簇索引将数据和索引保存在同一B+树中</li>
+<li>对于主键的排序查找和范围查找速度非常快</li>
+</ol>
+</li>
+<li>
+<p>缺点</p>
+<ol>
+<li>插入速度严重依赖于插入顺序，按照主键的顺序插入是最快的方式，否则会出现页分裂，严重影响性能，对于InnoDB表，一般会定义一个自增的ID列作为主键</li>
+<li>更新主键的代价很高，因为将会导致被更新的行移动，对于InnoDB表，一般定义为主键不可更新</li>
+<li>二级索引访问需要两次索引查找，第一次找到主键值，第二次根据主键值找到行数据</li>
+</ol>
+</li>
+</ul>
+<p><strong>非聚簇索引（辅助索引）</strong></p>
+<p>将数据和索引分开存储，索引叶子节点存储的是指向数据行的地址。</p>
+<p>InnoDB中在聚簇索引之上创建的索引称为辅助索引，辅助索引访问数据总是二次查找。辅助索引叶子节点存储的不再是行的物理位置，而是主键值，通过辅助索引首先是找到主键值，再通过主键值找到数据行的数据页，再通过数据页中的Page Directory找到数据行。</p>
+<p>InnoDB辅助索引的叶子节点并不包含行记录的全部数据，叶子节点除了包含键值外，还包含了相应的行数据的聚簇索引键。辅助索引的存在不影响数据在聚簇索引中的组织，所以一张表能有多个辅助索引。</p>
+<p>在MyISAM存储引擎中，默认的索引也是B+树索引，但主索引和辅助索引都是非聚簇索引，亦即索引结构的叶子节点存储的都是一个指向数据行的地址，并且使用辅助索引检索无需访问主键索引。</p>
+<p><strong>何时使用聚簇索引与非聚簇索引</strong></p>
+<table><thead><tr><th>动作</th><th>聚簇索引</th><th>非聚簇索引</th></tr></thead><tbody>
+<tr><td>列经常被分组排序</td><td>✔️</td><td>✔️</td></tr>
+<tr><td>返回某范围内的数据</td><td>✔️</td><td></td></tr>
+<tr><td>一个或极少不同值</td><td></td><td></td></tr>
+<tr><td>小数目的不同值</td><td>✔️</td><td></td></tr>
+<tr><td>大数目的不同值</td><td></td><td>✔️</td></tr>
+<tr><td>频繁更新的列</td><td></td><td>✔️</td></tr>
+<tr><td>外键列</td><td>✔️</td><td>✔️</td></tr>
+<tr><td>主键列</td><td>✔️</td><td>✔️</td></tr>
+<tr><td>频繁修改索引列</td><td></td><td>✔️</td></tr>
+</tbody></table>
+<h3 id="哈希索引"><a class="header" href="#哈希索引">哈希索引</a></h3>
+<p>哈希索引能以O(1)时间复杂度进行查找，但失去了有序性，无法用于排序与分组，只支持精确查找，无法用于部分查找和范围查找。</p>
+<p>InnoDB存储引擎有一个特殊的功能叫“自适应哈希索引”，当某个索引值被使用得非常频繁时，会在B+树索引之上再创建一个哈希索引，这样让B+树索引具有哈希索引的一些优点，比如：快速的哈希查找。</p>
+<h3 id="覆盖索引"><a class="header" href="#覆盖索引">覆盖索引</a></h3>
+<p>如果一个索引包含了满足查询语句中字段与条件的数据就叫覆盖索引，覆盖索引具有以下优点：</p>
+<ul>
+<li>索引通常远小于数据行的大小，只读取索引能大大减少数据访问量；</li>
+<li>索引都按值的大小顺序存储，相对于随机访问记录，需要更少的I/O；</li>
+<li>一些存储引擎（如MyISAM）的内存中只缓存索引，而数据依赖于操作系统来缓存，因此只访问索引可以不使用系统调用（通常比较费时）；</li>
+<li>对于InnoDB引擎，若辅助索引能够覆盖查询，则无需访问主索引。</li>
+</ul>
+<h3 id="全文索引"><a class="header" href="#全文索引">全文索引</a></h3>
+<p>使用<code>FULLTEXT</code>参数可以设置全文索引，全文索引只能创建在<code>CHAR</code>、<code>VARCHAR</code>或<code>TEXT</code>类型字段上，在查询数据量较大的字符串类型的字段时，使用全文索引可以提高查询速度。</p>
+<p>默认情况下全文索引的搜索执行方式不区分大小写，但是当索引的列使用二进制排序后，可以执行区分大小写的全文索引。</p>
+<p>MySQL自带的全文索引目前只能对英文进行全文检索，不能对中文进行全文检索。</p>
+<p>全文索引的缺点：</p>
+<ul>
+<li>数据量越大全文索引效果好，比较小的表会返回一些难以理解的结果；</li>
+<li>全文检索以整个单词作为匹配对象，单词变形（复数/变位/变格等）就被认为是另一个单词。</li>
+</ul>
+<h3 id="索引失效"><a class="header" href="#索引失效">索引失效</a></h3>
+<ol>
+<li>
+<p>索引列参与表达式计算：</p>
+<pre><code class="language-sql">select `sname` from `stu` where `age` + 10 = 30;
+</code></pre>
+</li>
+<li>
+<p>函数运算：</p>
+<pre><code class="language-sql">select `sname` from `stu` where left(`date`, 4) &lt; 1990;
+</code></pre>
+</li>
+<li>
+<p>模糊查询：</p>
+<pre><code class="language-sql">select * from `manong` where `uname` like '码农%'; -- 走索引
+select * from `manong` where `uname` like '%码农%'; -- 不走索引
+select * from `manong` where `uname` like '_码农%'; -- 不走索引
+</code></pre>
+<p><code>%</code>在后面的走索引，除非是要查找的数据被其他占位符占据；<code>%</code>在前面的不走索引；</p>
+</li>
+<li>
+<p>字符串与数字比较：</p>
+<pre><code class="language-sql">create table `a`(`a` char(10));
+explain select * from `a` where `a` = &quot;1&quot;; -- 走索引
+explain select * from `a` where `a` = 1; -- 不走索引
+</code></pre>
+</li>
+<li>
+<p>查询条件有OR，即使其中有条件带索引：</p>
+<pre><code class="language-sql">select * from `dept` where `dname` = 'xxx' or `loc` = 'xx' or `deptno` = 45;
+</code></pre>
+<p>换言之，就是要求使用的所有字段，都须建立索引；</p>
+</li>
+<li>
+<p>MySQL内部优化器会对SQL语句进行优化，如果优化器估计使用全表扫描要比使用索引快则不走索引；</p>
+</li>
+<li>
+<p>正则表达式不走索引；</p>
+</li>
+<li>
+<p>使用cast函数时需要保证字符集一样，否则不走索引；</p>
+</li>
+<li>
+<p>索引列中出现隐式类型转换则不走索引：</p>
+<pre><code class="language-sql">-- 以下telephone为字符串类型
+select * from t_base_user where telephone = 12345678901; -- 不走索引
+select * from t_base_user where telephone = '12345678901'; --走索引
+</code></pre>
+</li>
+</ol>
+<h3 id="建立索引的原则"><a class="header" href="#建立索引的原则">建立索引的原则</a></h3>
+<ol>
+<li>
+<p>选择唯一性索引</p>
+<p>唯一性索引的值是唯一的，可以更快地通过该索引来确定某条记录。</p>
+</li>
+<li>
+<p>为经常需要排序、分组和联合操作的字段建立索引</p>
+<p>经常需要<code>order by</code>、<code>group by</code>、<code>distinct</code>、<code>union</code>等操作的字段，排序操作会浪费很多时间，若为其建立索引可以有效避免排序操作。</p>
+</li>
+<li>
+<p>为常作为查询条件的字段建立索引</p>
+<p>若常使用某个字段来作为查询条件，那么该字段的查询速度会影响整个表的查询速度，为这样的字段建立索引可以提高整个表的查询速度。</p>
+</li>
+<li>
+<p>限制索引的数目</p>
+<p>索引不是越多越好，每个索引都会占用磁盘空间，索引越多需要的磁盘空间越大，修改表时对索引的重构和更新很麻烦，越多的索引会使表更新浪费时间。</p>
+</li>
+<li>
+<p>尽量使用数据量少的索引</p>
+<p>如果索引值很长，那么查询速度会受到影响。</p>
+</li>
+<li>
+<p>尽量使用前缀来索引</p>
+<p>若索引字段的值很长，最好使用值的前缀来索引，只检索字段前面的若干个字符可以提高检索速度。</p>
+</li>
+<li>
+<p>删除不再使用或者很少使用的索引</p>
+<p>表中的数据被大量更新，或数据的使用方式被改变后，原有的一些索引可能不再需要，这些索引应将它们删除，从而减少索引对更新操作的影响。</p>
+</li>
+<li>
+<p>最左前缀匹配原则</p>
+</li>
+<li>
+<p><code>=</code>和<code>in</code>可以乱序</p>
+<pre><code class="language-sql">-- 比如有索引(a, b, c)，以下语句可以最左匹配：
+select * from t where c = 1 and a = 1 and b = 1;
+</code></pre>
+</li>
+<li>
+<p>尽量选择区分度高的列作为索引</p>
+<blockquote>
+<p>区分度公式为<code>count(distinct col)/count(*)</code>，表示字段不重复的比例，比例越大扫描记录数越少，唯一键区分度是1。</p>
+</blockquote>
+</li>
+<li>
+<p>索引列不能参与计算</p>
+</li>
+<li>
+<p>尽量扩展索引而不是新建</p>
+</li>
+</ol>
+<h2 id="聚合函数"><a class="header" href="#聚合函数">聚合函数</a></h2>
+<ul>
+<li>
+<p><code>count()</code></p>
+<p><strong><code>count(*)</code>、<code>count(1)</code>、<code>count(column)</code>的区别</strong></p>
+<ul>
+<li><code>count(*)</code>对行的数目进行计算，包含<code>NULL</code>，表只有一个字段时最快</li>
+<li><code>count(1)</code>用法同<code>count(*)</code>，如果表无主键则<code>count(1)</code>比<code>count(*)</code>快</li>
+<li><code>count(column)</code>对特定的列的值具有的行数进行计算，不包含<code>NULL</code></li>
+<li><code>count(1)</code>与<code>count(主键)</code>只扫描主键，<code>count(*)</code>与<code>count(非主键)</code>扫描全表</li>
+<li>若有主键，则<code>count(主键, 联合主键)</code>比<code>count(*)</code>快</li>
+</ul>
+</li>
+</ul>
+<h2 id="查询优化"><a class="header" href="#查询优化">查询优化</a></h2>
+<ul>
+<li>
+<p>减少请求的数据量</p>
+<ul>
+<li>只返回必要的行</li>
+<li>只返回必要的列</li>
+<li>缓存重复查询的数据</li>
+</ul>
+</li>
+<li>
+<p>减少服务器端扫描的行数：最有效的方式是使用索引来覆盖查询。</p>
+</li>
+</ul>
+<h3 id="sql优化"><a class="header" href="#sql优化">SQL优化</a></h3>
+<ol>
+<li>避免全表扫描，首先应考虑在<code>where</code>及<code>order by</code>涉及到的列上建立索引；</li>
+<li>尽量避免在<code>where</code>子句中使用<code>!=</code>或<code>&lt;&gt;</code>，否则将使引擎放弃使用索引而进行全表扫描；</li>
+<li>尽量避免在<code>where</code>子句中对字段进行<code>null</code>值判断，否则将使引擎放弃使用索引而进行全表扫描，可以使用默认值<code>0</code>来确保没有<code>null</code>值；</li>
+<li>尽量避免在<code>where</code>子句中使用<code>or</code>来连接条件，否则将使引擎放弃使用索引而进行全表扫描；</li>
+<li>尽量避免在<code>where</code>子句中对字段进行表达式操作，否则将使引擎放弃使用索引而进行全表扫描；</li>
+<li>尽量避免在<code>where</code>子句中对字段进行函数操作，否则将使引擎放弃使用索引而进行全表扫描；</li>
+<li>不要在<code>where</code>子句中的<code>=</code>左边进行函数、算术运算或其他表达式运算，否则将可能无法正确使用索引；</li>
+<li>若在<code>where</code>子句中使用参数亦会导致全表扫描，因为SQL只在运行期时才会解析局部变量，但优化程序不能将访问计划的选择推迟到运行时，必须在编译时进行选择；</li>
+<li>慎用<code>in</code>和<code>not in</code>，否则将导致全表扫描；对于连续的数值能用<code>between</code>不要用<code>in</code>；有时候用<code>exists</code>代替<code>in</code>是一个好选择；</li>
+<li>任何地方都不要使用<code>select * from</code>，用具体的字段列表代替<code>*</code>，不要返回用不到的字段；</li>
+<li>尽可能使用<code>varchar</code>/<code>nvarchar</code>来代替<code>char</code>/<code>nchar</code>，首先变长字段存储空间小，可以节省存储空间，其次对于查询来说在一个相对较小的字段内搜索效率显然要高些；</li>
+<li>尽量使用数字型字段，若只含数值信息的字段尽量不要设计成字符型，这会降低查询和连接的性能，并会增加存储开销；</li>
+<li>在使用索引字段作为条件时，若该索引为复合索引，那么必须使用到该索引中的第一个字段作为条件时才能保证系统使用该索引，否则该索引将不会被使用，并且应尽可能的让字段顺序与索引顺序相一致；</li>
+<li>不要写一些没有意义的查询；</li>
+<li>尽量使用表变量来替代临时表，若表变量包含大量数据，注意索引非常有限（只有主键索引）；</li>
+<li>避免频繁创建和删除临时表，以减少系统表资源的消耗；</li>
+<li>临时表并非不可使用，适当地使用可以使某些例程更有效；</li>
+<li>在新建临时表时，若一次性插入数据量很大，那么最好使用<code>select into</code>代替<code>create table</code>，避免造成大量的log以提高速度；若数据量不大，为了缓和系统表资源，应先<code>create table</code>再<code>insert</code>；</li>
+<li>如果使用到了临时表，在存储过程的最后务必将所有的临时表显示删除，先<code>truncate table</code>，然后<code>drop table</code>，避免系统表较长时间锁定；</li>
+<li>在所有的存储过程和触发器的开始处设置<code>set nocount on</code>，在结束时设置<code>set nocount off</code>，无需在执行存储过程和触发器的每个语句后向客户端发送<code>DONE_IN_PROC</code>消息；</li>
+<li>索引不是越多越好，索引固然可以提高相应的<code>select</code>的效率，但同时也降低了<code>insert</code>及<code>update</code>的效率，<code>insert</code>和<code>update</code>时有可能会重建索引；</li>
+<li>应尽可能地避免更新聚集索引数据列，因为聚集索引数据列的顺序就是表记录的物理存储顺序，一旦该列值改变将导致整个表记录的顺序的调整，会耗费相当大的资源；</li>
+<li>并不是所有索引都对查询有效，SQL是根据表中的数据来进行查询优化的，当索引列有大量数据重复时，SQL查询可能不会去利用索引；</li>
+<li>尽量避免使用游标，因为游标效率较差，若游标操作的数据超过1万行应考虑改写；</li>
+<li>使用基于游标或临时表的方法之前，应先寻找基于集的解决方案来解决问题，基于集的方案通常更有效；</li>
+<li>游标并非不可使用，对小数据集使用<code>FAST_FORWARD</code>游标通常优于其他逐行处理方法，尤其是必须引用几个表才能获得所需数据时；</li>
+<li>尽量避免大事务操作，提高系统并发能力；</li>
+<li>尽量避免向客户端返回大数据量，若数据量过大应考虑相应需求是否合理。</li>
+</ol>
+<h3 id="慢查询优化"><a class="header" href="#慢查询优化">慢查询优化</a></h3>
+<p>慢查询一般用于记录执行时间超过某个临界值的SQL语句的日志。</p>
+<p>相关参数：</p>
+<ul>
+<li><code>slow_query_log</code>：是否开启慢日志查询，1表示开启，0表示关闭</li>
+<li><code>slow_query_log_file</code>：MySQL数据库慢查询日志存储路径</li>
+<li><code>long_query_time</code>：慢查询阈值，当SQL语句查询时间大于阈值，会被记录在日志上</li>
+<li><code>log_queries_not_using_indexes</code>：未使用索引的查询会被记录到慢查询日志中</li>
+<li><code>log_output</code>：日志存储方式，”FILE&quot;表示将日志存入文件，&quot;TABLE&quot;表示将日志存入数据库</li>
+</ul>
+<p>优化：</p>
+<ul>
+<li>分析语句的执行计划，查看SQL语句的索引是否命中</li>
+<li>优化数据库的结构，将字段很多的表分解成多个表，或者考虑建立中间表</li>
+<li>优化LIMIT分页</li>
+</ul>
+<h2 id="事务"><a class="header" href="#事务">事务</a></h2>
+<p>逻辑上的一种操作，要么执行，要么不执行。</p>
+<p>四大特性（ACID）：</p>
+<ul>
+<li>原子性（Atomicity）：事务是最小执行单位，不允许分割。事务的原子性确保动作要么全部完成，要么完全不起作用。</li>
+<li>一致性（Consistency）：执行数据前后，数据保持一致，多个事务对同一数据读取的结果是相同的。</li>
+<li>隔离性（Isolation）：并发访问数据库时，一个用户的事务不被其他事务所干扰，各并发事务之间数据库是独立的。</li>
+<li>持久性（Durability）：一个事务被提交之后，它对数据库中数据的改变是持久的，即使数据库发生故障也不应该对其有任何影响。</li>
+</ul>
+<h3 id="并发事务带来的问题"><a class="header" href="#并发事务带来的问题">并发事务带来的问题</a></h3>
+<ul>
+<li>脏读（Dirty Read）：当一个事务正在访问数据并且对数据进行了修改，而这种修改还没有提交到数据库中，这时另一个事务也访问了这个数据，然后使用了这个数据。由于这个数据是还没有提交的数据，那么另一个事务读到的这个数据是“脏数据”，依据“脏数据”所做的操作可能是不正确的。</li>
+<li>丢失修改（Lost to Modify）：指在一个事务读取一个数据时，另外一个事务也访问了该数据，那么在第一个事务中修改了这个数据后，第二个事务也修改了这个数据。这样第一个事务内的修改结果就被丢失。</li>
+<li>不可重复读（Unrepeatable Read）：指在一个事务内多次读同一数据，在这个事务还没有结束时，另一事务也访问该数据，那么在第一个事务中的两次读数据之间，由于第二个事务的修改导致第一个事务两次读取的数据不一样，这就发生了在一个事务内两次读到的数据是不一样的情况，因此称为不可重复读。</li>
+<li>幻读（Phantom Read）：与不可重复读类似，它发生在一个事务读取了几行数据，另一个并发事务插入了一些数据时，在随后的查询中，第一个事务就会发现多了一些原本不存在的记录，就好像发生幻觉一样，因此称为幻读。</li>
+</ul>
+<h3 id="事务隔离级别"><a class="header" href="#事务隔离级别">事务隔离级别</a></h3>
+<ol>
+<li>读取未提交（READ-UNCOMMITTED）：最低的隔离级别，允许读取尚未提交的数据变更，可能会导致脏读、不可重复读和幻读；</li>
+<li>读取已提交（READ-COMMITTED）：允许读取并发事务已经提交的数据，可以阻止脏读，但无法阻止幻读和不可重复读；</li>
+<li>可重复读（REPEATABLE-READ）：对同一字段的多次读取结果都是一致的，除非数据是被本身事务自己所修改，可以阻止脏读和不可重复读，但幻读仍有可能发生；</li>
+<li>串行化（SERIALIZABLE）：最高的隔离级别，完全服从ACID，所有的事务依次逐个执行，这样事务之间就能完全不可能产生干扰，可以防止脏读、不可重复读和幻读，但这将严重影响程序的性能。</li>
+</ol>
+<h3 id="事务日志"><a class="header" href="#事务日志">事务日志</a></h3>
+<p>InnoDB事务日志包含redo log和undo log。Redo log是重做日志，提供前滚操作；Undo log是回滚日志，提供回滚操作。</p>
+<p>Redo log通常是物理日志，记录的是数据页的物理修改，<em><strong>TODO</strong></em></p>
+<h2 id="锁机制"><a class="header" href="#锁机制">锁机制</a></h2>
+<ul>
+<li>
+<p>表级锁：锁定粒度最大的一种锁，对当前操作的整张表加锁。实现简单，资源消耗比较少，加锁快，不会出现死锁。其锁定粒度大，触发锁冲突概率最高，并发度最低。MyISAM和InnoDB引擎都支持表级锁。</p>
+</li>
+<li>
+<p>行级锁：锁定粒度最小的一种锁，只针对当前操作的行进行加锁。行级锁能大大减少数据库操作的冲突，其加锁粒度小，并发度高，但加锁的开销也大，加锁慢，会出现死锁。</p>
+<p>行锁类型：</p>
+<ul>
+<li>共享锁（S-Lock）：允许多个事务对于同一数据可以共享一把锁，都能访问到数据，阻止其他事务对于同一数据获取排他锁；</li>
+<li>排他锁（X-Lock）：允许事务删除或者更新一行数据，阻止其他事务对于同一数据获取其他锁，包括共享锁和排他锁；<code>select</code>语句默认不获取任何锁，所以可读取被其他事务持有排他锁的数据。</li>
+</ul>
+<p><strong><code>for update</code></strong></p>
+<p>在查询时为行加上排他锁，当一个事务的操作未完成时，其他事务可以读取但是不能写入或更新，其典型使用场景是高并发且对于数据的准确性有很高要求。仅适用于InnoDB，且必须开启事务，在<code>begin</code>与<code>commit</code>之间才能生效。</p>
+</li>
+</ul>
+<p>InnoDB存储引擎的锁算法有三种：</p>
+<ol>
+<li>
+<p>Record Lock：单个行记录上的锁</p>
+</li>
+<li>
+<p>Gap Lock：间隙锁，锁定一个范围，不包括记录本身</p>
+<blockquote>
+<p><strong>间隙锁</strong>：在索引记录之间的间隙上的锁。</p>
+<p>作用：保证某个间隙内的数据在锁定情况下不会发生任何变化（如MySQL默认隔离级别下的可重复读）。当使用唯一索引来搜索唯一行的语句时不需要间隙锁定，如</p>
+<pre><code class="language-sql">select * from t where id = 10 for update;
+-- 倘若id列没有建立索引或是非唯一索引时，语句会产生间隙锁。
+</code></pre>
+<p>若搜索条件里有多个查询条件（即使每个列都有唯一索引）也会产生间隙锁。</p>
+</blockquote>
+</li>
+<li>
+<p>Next-key Lock：锁定一个范围，包括记录本身</p>
+</li>
+</ol>
+<h2 id="mvcc"><a class="header" href="#mvcc">MVCC</a></h2>
+<p>多版本并发控制（Multi-Version Concurrency Control），现代数据库引擎实现中常用的处理读写冲突手段，目的在于提高数据库高并发场景下的吞吐性能。如此一来不同的事务在并发过程中，SELECT操作可以不加锁而是通过MVCC机制读取指定的版本历史记录，并通过一些手段保证读取的记录值符合事务所处的隔离级别，从而解决并发场景下的读写冲突。</p>
+<p>InnoDB中MVCC的实现方式：每一行记录都有两个隐藏列：<code>DATA_TRX_ID</code>，<code>DATA_ROLL_PTR</code>（若无主键还会多一个主键列<code>DB_ROW_ID</code>）</p>
+<p><em><strong>TODO</strong></em></p>
+<h2 id="备份与还原"><a class="header" href="#备份与还原">备份与还原</a></h2>
+<p><em><strong>TODO</strong></em></p>
+<h2 id="连接池"><a class="header" href="#连接池">连接池</a></h2>
+<blockquote>
+<p>池化思想：提前保存大量资源，以备不时之需以及重复使用，是一种常用的编程技巧，在请求量大时能明显优化性能，降低系统频繁建立连接的资源开销。其特点是将“昂贵的”、“费时的”的资源维护在一个特定的池中，规定其最小连接数、最大连接数、阻塞队列等配置，方便进行统一管理与复用，通常还会附带一些探活机制、强制回收、监控一类的配套功能。</p>
+</blockquote>
+<p>数据库连接是一种关键的、有限的、昂贵的资源，一个数据库连接对象均对应于一个物理连接，每次操作都打开一个物理连接，使用完都关闭连接，造成系统性能低下。</p>
+<p>数据库连接池的解决方案是在应用程序启动时建立足够的数据库连接，并将这些连接组成一个连接池，由应用程序动态地对池中的连接进行申请、使用和释放，对于多个连接池中连接数的并发请求，应该在请求队列中排队等待，并且应用程序可以根据池中连接的使用率，动态增加或减少池中的连接数。</p>
+<p>连接池技术尽可能多地重用了消耗内存池资源，大大节省了内存，提高了服务器的服务效率，能够支持更多的客户服务，通过使用连接池，将大大提高程序运行效率，同时可以通过其自身的管理机制来监视数据库连接的数量、使用情况等。</p>
+<p>执行一个SQL命令，</p>
+<ul>
+<li>
+<p>不使用连接池的步骤：</p>
+<ol>
+<li>TCP建立三次握手</li>
+<li>MySQL认证的三次握手</li>
+<li>真正的SQL执行</li>
+<li>MySQL的关闭</li>
+<li>TCP四次挥手关闭</li>
+</ol>
+<ul>
+<li>优点：实现简单</li>
+<li>缺点：
+<ol>
+<li>网络IO较多</li>
+<li>数据库负载较高</li>
+<li>响应时长较长且QPS较低</li>
+<li>应用频繁地创建连接和关闭连接，导致临时对象变多，GC频繁</li>
+<li>在关闭连接后，会出现大量的TIME_WAIT的TCP状态（在2MSL后关闭）</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>使用连接池的步骤：</p>
+<p>第一次访问时需要建立连接，之后的访问均会复用之前创建的连接，直接执行SQL语句。</p>
+<p>优点：</p>
+<ol>
+<li>减少了网络开销</li>
+<li>系统的性能会有一个实质的提升</li>
+<li>没有了麻烦的TIME_WAIT状态</li>
+</ol>
+</li>
+</ul>
+<h3 id="工作原理"><a class="header" href="#工作原理">工作原理</a></h3>
+<ol>
+<li>
+<p>连接池建立</p>
+<p>一般在系统初始化时，连接池会根据系统配置建立，并在池中创建几个连接对象，以便使用时能从连接池中获取，连接池中的连接不能随意创建和关闭，这样避免了连接随意建立和关闭造成的系统开销。</p>
+</li>
+<li>
+<p>连接池中连接的使用管理</p>
+<p>当客户请求数据库连接时，首先查看连接池中是否有空闲连接，若存在空闲连接，则将连接分配给用户使用；若无空闲连接，则查看当前所开的连接数是否已经达到最大连接数，若未达到则重新创建一个连接给请求的客户；若达到则按设定的最大等待时间进行等待，如果超出最大等待时间，则抛异常给用户。</p>
+<p>当客户释放数据库连接时，先判断该连接的引用次数是否超过了规定值，如果超过就从连接池中删除该连接，否则保留为其他客户服务。</p>
+<p>该策略保证了数据库连接的有效复用，避免频繁建立、释放连接所带来的系统资源开销。</p>
+</li>
+<li>
+<p>连接池关闭</p>
+<p>当应用程序退出时，关闭连接池中所有的连接，释放连接池相关资源。</p>
+</li>
+</ol>
+<h3 id="主要参数"><a class="header" href="#主要参数">主要参数</a></h3>
+<ul>
+<li>最小连接数：连接池一直保持的数据库连接，如果应用程序对数据库连接的使用量不大，将会有大量的数据库连接资源被浪费；设置该参数可以有两种策略：
+<ol>
+<li>动态：每隔一段时间就对连接池进行检测，如发现连接数量小于最小连接数，则补充相应数量的新连接，以保证连接池正常运转</li>
+<li>静态：发现空闲连接不够时再去检查</li>
+</ol>
+</li>
+<li>最大连接数：是连接池能申请的最大连接数，如果数据库连接请求超过次数，后面的数据库连接请求将被加入到等待队列中，会影响之后的数据库操作</li>
+<li>最大空闲时间：<em><strong>TODO</strong></em></li>
+<li>获取连接超时时间：<em><strong>TODO</strong></em></li>
+<li>超时重试连接次数：<em><strong>TODO</strong></em></li>
+</ul>
+<h3 id="注意要点"><a class="header" href="#注意要点">注意要点</a></h3>
+<ul>
+<li>并发问题：使连接管理服务具有最大通用性，须考虑多线程环境</li>
+<li>事务处理：事务具有原子性，当多个线程共用一个连接对象，而且各自都有自己的事务要处理的时候，即使<code>Connection</code>类提供了相应的事务支持，可仍无法确定哪个数据库操作对应哪个事务，这是多个线程都在进行事务操作引起的，为此可以使用每一个事务独占一个连接来实现，虽然浪费了连接池资源但可以大大降低事务管理的复杂性</li>
+<li>连接的分配与释放：合理地分配与释放，可以提高连接的复用度，从而降低建立新连接的开销，同时可以加快用户的访问速度；可以将已经创建的连接都放入一个列表进行管理，每当用户请求一个连接时，系统检查该列表是否存在可以分配的连接，若有就把那个最合适的连接分配予之，否则抛出异常给用户</li>
+<li>连接池的配置与维护：连接创建过多，系统启动慢但创建后响应速度快，创建过少则系统启动快但创建后响应慢，因此系统可以设置最小连接数与最大连接数等参数来控制连接池中的连接</li>
+</ul>
+<h2 id="切分"><a class="header" href="#切分">切分</a></h2>
+<p>关系型数据库本身容易成为系统瓶颈，单机存储容量、连接数、处理能力都有限，当单表的数据量达到1000W或100G时，由于查询维度较多，即使添加从库、优化索引，做很多操作时性能仍下降严重，此时需考虑进行切分，切分的目的在于减少数据库的负担，缩短查询时间。</p>
+<p>数据库分布式核心内容无非就是数据切分（Sharding），以及切分后对数据的定位、整合。数据切分就是将数据分散存储到多个数据库中，使得单一数据库中的数据量变小，通过扩充主机的数量缓解单一数据库的性能问题，从而达到提升数据库操作性能的目的。</p>
+<p>根据其切分类型，可以分为垂直（纵向）切分、水平（横向）切分。</p>
+<ul>
+<li>
+<p>垂直切分：</p>
+<ul>
+<li>
+<p>垂直分库</p>
+<p>根据业务耦合性，将关联度低的不同表存储在不同的数据库，做法与大系统拆分为多个小系统类似，按业务分类进行独立划分。</p>
+</li>
+<li>
+<p>垂直分表</p>
+<p>基于数据库列进行，某个表字段较多，可以新建一张扩展表，将不常使用或字段较大的字段拆分出去到扩展表中，在字段很多的情况下，通过“大表拆小表”，更便于开发与维护，也能避免跨页问题，MySQL底层是通过数据页存储的，一条记录占用空间过大会导致跨页，造成额外的性能开销，另外数据库以行为单位将数据加载到内存中，这样表中的字段长度较短且访问频率较高，内存能加载更多的数据，命中率更高，减少磁盘IO，从而提升了数据库性能。</p>
+</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>解决业务系统层面的耦合，业务清晰</li>
+<li>与微服务的治理类似，也能对不同业务的数据进行分级管理、维护、监控、扩展等</li>
+<li>高并发场景下，垂直切分一定程度的提升IO、数据库连接数、单机硬件资源的瓶颈</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>部分表无法<code>join</code>，只能通过接口聚合方式解决，提升了开发的复杂度</li>
+<li>分布式事务处理复杂</li>
+<li>依然存在单表数据量过大的问题（需要水平切分）</li>
+</ul>
+</li>
+<li>
+<p>水平切分</p>
+<p>当一个应用难以再细粒度地垂直切分、或切分后数据量行数巨大，存在单库读写、存储性能瓶颈，这时需要进行水平切分。水平切分分为库内分表和分库分表，根据表内数据内在逻辑关系，将同一个表按不同的条件分散到多个数据库或多个表中，每个表只包含一部分数据，从而使得单个表的数据量变小，达到分布式效果。</p>
+<p>库内分表只解决了单一表数据量过大的问题，但未将表分布到不同机器的库上，因此对于减轻MySQL数据库的压力来说帮助不是很大，大家仍是竞争同一物理机的CPU、内存、网络IO，最好通过分库分表来解决。</p>
+<p>优点：</p>
+<ul>
+<li>不存在单库数据量过大、高并发的性能瓶颈，提升系统稳定性和负载能力</li>
+<li>应用端改造较小，不需要拆分业务模块</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>跨分片的事务一致性难以保证</li>
+<li>跨库的<code>join</code>关联查询性能较差</li>
+<li>数据多次扩展难度和维护量极大</li>
+</ul>
+<p>水平切分后同一张表会出现在多个数据库/表中，每个库/表的内容不同。分片规则：</p>
+<ul>
+<li>
+<p>根据数值范围</p>
+<p><em><strong>TODO</strong></em></p>
+</li>
+<li>
+<p>根据数值取模</p>
+<p><em><strong>TODO</strong></em></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="分库分表带来的问题"><a class="header" href="#分库分表带来的问题">分库分表带来的问题</a></h3>
+<ol>
+<li>
+<p>事务一致性问题</p>
+<p><em><strong>TODO</strong></em></p>
+</li>
+<li>
+<p>跨节点关联查询join问题</p>
+<p><em><strong>TODO</strong></em></p>
+</li>
+<li>
+<p>全局主键避重问题</p>
+<p>分库分表后，不能每个表的id主键都是从1开始累加，需要一个全局唯一的id来支持，生成全局id的方式：</p>
+<ul>
+<li>UUID：长度过长，不适合作为主键，且无序不可读，查询效率低，较适合用于生成唯一的名字的标识如文件名</li>
+<li>自增id：两台数据库分别设置不同步长，生成不重复id的策略来实现高可用，这种方法生成的id有序但需要独立部署数据库实例，成本高且有性能瓶颈</li>
+<li>利用redis生成id：性能较好，灵活方便，不依赖于数据库，但引入新组件造成系统更加复杂，可用性降低，编码更加复杂，增加了系统成本</li>
+<li><em>Twitter的snowflake算法</em></li>
+<li><em>美团的Leaf分布式id生成系统</em></li>
+</ul>
+</li>
+<li>
+<p>跨节点分页、排序、函数问题</p>
+<p><em><strong>TODO</strong></em></p>
+</li>
+<li>
+<p>数据迁移、扩容问题</p>
+<p><em><strong>TODO</strong></em></p>
+</li>
+</ol>
+<h3 id="何时考虑切分"><a class="header" href="#何时考虑切分">何时考虑切分</a></h3>
+<ul>
+<li>能不切分尽量不切分</li>
+<li>数据量过大，正常运维影响业务访问</li>
+<li>随着业务发展，需要对某些字段垂直拆分</li>
+<li>数据量快速增长</li>
+<li>安全性和可用性</li>
+</ul>
+<h2 id="读写分离"><a class="header" href="#读写分离">读写分离</a></h2>
+<p>将数据库分为主从库，一个主库用于写数据，多个从库用于读数据，主从库之间通过某种机制进行数据同步。一个主从同步集群，通常被称为是一个“分组”。</p>
+<p>大多数互联网业务往往读多写少，此时数据库的读会首先成为数据库的瓶颈。通过使用分组架构（读写分离架构）能够线性地提升数据库的读性能，消除读写锁冲突从而提升数据库的写性能。</p>
+<p>但是数据量大、并发量高、高可用要求高、一致性要求高的场景下，若使用读写分离则需注意这些问题：</p>
+<ul>
+<li>数据库连接池要进行区分，哪些是读连接池，哪些是写连接池，研发难度增加；</li>
+<li>为了保证高可用，读连接池要能够实现故障自动转移；</li>
+<li>主从的一致性问题需要考虑。</li>
+</ul>
+<p>仅仅为了解决数据库读瓶颈问题，可以考虑使用缓存，通过缓存减少数据库读的压力，在读写分离和缓存二选一时可优先考虑缓存。缓存使用成本低（比从库少非常多），开发容易（大部分读操作可以先查缓存，查不到再查数据库）。倘若缓存依旧无法解决读瓶颈时，可以考虑读写分离。</p>
+<h2 id="主从复制"><a class="header" href="#主从复制">主从复制</a></h2>
+<p><em><strong>TODO</strong></em></p>
+<p>涉及到的线程：</p>
+<ul>
+<li>binlog线程：负责将主服务器上的数据更改写入二进制日志（binary log）中</li>
+<li>SQL线程：负责读取重放日志（relay log）并重放其中的SQL语句</li>
+<li>I/O线程：负责主从服务器上读取二进制日志，并写入从服务器的重放日志中</li>
+</ul>
+<h2 id="主从同步"><a class="header" href="#主从同步">主从同步</a></h2>
+<p><strong>主从同步延迟的原因</strong></p>
+<p>假如一个服务器开放N个连接给服务端，这样会有大并发的更新操作，但是从服务器的里面读取binlog的线程仅有一个，当某个SQL在从服务器上执行的时间稍长或者由于某个SQL要进行锁表就会导致主服务器的SQL大量积压，未被同步到从服务器里，导致主从不一致，即主从延迟。</p>
+<p><strong>解决办法</strong></p>
+<p>所有的SQL必须都要在从服务器里面执行一遍，但是主服务器如果不断有更新的操作源源不断写入，那么一旦有延迟产生，延迟加重的可能性会越来越大。</p>
+<ol>
+<li>增加从服务器，分散读的压力，从而降低服务器负载；</li>
+<li>主服务器负责更新操作，对安全性要求比从服务器高，有些设置可以修改，如设置<code>sync_binlog=1</code>，<code>innodb_flush_log_at_trx_commit=1</code>之类的设置，而从服务器则不需要这么高的数据安全，可以设置<code>sync_binlog=0</code>或关闭binlog、innodb_flushlog、设置<code>innodb_flush_log_at_trx_commit=0</code>来提高SQL执行效率。</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../database/SQL.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../Linux.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../database/SQL.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../Linux.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

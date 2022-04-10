@@ -1,0 +1,605 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>虚拟机 - Notes</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">README</li><li class="chapter-item expanded "><a href="../basis.html"><strong aria-hidden="true">1.</strong> 基础</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basis/DataStructuresAndAlgorithms.html"><strong aria-hidden="true">1.1.</strong> 数据结构与算法</a></li><li class="chapter-item expanded "><a href="../basis/OS.html"><strong aria-hidden="true">1.2.</strong> 操作系统</a></li><li class="chapter-item expanded "><a href="../basis/Network.html"><strong aria-hidden="true">1.3.</strong> 计算机网络</a></li><li class="chapter-item expanded "><a href="../basis/Project.html"><strong aria-hidden="true">1.4.</strong> 项目管理</a></li></ol></li><li class="chapter-item expanded "><a href="../java.html"><strong aria-hidden="true">2.</strong> Java</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../java/JavaSE.html"><strong aria-hidden="true">2.1.</strong> 基础</a></li><li class="chapter-item expanded "><a href="../java/Collections.html"><strong aria-hidden="true">2.2.</strong> 集合</a></li><li class="chapter-item expanded "><a href="../java/Concurrent.html"><strong aria-hidden="true">2.3.</strong> 并发</a></li><li class="chapter-item expanded "><a href="../java/JVM.html" class="active"><strong aria-hidden="true">2.4.</strong> 虚拟机</a></li><li class="chapter-item expanded "><a href="../java/IO.html"><strong aria-hidden="true">2.5.</strong> 输入输出</a></li><li class="chapter-item expanded "><a href="../java/Frameworks.html"><strong aria-hidden="true">2.6.</strong> 框架</a></li><li class="chapter-item expanded "><a href="../java/DesignPatterns.html"><strong aria-hidden="true">2.7.</strong> 设计模式</a></li><li class="chapter-item expanded "><a href="../java/BigData.html"><strong aria-hidden="true">2.8.</strong> 大数据</a></li></ol></li><li class="chapter-item expanded "><a href="../database/Database.html"><strong aria-hidden="true">3.</strong> 数据库</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../database/SQL.html"><strong aria-hidden="true">3.1.</strong> SQL</a></li><li class="chapter-item expanded "><a href="../database/MySQL.html"><strong aria-hidden="true">3.2.</strong> MySQL</a></li></ol></li><li class="chapter-item expanded "><a href="../Linux.html"><strong aria-hidden="true">4.</strong> Linux</a></li><li class="chapter-item expanded "><a href="../go.html"><strong aria-hidden="true">5.</strong> Go</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../go/Go.html"><strong aria-hidden="true">5.1.</strong> 基础</a></li><li class="chapter-item expanded "><a href="../go/Goroutine.html"><strong aria-hidden="true">5.2.</strong> 协程</a></li></ol></li><li class="chapter-item expanded "><a href="../frontend.html"><strong aria-hidden="true">6.</strong> 前端</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../frontend/HTML&CSS.html"><strong aria-hidden="true">6.1.</strong> HTML &amp; CSS</a></li><li class="chapter-item expanded "><a href="../frontend/Browser.html"><strong aria-hidden="true">6.2.</strong> 浏览器</a></li></ol></li><li class="chapter-item expanded "><a href="../android.html"><strong aria-hidden="true">7.</strong> 安卓</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../android/Activity.html"><strong aria-hidden="true">7.1.</strong> 活动</a></li><li class="chapter-item expanded "><a href="../android/System.html"><strong aria-hidden="true">7.2.</strong> 系统</a></li></ol></li><li class="chapter-item expanded "><a href="../others.html"><strong aria-hidden="true">8.</strong> 其他</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../others/Distributed.html"><strong aria-hidden="true">8.1.</strong> 分布式</a></li><li class="chapter-item expanded "><a href="../others/Server.html"><strong aria-hidden="true">8.2.</strong> 服务器</a></li><li class="chapter-item expanded "><a href="../others/Middleware.html"><strong aria-hidden="true">8.3.</strong> 中间件</a></li><li class="chapter-item expanded "><a href="../others/Docker.html"><strong aria-hidden="true">8.4.</strong> Docker</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Notes</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="jvm"><a class="header" href="#jvm">JVM</a></h1>
+<p>主要组成部分：</p>
+<ol>
+<li>运行时数据区（Runtime Data Area）</li>
+<li>类加载器（Class Loader）</li>
+<li>执行引擎（Execution Engine）</li>
+<li>本地库接口（Native Interface）</li>
+<li>本地库（Native Libraries）</li>
+</ol>
+<p>首先通过类加载器把Java代码转为字节码，运行时数据区再把字节码加载到内存中，由于字节码只是JVM的一套指令集规范，不能交由底层操作系统去执行，需要特定的命令解释器执行引擎将字节码翻译成底层系统指令，再由CPU去执行，这个过程中需要调用其他语言的本地库接口来实现整个程序的功能。</p>
+<h2 id="运行时数据区"><a class="header" href="#运行时数据区">运行时数据区</a></h2>
+<p>线程共享的：</p>
+<ul>
+<li>堆</li>
+<li>方法区</li>
+<li>直接内存</li>
+</ul>
+<p>线程私有的：</p>
+<ul>
+<li>程序计数器</li>
+<li>虚拟机栈</li>
+<li>本地方法栈</li>
+</ul>
+<ol>
+<li>
+<p>程序计数器</p>
+<p>一块较小的内存空间，可以看作是当前线程所执行的字节码的行号指示器。字节码解释器工作时就是通过改变这个计数器的值来选取下一条需要执行的字节码指令。</p>
+<p>为了线程切换后可以回到正确的执行位置，每条线程都需要有一个独立的程序计数器，各条线程的计数器之间互不影响，独立存储。</p>
+<p>唯一一个不会出现<code>OutOfMemoryError</code>的内存区域，它的生命周期随着线程的创建而创建，随着线程的死亡而死亡。</p>
+</li>
+<li>
+<p>虚拟机栈</p>
+<p>同程序计数器一样，Java虚拟机栈也是线程私有的，生命周期同线程相同，描述Java方法执行的内存模型，每次方法调用的数据都是通过栈传递的。</p>
+<p>Java虚拟机栈由一个个栈帧组成，每个栈帧中拥有：局部变量表、操作数栈、动态链接、方法出口信息。</p>
+<p>局部变量表：主要存放了编译期可知的各种数据类型（基本数据类型）、对象引用。</p>
+<p>会出现两种错误：<code>StackOverFlowError</code>和<code>OutOfMemoryError</code>。</p>
+<ul>
+<li>
+<p><code>StackOverFlowError</code>：虚拟机栈不允许动态扩展，当线程请求栈的深度超过当前栈最大深度时抛出此错误（栈溢出）</p>
+</li>
+<li>
+<p><code>OutOfMemoryError</code>：若堆中无空闲内存，并且垃圾回收器也无法提供更多内存则会抛出此错误</p>
+</li>
+</ul>
+</li>
+<li>
+<p>本地方法栈</p>
+<p>本地方法被执行的时候，在本地方法栈会创建一个栈帧，用于存放局部变量表、操作数栈、动态链接、出口信息。方法执行完毕后相应的栈帧会出栈并释放内存空间，也会出现<code>StackOverFlowError</code>和<code>OutOfMemoryError</code>两种错误。</p>
+</li>
+<li>
+<p>堆</p>
+<p>被所有内存共享的一块内存区域，在虚拟机启动时创建。此区域存放对象实例，几乎所有对象实例都在这里分配内存。</p>
+<p>Java堆是垃圾收集器管理的主要区域。由于现在的垃圾收集器都采用分代收集算法，因此Java堆又分为新生代、老生代。</p>
+</li>
+<li>
+<p>方法区(JDK7)</p>
+<ul>
+<li>
+<p>运行时常量池</p>
+</li>
+<li>
+<p>直接内存</p>
+<p><em><strong>TODO</strong></em></p>
+</li>
+</ul>
+<p><em>注：JDK8废除了方法区改为元空间(MetaSpace)</em></p>
+</li>
+</ol>
+<h2 id="对象创建过程"><a class="header" href="#对象创建过程">对象创建过程</a></h2>
+<ol>
+<li>检查类加载情况</li>
+<li>分配内存</li>
+<li>初始化零值</li>
+<li>初始化对象头</li>
+<li>调用&lt;init&gt;方法</li>
+</ol>
+<h2 id="类加载"><a class="header" href="#类加载">类加载</a></h2>
+<p>虚拟机的类加载机制：虚拟机把描述类的数据从class文件加载到内存，并对数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接使用的Java类型。</p>
+<p>类从被加载到虚拟机内存中开始，到卸载出内存为止，其整个生命周期包括：加载、验证、准备、解析、初始化、使用、卸载7个阶段。其中验证、准备、解析3个阶段统称为连接。</p>
+<p>各阶段的作用：</p>
+<ol>
+<li>
+<p>加载</p>
+<p>在加载阶段，虚拟机需要完成以下3件事情：</p>
+<ol>
+<li>通过一个类的全限定名来获取定义此类的二进制字节流；</li>
+<li>将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构；</li>
+<li>在内存中生成一个代表这个类的<code>java.lang.Class</code>对象，作为方法区这个类的各种数据的访问接口。</li>
+</ol>
+</li>
+<li>
+<p>验证</p>
+</li>
+<li>
+<p>准备</p>
+</li>
+<li>
+<p>解析</p>
+</li>
+<li>
+<p>初始化</p>
+<p>在准备阶段，变量已经赋过一次系统要求的初始值了，而在初始化阶段，则根据程序员通过程序制定的主观计划去初始化类变量和其他资源。或者可以从另外一个角度表达：初始化阶段是执行类构造器方法的过程。</p>
+</li>
+</ol>
+<h3 id="类加载器classloader"><a class="header" href="#类加载器classloader">类加载器（ClassLoader）</a></h3>
+<ol>
+<li>
+<p>启动类加载器（Bootstrap ClassLoader）</p>
+<p>由C++实现，是虚拟机自身之一部分。负责将存在于<code>$JAVA_HOME/lib</code>目录中的，或者被<code>-Xbootclasspath</code>参数所指定的路径中的类库加载到虚拟机内存中。启动类加载器无法被Java程序直接引用，用户在编写自定义类加载器时，若需要把加载请求委派给启动类加载器，直接使用<code>null</code>即可。</p>
+</li>
+<li>
+<p>其他类加载器</p>
+<p>由Java语言实现，独立于虚拟机外部，并且全部继承自抽象类<code>java.lang.ClassLoader</code>：</p>
+<ol>
+<li>
+<p>扩展类加载器（Extension ClassLoader）</p>
+<p>由<code>sun.misc.Launcher$ExtClassLoader</code>实现，负责加载<code>$JAVA_HOME/lib/ext</code>目录中的，或者被<code>java.ext.dirs</code>系统变量所指定的路径中的所有类库，开发者可以直接使用扩展类加载器。</p>
+</li>
+<li>
+<p>应用程序类加载器（Application ClassLoader）</p>
+<p>由<code>sun.misc.Launcher$AppClassLoader</code>实现，由于此类加载器是<code>ClassLoader#getSystemClassLoader()</code>的返回值，所以一般也称之为系统类加载器，负责加载用户路径所指定的类库，开发者可以直接使用这个类加载器，若应用程序中没有自定义过自己的类加载器，一般情况下这个就是程序中默认的类加载器。</p>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="类加载器与类的关系"><a class="header" href="#类加载器与类的关系">类加载器与类的关系</a></h3>
+<p>对于任意一个类，都需要由它的类加载器和这个类本身一同确立其在Java虚拟机中的唯一性，每个类加载器都拥有一个独立的类名称空间。换句话说，比较两个类是否“相等”，只有在这两个类是由同一个类加载器加载的前提下才有意义，否则即使这两个类来自同一个class文件，被同一虚拟机加载，只要加载它们的类加载器不同，那么这两个类就必定不相等。</p>
+<h3 id="双亲委派"><a class="header" href="#双亲委派">双亲委派</a></h3>
+<p>应用程序一般由上述3种加载器相互配合进行加载，若有必要还可以加入自己定义的类加载器。关系如下：</p>
+<pre><code>ClassLoader(自定义) --&gt; Application ClassLoader --&gt; Extension ClassLoader --&gt; Bootstrap ClassLoader
+</code></pre>
+<p><strong>工作过程</strong></p>
+<p>如果一个类加载器收到了类加载请求，它首先不会尝试去加载这个类，而是把这个请求委派给父类加载器去完成。每个层次的类加载器都是如此，因此所有的加载请求最终都应该传送到顶层的启动类加载器中，只有当父类加载器反馈自己无法完成这个加载请求（它的搜索范围中没有找到所需的类）时，子加载器才尝试自己去加载。</p>
+<p><strong>好处</strong></p>
+<p>Java类随着它的类加载器一起具备了一种带有优先级的层次关系。双亲委派保证了Java程序的稳定运行，可以避免类的重复加载（JVM区分不同类的方式不仅根据类名，相同的类文件被不同的类加载器加载产生的是两个不同的类），也保证了Java的核心API不被篡改。</p>
+<p><strong>主要代码实现</strong></p>
+<p>实现双亲委派的代码都集中在<code>java.lang.ClassLoader</code>的<code>loadClass()</code>中：</p>
+<p>先检查是否已经被加载过，若未加载则调用父加载器的<code>loadClass()</code>方法，若父加载器为空则默认使用启动类加载器作为父类加载器，若父类加载失败，抛出<code>ClassNotFoundException</code>后，再调用自己的<code>findClass()</code>进行加载。</p>
+<p>若要实现自定义类加载器，只需继承<code>java.lang.ClassLoader</code>并重写<code>findClass()</code>。</p>
+<h4 id="打破双亲委派"><a class="header" href="#打破双亲委派">打破双亲委派</a></h4>
+<p>JNDI、JDBC、JCE、JAXB、JBI等涉及SPI的加载动作需要调用独立厂商实现部署在应用程序的classpath下的接口提供者（SPI，Service Provider Interface）的代码，但启动类加载器不识别这些代码，此时需打破双亲委派机制。</p>
+<p>线程上下文类加载器（Thread Context ClassLoader）可以通过<code>java.lang.Thread#setContextClassLoader()</code>进行设置，若创建线程时未设置则从父线程继承一个；若在应用程序的全局范围内都未设置过，则该类加载器默认就是应用程序类加载器。上述服务使用线程上下文类加载器去加载所需要的SPI代码，亦即父类加载器请求子类加载器去完成这些动作，这种行为实际上打破了双亲委派模型的层次结构来逆向使用类加载器，已经违背双亲委派模型。</p>
+<h2 id="gc垃圾回收"><a class="header" href="#gc垃圾回收">GC（垃圾回收）</a></h2>
+<h3 id="判断是否可以进行垃圾回收的算法"><a class="header" href="#判断是否可以进行垃圾回收的算法">判断是否可以进行垃圾回收的算法</a></h3>
+<ol>
+<li>
+<p>引用计数法</p>
+<p>为每个对象添加一个引用计数器，用来统计指向该对象的引用个数。一旦某个对象的引用计数器为0，则说明该对象已经死亡，便可以被回收了。</p>
+<p>如果有一个引用被赋值为某一对象，那么将该对象的引用计数+1；如果一个指向某一对象的引用，被赋值为其他值，那么将该对象的引用计数-1。也即是说，我们需要截获所有的引用更新操作，并相应地增减目标对象的引用计数。</p>
+<p>弊端：除了需要额外的空间来存储计数器，以及繁琐的更新操作，引用计数法无法处理循环引用的对象。</p>
+</li>
+<li>
+<p>可达性分析算法</p>
+<p>将所有的引用关系看作一张图，从一个节点GC ROOT开始，寻找对应的引用节点，找到这个节点以后，继续寻找这个节点的引用节点，当所有的引用节点全部找到以后，剩余的节点则被认为是没有被引用到的节点，即无用之节点，会被判定为可回收的对象。</p>
+<p>可作为GC ROOT的对象：</p>
+<ol>
+<li>虚拟机栈中引用的对象（栈帧中的本地变量表）</li>
+<li>方法区中类静态属性引用的对象</li>
+<li>方法区中常量引用的对象</li>
+<li>本地方法栈中JNI（native方法）引用的对象</li>
+</ol>
+<p><em>可达性分析算法中不可达的对象不一定会被回收，真正宣告一个对象死亡需要经过至少两次标记过程：</em></p>
+<ol>
+<li><em>如果对象在可达性分析后没有与GC Roots相连接的引用链，那它将会被第一次标记；</em> </li>
+<li><em>第一次标记后会进行一次筛选，筛选的条件是此对象是否有必要执行<code>finalize()</code>方法，在<code>finalize()</code>方法中没有重新与引用链建立关联关系的，将被进行第二次标记，第二次标记成功的对象将真的会被回收，如果对象在<code>finalize()</code>方法中重新与引用链建立了关联关系，那么将会逃离本次回收，继续存活。</em></li>
+</ol>
+</li>
+</ol>
+<h3 id="finalizer机制"><a class="header" href="#finalizer机制">finalizer机制</a></h3>
+<p>垃圾回收器准备释放内存时会先调用<code>finalize()</code>。有时当撤销一个对象时，需要完成一些操作，如果一个对象正在处理的是非Java资源，此时需要确认对象被撤销之前保证资源被释放，为处理这样的情况，Java提供收尾（finalizer）机制，使用该机制可以定义一些特殊的动作，这些操作在对象将要被垃圾回收程序释放时进行。</p>
+<p>当一个对象超出其作用域时<code>finalize()</code>并不被调用，所以不可能知道<code>finalize()</code>何时，甚至是否被调用，因此程序应该提供其他的方法来释放由对象使用的系统资源，而不能依靠<code>finalize()</code>来完成程序的正常操作。</p>
+<p><em>关于垃圾回收与<code>finalize()</code>需要注意：</em></p>
+<ul>
+<li><em>对象不一定会被回收</em></li>
+<li><em>垃圾回收不是析构</em></li>
+<li><em>垃圾回收只与内存有关</em></li>
+<li><em>垃圾回收和<code>finalize()</code>都是靠不住的，只要JVM还没有到耗尽内存的地步，不会浪费时间进行垃圾回收</em></li>
+</ul>
+<h3 id="判断常量已废弃"><a class="header" href="#判断常量已废弃">判断常量已废弃</a></h3>
+<p>运行时常量池主要回收的是废弃的常量。当没有任何对象引用常量时，就说明该常量为废弃常量，如果这时发生内存回收且有必要的话，常量会被系统清理出常量池。</p>
+<h3 id="判断无用的类"><a class="header" href="#判断无用的类">判断无用的类</a></h3>
+<p>同时满足以下三个条件的类是无用的类：</p>
+<ol>
+<li>该类的所有实例都已经被回收</li>
+<li>加载该类的ClassLoader已被回收</li>
+<li>该类对应的<code>java.lang.Class</code>没有在任何地方被引用，无法在任何地方通过反射访问该类的方法</li>
+</ol>
+<p>虚拟机<strong>可以</strong>对满足以上三个条件的类进行回收。</p>
+<h3 id="垃圾收集算法"><a class="header" href="#垃圾收集算法">垃圾收集算法</a></h3>
+<ul>
+<li>
+<p>标记-清除(Mark-Sweep)算法</p>
+<p>采用从根集合（GC Roots）进行扫描，对存活的对象进行标记，标记完毕后，再扫描整个空间中未被标记的对象，进行回收。</p>
+<p>不需要进行对象的移动，只需对不存活的对象进行处理，在存活对象比较多的情况下极为高效，但由于直接回收不存活对象，因此会造成内存碎片。</p>
+</li>
+<li>
+<p>复制(Copying)算法</p>
+<p>将可用内存按容量划分成大小相等的两块，每次只使用其中的一块，当这一块内存用完了，就将还存活着的对象复制到另一块上面，然后再把已使用过的内存空间一次清理掉。</p>
+<p>在存活对象较多的情况下就要执行较多次的复制操作，效率将会降低。并且该算法会使得50%的内存空间被浪费。</p>
+<p>现代商业虚拟机都是使用这种算法来回收新生代，不过不需要按照1：1的比例来划分内存空间。</p>
+</li>
+<li>
+<p>标记-整理(Mark-Compact)算法</p>
+<p>采用标记-清除算法一样的方式进行对象标记，但在清除时不同，在回收不存活的对象占用的空间后，会将所有的存活对象往空闲空间移动，并更新相应的指针。与标记-清除算法相比成本更高，但解决了内存碎片的问题。</p>
+</li>
+<li>
+<p>分代收集(Generational Collection)算法</p>
+<p>根据对象存活的生命周期将内存划分为若干个不同的区域。一般情况下将堆区划分为老年代、新生代，在堆区外还有一个永久代。</p>
+<p>老年代的特点是每次垃圾回收时只有少量的对象需要被回收，而新生代的特点是每次垃圾回收时都有大量的对象需要被回收，那么就可以根据不同代的特点采取最合适的收集算法。</p>
+<ol>
+<li>
+<p>年轻代的回收算法</p>
+<p>所有新生代的对象首先都是放在年轻代的，年轻代的目标就是尽可能地回收掉那些生命周期短的对象。</p>
+<p>新生代内存按照8 : 1 : 1的比例分为一个Eden区和两个Survivor区（survivor0，survivor1），大部分对象在Eden区生成，回收时先将Eden区存活对象复制到survivor0区（对象年龄初始化为1），然后清空Eden区。当survivor0区也存放满了时，则将Eden区和survivor0区存活对象复制到另一个survivor1区（对象年龄+1），然后清空Eden区和survivor0区，此时survivor0区是空的，然后survivor0和survivor1互换，保持survivor1区为空，如此往复。</p>
+<p>当survivor1区不足存放Eden区和survivor0区的存活对象时，就将存活对象直接存放入老年代。若是老年代也满了就会触发一次Full GC（Major GC），也就是新生代、老生代均进行垃圾回收。</p>
+<p>新生代发生的GC叫Minor GC，Minor GC发生频率较高（不一定等Eden区满才触发）。</p>
+</li>
+<li>
+<p>年老代的回收算法</p>
+<p>在年轻代中经历了N次垃圾回收后仍然存活的对象，就会被放入老年代中。当对象的年龄达到一定程度时（默认15），就会晋升到老年代。因此，可以认为老年代中存放的都是一些生命周期较长的对象。</p>
+<p>内存比新生代大很多（比例大概1：2），当老年代满时触发Full GC，Full GC发生频率较低，老年代对象存活时间比较长，存活率标记高。</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="垃圾收集器"><a class="header" href="#垃圾收集器">垃圾收集器</a></h3>
+<ul>
+<li>
+<p>Serial收集器（复制算法）：单线程收集器</p>
+</li>
+<li>
+<p>Serial Old收集器（标记-整理算法）</p>
+</li>
+<li>
+<p>ParNew收集器（标记-复制算法）</p>
+</li>
+<li>
+<p>Parallel Scavenge收集器（标记-复制算法）</p>
+</li>
+<li>
+<p>Parallel Old收集器（标记-复制算法）</p>
+</li>
+<li>
+<p>CMS(Concurrent Mark Swap)收集器（标记-清除算法）</p>
+<p>运作过程分为四个步骤：</p>
+<ol>
+<li>初始标记（CMS initial mark）：记录下直接与GC Root相连的对象，暂停所有其他线程，速度很快；</li>
+<li>并发标记（CMS concurrent mark）：同时开启GC和用户线程，用一个闭包结构去记录可达对象，但在这个阶段结束，这个闭包结构并不能保证包含当前所有的可达对象，因为用户线程可能会不断更新作用域，所以GC线程无法保证可达性分析的实时性，所以这个算法里会跟踪记录这些发生引用更新的地方；</li>
+<li>重新标记（CMS remark）：为了修正并发标记期间因用户程序继续运行而导致标记发生变动的那一部分对象的标记记录，这个阶段的停顿时间一般会比初始阶段的时间稍长，远远比并发标记阶段时间短；</li>
+<li>并发清除（CMS concurrent sweep）：开启用户线程，同时GC线程开始对未标记的区域做清扫。</li>
+</ol>
+<p>其中初始标记和重新标记需要“stop the world”。</p>
+<p>CMS优点：</p>
+<ol>
+<li>并发收集</li>
+<li>低停顿</li>
+</ol>
+<p>CMS缺点：</p>
+<ol>
+<li>
+<p>对CPU资源非常敏感</p>
+</li>
+<li>
+<p>收集结束时会产生大量内存碎片</p>
+</li>
+<li>
+<p>无法处理浮动垃圾</p>
+<blockquote>
+<p>浮动垃圾：由于在应用运行的同时进行垃圾回收，所以有些垃圾可能在垃圾回收进行完成时产生，这样就造成浮动垃圾（Floating Garbage），这些垃圾需要在下次垃圾回收周期时才能回收掉，所以并发收集器一般需要预留20%的空间用于浮动垃圾。</p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li>
+<p>G1(Garbage First)收集器</p>
+<p>一款面向服务器的垃圾收集器，主要针对配备多颗处理器及大容量内存的机器，以极高概率满足GC停顿时间要求的同时，还具备高吞吐量性能特征。</p>
+<p>特点：</p>
+<ul>
+<li>并行与并发</li>
+<li>分代收集</li>
+<li>空间整合</li>
+<li>可预测的停顿</li>
+</ul>
+<p>G1收集器运作大致分为以下步骤：</p>
+<ol>
+<li>初始标记</li>
+<li>并发标记</li>
+<li>最终标记</li>
+<li>筛选回收</li>
+</ol>
+<p>G1收集器在后台维护了一个优先列表，每次根据允许的收集时间，优先选择回收价值最大的region。这种使用region划分内存空间以及有优先级的区域回收方式，保证了G1收集器在有限时间内可以尽可能高的收集效率（把内存化整为零）。</p>
+</li>
+<li>
+<p>ZGC收集器</p>
+</li>
+</ul>
+<h3 id="垃圾回收策略"><a class="header" href="#垃圾回收策略">垃圾回收策略</a></h3>
+<ul>
+<li>
+<p>Minor GC</p>
+<p>发生在新生代的垃圾收集动作。</p>
+<p>大多数情况下，对象在新生代Eden区中分配。当Eden区没有足够的空间进行分配时，虚拟机将发起一次Minor GC。</p>
+<p>由于大多数Java对象大多具备朝生夕灭的特性，所以Minor GC非常频繁，一般回收速度也较快。</p>
+</li>
+<li>
+<p>Full GC(Major GC)</p>
+<p>发生在老年代的GC。出现了Full GC，经常伴随至少一次Minor GC（非绝对）。Full GC的速度一般会比Minor GC慢10倍以上。</p>
+</li>
+</ul>
+<h3 id="垃圾回收时机"><a class="header" href="#垃圾回收时机">垃圾回收时机</a></h3>
+<p><em><strong>TODO</strong></em></p>
+<h3 id="内存分配与空间担保"><a class="header" href="#内存分配与空间担保">内存分配与空间担保</a></h3>
+<ol>
+<li>对象优先在Eden区分配：大多数情况下，对象在新生代Eden区分配，当Eden区空间不够时，发起Minor GC；</li>
+<li>大对象直接进入老年代：大对象是指需要连续内存空间的对象，最典型的大对象是那种很长的字符串以及数组，经常出现大对象会提前触发垃圾收集以获取足够的连续空间分配给大对象；大于<code>-XX:MaxTenuringThreshold</code>的对象直接在老年代分配，避免在Eden区和Survivor区之间的大量内存复制；</li>
+<li>长期存活的对象将进入老年代：为对象定义年龄计数器，对象在Eden出生并经过Minor GC后依然存活，将移动到Survivor中，年龄就增加1岁，增加到一定年龄则移动到老年代中，<code>-XX:MaxTenuringThreshold</code>用来定义年龄的阈值；</li>
+<li>动态对象年龄判定：为了更好的适应不同程序的内存情况，虚拟机不是永远要求对象年龄必须达到了某个值才能进入老年代，若Survivor空间中相同年龄所有对象大小的总和大于Survivor空间的一半，年龄大于或者等于该年龄的对象就可以直接进入老年代，无需达到年龄要求；</li>
+<li>空间分配担保：
+<ol>
+<li>在发生Minor GC之前，虚拟机先检查老年代最大可用的连续空间是否大于新生代所有对象总空间，若条件成立则Minor GC可以确认安全；</li>
+<li>若不成立虚拟机会查看HandlePromotionFailure设置值是否允许担保失败，若允许那么就会继续检查老年代最大可用的连续空间是否大于历次晋升到老年代对象的平均大小，若大于将尝试着进行一次Minor GC，若小于或者HandlePromotionFailure不允许冒险，那么就进行一次Full GC。</li>
+</ol>
+</li>
+</ol>
+<h3 id="引用"><a class="header" href="#引用">引用</a></h3>
+<ol>
+<li>
+<p>强引用</p>
+<p>在程序代码普遍存在的，类似<code>Object o = new Object()</code>这类引用，只要强引用还存在，垃圾收集器永远不会回收掉被引用的对象。当内存空间不足，虚拟机宁可抛出<code>OutOfMemoryError</code>错误，使程序异常终止，也不会靠随意回收具有强引用对象来解决内存不足的问题。</p>
+</li>
+<li>
+<p>软引用</p>
+<p>用来描述一些有用但并非必须的对象。软引用需要通过<code>SoftReference</code>类来实现，当一个对象只具有软引用时，它有可能被垃圾回收机制回收。</p>
+<p>如果内存空间足够，垃圾回收器就不会回收它，如果内存空间不足，就会回收这些对象的内存。只要垃圾回收器没有回收它，该对象就可以被程序使用。软引用可以用于实现敏感的高速缓存。</p>
+<p>软引用可以和一个引用队列(<code>ReferenceQueue</code>)联合使用，如果软引用所引用的对象被垃圾回收，Java虚拟机就会将这个软引用加入到与之关联的引用队列中。</p>
+</li>
+<li>
+<p>弱引用</p>
+<p>弱引用通过<code>WeakReference</code>类实现，弱引用与软引用很像但弱引用比软引用级别更低。</p>
+<p>用来描述非必须对象，强度比软引用更弱一些，被弱引用关联的对象只会生存到下一次垃圾回收之前。垃圾回收器工作时，无论当前内存是否足够，如果这个对象只被弱引用关联（无任何强引用关联它），那么这个对象将会被回收。</p>
+<p><code>WeakHashMap</code>和<code>ThreadLocal</code>中使用了弱引用。</p>
+</li>
+<li>
+<p>虚引用</p>
+<p>一个对象是否有虚引用的存在，完全不会对其生存时间产生影响，也无法通过虚引用来获得一个对象实例。</p>
+<p>虚引用须配合<code>ReferenceQueue</code>使用。虚引用不会决定对象的生命周期，如果一个对象仅持有虚引用，那么它就和没有任何引用一样，在任何时候都可能被垃圾回收器回收。</p>
+<p>虚引用主要用于跟踪对象被垃圾回收的活动。</p>
+</li>
+</ol>
+<p><em>注：在程序设计中一般较少使用弱引用和虚引用，使用软引用情况较多，这是因为软引用可以加速JVM对垃圾回收的回收速度，可以维护系统的运行安全，防止内存溢出(OutOfMemory)等问题产生。</em></p>
+<h2 id="java内存模型jmm"><a class="header" href="#java内存模型jmm">Java内存模型(JMM)</a></h2>
+<p>Java内存模型(Java Memory Model, JMM)是Java虚拟机规范定义的，用来屏蔽掉Java程序在各种不同的硬件和操作系统对内存的访问的差异，这样就可以实现Java程序在各种不同平台上都能达到内存访问的一致性。</p>
+<p><strong>切莫与<a href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA">JVM内存模型</a>混淆！</strong></p>
+<p>JMM规定</p>
+<ol>
+<li>所有变量都存储在主内存中；</li>
+<li>每条线程还有自己的工作内存；</li>
+<li>线程的工作内存总保存了该线程中用到的变量的主内存副本拷贝，线程对变量的所有操作都必须在工作内存中进行，而不能直接读写主内存。不同的线程之间也无法进行直接访问对方工作内存的变量，线程间变量的传递均需要自己的工作内存和主内存之间进行数据同步进行。</li>
+</ol>
+<h3 id="happens-before"><a class="header" href="#happens-before">Happens-before</a></h3>
+<p>JMM在设计时定义了如下策略：</p>
+<ol>
+<li>对于会改变程序执行结果的重排序，JMM要求编译器和处理器必须禁止这种重排序；</li>
+<li>对于不会改变程序执行结果的重排序，JMM对编译器和处理器不做要求（JMM允许这种重排序）。</li>
+</ol>
+<p>Happens-before规则表达的是前一个操作的结果对后续操作是可见的。这么做的目的是为了在不改变程序执行结果的前提下，尽可能地提高程序执行的并行度。</p>
+<p>Happens-before规则定义：</p>
+<ol>
+<li>程序顺序规则：一个线程中按照程序顺序，前面的操作先行发生于后续的任意操作；</li>
+<li>监视器锁规则：对一个锁的解锁先行发生于随后对这个锁的加锁；</li>
+<li>volatile变量规则：对一个volatile域的写先行发生于任意后续对这个volatile域的读；</li>
+<li>传递性：如果A先行发生于B，且B先行发生于C，那么A先行发生于C；</li>
+<li>线程启动规则：Thread对象的<code>start()</code>方法先行发生于此线程的每一个动作；</li>
+<li>线程中断规则：对线程<code>interrupt()</code>方法的调用先行发生于被中断线程的代码检测到中断事件的发生；</li>
+<li>线程终结规则：线程中所有的操作都先行发生于线程的终止检测，可以通过<code>Thread.join()</code>方法结束，<code>Thread.isAlive()</code>的返回值手段检测到线程已经终止执行；</li>
+<li>对象终结规则：一个对象的初始化完成先行发生于它的<code>finalize()</code>方法的开始。</li>
+</ol>
+<h3 id="java内存模型的实现"><a class="header" href="#java内存模型的实现">Java内存模型的实现</a></h3>
+<ol>
+<li>原子性</li>
+</ol>
+<p><em><strong>TODO</strong></em></p>
+<ol start="2">
+<li>可见性</li>
+</ol>
+<p><em><strong>TODO</strong></em></p>
+<ol start="3">
+<li>
+<p>有序性</p>
+<p>在Java中可以使用<code>synchronized</code>和<code>volatile</code>关键字来保证多线程之间操作的有序性。<code>volatile</code>会禁止指令重排，<code>synchronized</code>保证同一时刻只允许一条线程操作。</p>
+</li>
+</ol>
+<h2 id="jvm监控工具"><a class="header" href="#jvm监控工具">JVM监控工具</a></h2>
+<ul>
+<li>jstack：打印给定的Java进程ID的线程堆栈快照信息</li>
+<li>jmap：内存监控</li>
+<li>jps：查看当前Java进程</li>
+<li>jstat：对Java应用程序的资源和性能进行实时的命令行监控</li>
+<li>jinfo：输出并修改运行时的Java进程的环境变量和虚拟机参数</li>
+<li>jhat：用户分析内存堆的快照文件</li>
+<li>javah：生成Java类中本地方法的C头文件，一般用于JNI开发</li>
+<li>jdb：远程调试，用于定位线上问题</li>
+<li>jstatd：jstat的服务器版本</li>
+<li>jad：反编译工具</li>
+<li>btrace：动态跟踪Java运行时程序</li>
+<li>jvisualvm：虚拟机监视和故障处理平台</li>
+<li>jconsole：查看Java内存和线程堆栈（已过时）</li>
+<li>jmat：Java性能跟踪、定位与分析工具</li>
+<li>jprofiler：Java性能跟踪、定位与分析工具</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../java/Concurrent.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../java/IO.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../java/Concurrent.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../java/IO.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

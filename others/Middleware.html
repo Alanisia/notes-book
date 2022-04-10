@@ -1,0 +1,370 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>中间件 - Notes</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">README</li><li class="chapter-item expanded "><a href="../basis.html"><strong aria-hidden="true">1.</strong> 基础</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basis/DataStructuresAndAlgorithms.html"><strong aria-hidden="true">1.1.</strong> 数据结构与算法</a></li><li class="chapter-item expanded "><a href="../basis/OS.html"><strong aria-hidden="true">1.2.</strong> 操作系统</a></li><li class="chapter-item expanded "><a href="../basis/Network.html"><strong aria-hidden="true">1.3.</strong> 计算机网络</a></li><li class="chapter-item expanded "><a href="../basis/Project.html"><strong aria-hidden="true">1.4.</strong> 项目管理</a></li></ol></li><li class="chapter-item expanded "><a href="../java.html"><strong aria-hidden="true">2.</strong> Java</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../java/JavaSE.html"><strong aria-hidden="true">2.1.</strong> 基础</a></li><li class="chapter-item expanded "><a href="../java/Collections.html"><strong aria-hidden="true">2.2.</strong> 集合</a></li><li class="chapter-item expanded "><a href="../java/Concurrent.html"><strong aria-hidden="true">2.3.</strong> 并发</a></li><li class="chapter-item expanded "><a href="../java/JVM.html"><strong aria-hidden="true">2.4.</strong> 虚拟机</a></li><li class="chapter-item expanded "><a href="../java/IO.html"><strong aria-hidden="true">2.5.</strong> 输入输出</a></li><li class="chapter-item expanded "><a href="../java/Frameworks.html"><strong aria-hidden="true">2.6.</strong> 框架</a></li><li class="chapter-item expanded "><a href="../java/DesignPatterns.html"><strong aria-hidden="true">2.7.</strong> 设计模式</a></li><li class="chapter-item expanded "><a href="../java/BigData.html"><strong aria-hidden="true">2.8.</strong> 大数据</a></li></ol></li><li class="chapter-item expanded "><a href="../database/Database.html"><strong aria-hidden="true">3.</strong> 数据库</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../database/SQL.html"><strong aria-hidden="true">3.1.</strong> SQL</a></li><li class="chapter-item expanded "><a href="../database/MySQL.html"><strong aria-hidden="true">3.2.</strong> MySQL</a></li></ol></li><li class="chapter-item expanded "><a href="../Linux.html"><strong aria-hidden="true">4.</strong> Linux</a></li><li class="chapter-item expanded "><a href="../go.html"><strong aria-hidden="true">5.</strong> Go</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../go/Go.html"><strong aria-hidden="true">5.1.</strong> 基础</a></li><li class="chapter-item expanded "><a href="../go/Goroutine.html"><strong aria-hidden="true">5.2.</strong> 协程</a></li></ol></li><li class="chapter-item expanded "><a href="../frontend.html"><strong aria-hidden="true">6.</strong> 前端</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../frontend/HTML&CSS.html"><strong aria-hidden="true">6.1.</strong> HTML &amp; CSS</a></li><li class="chapter-item expanded "><a href="../frontend/Browser.html"><strong aria-hidden="true">6.2.</strong> 浏览器</a></li></ol></li><li class="chapter-item expanded "><a href="../android.html"><strong aria-hidden="true">7.</strong> 安卓</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../android/Activity.html"><strong aria-hidden="true">7.1.</strong> 活动</a></li><li class="chapter-item expanded "><a href="../android/System.html"><strong aria-hidden="true">7.2.</strong> 系统</a></li></ol></li><li class="chapter-item expanded "><a href="../others.html"><strong aria-hidden="true">8.</strong> 其他</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../others/Distributed.html"><strong aria-hidden="true">8.1.</strong> 分布式</a></li><li class="chapter-item expanded "><a href="../others/Server.html"><strong aria-hidden="true">8.2.</strong> 服务器</a></li><li class="chapter-item expanded "><a href="../others/Middleware.html" class="active"><strong aria-hidden="true">8.3.</strong> 中间件</a></li><li class="chapter-item expanded "><a href="../others/Docker.html"><strong aria-hidden="true">8.4.</strong> Docker</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Notes</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="中间件"><a class="header" href="#中间件">中间件</a></h1>
+<h2 id="redis"><a class="header" href="#redis">Redis</a></h2>
+<p><em><strong>TODO</strong></em></p>
+<h3 id="数据类型"><a class="header" href="#数据类型">数据类型</a></h3>
+<table><thead><tr><th>数据类型</th><th>可存储的值</th><th>操作</th><th>应用场景</th></tr></thead><tbody>
+<tr><td>String</td><td>字符串、整数或浮点数</td><td>对整个字符串或字符串的其中一部分执行操作<br>对整数和浮点数执行自增或自减操作</td><td>简单的键值对缓存</td></tr>
+<tr><td>List</td><td>列表</td><td>从两端压入或弹出元素<br>对单个或多个元素进行修剪，只保留一个范围内的元素</td><td>存储列表型数据结构</td></tr>
+<tr><td>Set</td><td>无序集合</td><td>添加、获取、删除单个元素<br>检查一个元素是否存在于集合中<br>计算交集、并集、差集<br>从集合中随机获取元素</td><td>交集、并集、差集的操作</td></tr>
+<tr><td>Hash</td><td>包含键值对的无序散列表</td><td>添加、获取、移除单个键值对<br>获取所有键值对<br>检查某个键是否存在</td><td>结构化的数据，如对象</td></tr>
+<tr><td>ZSet</td><td>有序集合</td><td>添加、获取、删除元素<br>根据分值范围或成员来获取元素<br>计算一个键的排名</td><td>去重，排序</td></tr>
+</tbody></table>
+<h3 id="应用场景"><a class="header" href="#应用场景">应用场景</a></h3>
+<ul>
+<li>计数器：<em><strong>TODO</strong></em></li>
+<li>缓存：<em><strong>TODO</strong></em></li>
+<li>会话缓存：<em><strong>TODO</strong></em></li>
+<li>全页缓存：<em><strong>TODO</strong></em></li>
+<li>查找表：<em><strong>TODO</strong></em></li>
+<li>消息队列：<em><strong>TODO</strong></em></li>
+<li>分布式锁实现：<em><strong>TODO</strong></em></li>
+<li>其他操作：<em><strong>TODO</strong></em></li>
+</ul>
+<h3 id="缓存"><a class="header" href="#缓存">缓存</a></h3>
+<p><strong>缓存穿透</strong></p>
+<p>使用Redis大部分情况是通过key查询对应的值，加入发送的请求传进来的key是不存在于Redis中的，那么就查不到缓存，会去数据库查询。假如有大量这样的请求，这些请求像”穿透“缓存一样打在数据库上，这种现象唤作缓存穿透。</p>
+<p>分析：关键在于传进来的key在Redis中不存在。</p>
+<p>解决方案：</p>
+<ol>
+<li>把无效的key存进Redis中，如果Redis和数据库都查不到的数据，可以把这个key存进Redis并设置value为null，当下次再通过该key查询时就不会再查数据库，但假如传进来的这个不存在的key每次都是随机的，存进Redis亦无意义；</li>
+<li>使用布隆过滤器，若某个key不存在那就一定不存在，若某个key存在那很大可能存在，于是可以在缓存之前再加一层布隆过滤器，在查询时先去布隆过滤器查询key是否存在，若不存在则直接返回。</li>
+</ol>
+<p><strong>缓存雪崩</strong></p>
+<p>当某一个时刻出现大规模的缓存失效的情况，就会导致大量的请求直接打在数据库上面，导致数据库压力巨大，如果在高并发的情况下可能瞬间就会导致数据库宕机。此时如果运维马上重启数据库，马上又会有新的流量打死数据库。</p>
+<p>分析：造成缓存雪崩的关键在于在同一时间大规模key失效，有可能是Redis宕机，有可能是采用了相同的过期时间。</p>
+<p>解决方案：</p>
+<ol>
+<li>在原有的失效时间上加上一个随机值，比如1-5分钟随机，避免因为采用相同的过期时间导致的缓存雪崩；</li>
+<li>使用熔断机制，当流量到达一定的阈值时，就直接返回”系统拥挤“之类的提示，防止过多的请求打在数据库上，至少能保证一部分用户是可以正常使用的，其他用户多刷新几次也能得到结果；</li>
+<li>提高数据库的容灾能力，可以使用分库分表，读写分离的策略；</li>
+<li>为了防止Redis宕机导致缓存雪崩的问题，可以搭建Redis集群，提高Redis的容灾性。</li>
+</ol>
+<p><strong>缓存击穿</strong></p>
+<p>对一个热点的key，有大并发集中对其进行访问，突然该key失效导致大并发全部打在数据库上，导致数据库压力剧增。</p>
+<p>分析：关键在于某个热点key失效了，导致大并发集中打在数据库上。可以从两方面解决：</p>
+<ul>
+<li>是否可以考虑热点key不设置过期时间；</li>
+<li>是否可以考虑降低打在数据库上的请求数量。</li>
+</ul>
+<p>解决方案：</p>
+<ol>
+<li>如业务允许，对于热点key可以设置永不过期；</li>
+<li>使用互斥锁，如果缓存失效，只有拿到锁才可以查询数据库，降低了在同一时刻打在数据库上的请求，防止数据库打死，当然这样会导致系统的性能变差。</li>
+</ol>
+<h3 id="持久化"><a class="header" href="#持久化">持久化</a></h3>
+<p>将内存的数据写入磁盘，防止服务宕机导致内存数据丢失。</p>
+<p>机制：</p>
+<ol>
+<li>
+<p>RDB（默认）</p>
+<p><em><strong>TODO</strong></em></p>
+</li>
+<li>
+<p>AOF</p>
+<p><em><strong>TODO</strong></em></p>
+</li>
+</ol>
+<p>优缺点：<em><strong>TODO</strong></em></p>
+<h3 id="过期时间"><a class="header" href="#过期时间">过期时间</a></h3>
+<p>设置过期时间的命令：<code>EXPIRE</code>。</p>
+<p><em><strong>TODO</strong></em></p>
+<h4 id="过期键的删除策略"><a class="header" href="#过期键的删除策略">过期键的删除策略</a></h4>
+<p>由于缓存的key可以设置过期时间，过期策略讨论的是当缓存的key过期了如何处理的问题。</p>
+<ol>
+<li>
+<p>定时过期 <em><strong>TODO</strong></em></p>
+</li>
+<li>
+<p>惰性过期 <em><strong>TODO</strong></em></p>
+</li>
+<li>
+<p>定期过期 <em><strong>TODO</strong></em></p>
+</li>
+</ol>
+<h3 id="淘汰策略"><a class="header" href="#淘汰策略">淘汰策略</a></h3>
+<p><em><strong>TODO</strong></em></p>
+<h3 id="线程模型"><a class="header" href="#线程模型">线程模型</a></h3>
+<p><em><strong>TODO</strong></em></p>
+<h3 id="事务"><a class="header" href="#事务">事务</a></h3>
+<p><em><strong>TODO</strong></em></p>
+<h3 id="集群"><a class="header" href="#集群">集群</a></h3>
+<p><em><strong>TODO</strong></em></p>
+<h3 id="分区"><a class="header" href="#分区">分区</a></h3>
+<p><em><strong>TODO</strong></em></p>
+<h2 id="消息队列"><a class="header" href="#消息队列">消息队列</a></h2>
+<p>消息队列解决的核心问题是：异步、削峰、解耦。</p>
+<p>缺点：</p>
+<ul>
+<li>系统可靠性降低，解耦后，多个系统通过消息中间件交互，消息中间件宕机会导致整个系统宕机；</li>
+<li>系统开发复杂度提升，需要考虑消息的处理，包括消息幂等性（重复消息问题），消息保序性（一条订单多条消息问题），以及消息中间件本身的持久化和稳定性可靠性；</li>
+<li>消息一致性问题，若一个功能发给多个系统，要所有系统都执行成功才算成功时，需要确保一个功能多个消息的完整一致性。</li>
+</ul>
+<p>各种消息队列的比较</p>
+<table><thead><tr><th>特性</th><th>ActiveMQ</th><th>RabbitMQ</th><th>RocketMQ</th><th>Kafka</th></tr></thead><tbody>
+<tr><td>单机吞吐量</td><td>万/秒</td><td>万/秒</td><td>10万/秒</td><td>10万/秒</td></tr>
+<tr><td>topic对吞吐量的影响</td><td>无</td><td>无</td><td>topic达到几百/几千个级别，吞吐量会有小幅下降</td><td>topic可达到几十/几百个级别，吞吐量会有大幅下降，不适合大批量topic场景，除非加机器</td></tr>
+<tr><td>时效性</td><td>毫秒</td><td>微秒</td><td>毫秒</td><td>毫秒</td></tr>
+<tr><td>可用性</td><td>高，主从架构</td><td>高，主从架构</td><td>非常高，分布式</td><td>非常高，分布式，数据多副本，不会丢数据，不会不可用</td></tr>
+<tr><td>可靠性</td><td>有较低概率丢失数据</td><td></td><td>经配置优化可达到0丢失</td><td>经配置优化可达到0丢失</td></tr>
+<tr><td>功能特性</td><td>功能齐全，但已不怎么维护</td><td>Erlang开发，并发强，性能极好，延迟低</td><td>功能较为齐全，扩展好</td><td>功能简单，主要用于大数据实时计算和日志采集，事实标准</td></tr>
+</tbody></table>
+<h4 id="死信队列"><a class="header" href="#死信队列">死信队列</a></h4>
+<p>没有被及时消费的消息存放队列，消息没有被及时消费有以下几点原因：</p>
+<ul>
+<li>消息被拒绝且不再重新投递</li>
+<li>消息超时未消费</li>
+<li>达到最大队列长度</li>
+</ul>
+<p>消息变成死信后，会被重新投递到另一台交换机上，此交换机被称为死信交换机（DLX, Dead-Letter-Exchange）然后交换机根据绑定规则转发到对应的队列上，监听该队列就可以被重新消费。</p>
+<p><strong>应用场景</strong></p>
+<ul>
+<li>电商延迟关闭订单 <em><strong>TODO</strong></em></li>
+</ul>
+<p><strong><code>DelayQueue</code></strong></p>
+<p><em><strong>TODO</strong></em></p>
+<h3 id="activemq"><a class="header" href="#activemq">ActiveMQ</a></h3>
+<ul>
+<li>优点：技术成熟，功能齐全，历史悠久，有大量公司使用</li>
+<li>缺点：偶尔会有较低概率丢失数据，而且社区已经不怎么维护5.15.X版本</li>
+<li>使用场景：主要用于系统解耦和异步处理，不适用于大数据量吞吐情况</li>
+</ul>
+<h3 id="rocketmq"><a class="header" href="#rocketmq">RocketMQ</a></h3>
+<ul>
+<li>优点：支持百千级大规模topic，吞吐量高（十万级，日处理上百亿），接口易用，分布式易扩展</li>
+<li>缺点：不兼容JMS规范，与阿里（社区）存在绑定</li>
+<li>使用场景：高吞吐量</li>
+</ul>
+<h3 id="kafka"><a class="header" href="#kafka">Kafka</a></h3>
+<p>分布式消息队列，<em><strong>TODO</strong></em></p>
+<ul>
+<li>优点：超高吞吐量，超高可用性和可靠性，分布式易扩展</li>
+<li>缺点：topic支持少，MQ功能简单，消息可能会重复消费影响数据精确度</li>
+<li>使用场景：超高吞吐量场景而数据精确度没那么高，天然适合大数据实时计算和日志采集场景</li>
+</ul>
+<h3 id="rabbitmq"><a class="header" href="#rabbitmq">RabbitMQ</a></h3>
+<p><em><strong>TODO</strong></em></p>
+<ul>
+<li>优点：吞吐量高，功能齐全，管理界面易用，社区活跃，性能极好</li>
+<li>缺点：吞吐量只是万级，由于是Erlang开发故难以二次开发和掌控，集群动态扩展非常麻烦</li>
+<li>使用场景：吞吐量不高而要求低延迟，且不会频繁调整和扩展的场景</li>
+</ul>
+<p>重要组件：</p>
+<ol>
+<li>ConnectionFactory（连接管理器）：应用程序与Rabbit之间建立连接的管理器</li>
+<li>Channel（信道）：消息推送使用的通道</li>
+<li>Exchange（交换器）：用于接收、分配消息</li>
+<li>Queue（队列）：用于存储生产者的消息</li>
+<li>RoutingKey（路由键）：用于把生产者的数据分配到交换器上</li>
+<li>BindingKey（绑定键）：用于把交换器的消息绑定到队列上</li>
+</ol>
+<p>广播模型：</p>
+<ol>
+<li>fanout：所有绑定到此Exchange的Queue都可以接收消息（很像子网广播，每台子网内的主机都获得了一份复制的消息），fanout交换机转发消息最快</li>
+<li>direct：通过RoutingKey和Exchange中的BindingKey决定的那个唯一的Queue可以接收消息</li>
+<li>topic：所有符合RoutingKey所绑定的Queue可以接收消息</li>
+</ol>
+<h4 id="模式"><a class="header" href="#模式">模式</a></h4>
+<ul>
+<li>单机模式：<em><strong>TODO</strong></em></li>
+<li>普通集群模式：<em><strong>TODO</strong></em></li>
+<li>镜像集群模式：<em><strong>TODO</strong></em></li>
+</ul>
+<h3 id="rocketmq-1"><a class="header" href="#rocketmq-1">RocketMQ</a></h3>
+<p><em><strong>TODO</strong></em></p>
+<h2 id="druid"><a class="header" href="#druid">Druid</a></h2>
+<p><em><strong>TODO</strong></em></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../others/Server.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../others/Docker.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../others/Server.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../others/Docker.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

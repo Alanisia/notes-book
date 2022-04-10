@@ -1,0 +1,393 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>集合 - Notes</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">README</li><li class="chapter-item expanded "><a href="../basis.html"><strong aria-hidden="true">1.</strong> 基础</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basis/DataStructuresAndAlgorithms.html"><strong aria-hidden="true">1.1.</strong> 数据结构与算法</a></li><li class="chapter-item expanded "><a href="../basis/OS.html"><strong aria-hidden="true">1.2.</strong> 操作系统</a></li><li class="chapter-item expanded "><a href="../basis/Network.html"><strong aria-hidden="true">1.3.</strong> 计算机网络</a></li><li class="chapter-item expanded "><a href="../basis/Project.html"><strong aria-hidden="true">1.4.</strong> 项目管理</a></li></ol></li><li class="chapter-item expanded "><a href="../java.html"><strong aria-hidden="true">2.</strong> Java</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../java/JavaSE.html"><strong aria-hidden="true">2.1.</strong> 基础</a></li><li class="chapter-item expanded "><a href="../java/Collections.html" class="active"><strong aria-hidden="true">2.2.</strong> 集合</a></li><li class="chapter-item expanded "><a href="../java/Concurrent.html"><strong aria-hidden="true">2.3.</strong> 并发</a></li><li class="chapter-item expanded "><a href="../java/JVM.html"><strong aria-hidden="true">2.4.</strong> 虚拟机</a></li><li class="chapter-item expanded "><a href="../java/IO.html"><strong aria-hidden="true">2.5.</strong> 输入输出</a></li><li class="chapter-item expanded "><a href="../java/Frameworks.html"><strong aria-hidden="true">2.6.</strong> 框架</a></li><li class="chapter-item expanded "><a href="../java/DesignPatterns.html"><strong aria-hidden="true">2.7.</strong> 设计模式</a></li><li class="chapter-item expanded "><a href="../java/BigData.html"><strong aria-hidden="true">2.8.</strong> 大数据</a></li></ol></li><li class="chapter-item expanded "><a href="../database/Database.html"><strong aria-hidden="true">3.</strong> 数据库</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../database/SQL.html"><strong aria-hidden="true">3.1.</strong> SQL</a></li><li class="chapter-item expanded "><a href="../database/MySQL.html"><strong aria-hidden="true">3.2.</strong> MySQL</a></li></ol></li><li class="chapter-item expanded "><a href="../Linux.html"><strong aria-hidden="true">4.</strong> Linux</a></li><li class="chapter-item expanded "><a href="../go.html"><strong aria-hidden="true">5.</strong> Go</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../go/Go.html"><strong aria-hidden="true">5.1.</strong> 基础</a></li><li class="chapter-item expanded "><a href="../go/Goroutine.html"><strong aria-hidden="true">5.2.</strong> 协程</a></li></ol></li><li class="chapter-item expanded "><a href="../frontend.html"><strong aria-hidden="true">6.</strong> 前端</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../frontend/HTML&CSS.html"><strong aria-hidden="true">6.1.</strong> HTML &amp; CSS</a></li><li class="chapter-item expanded "><a href="../frontend/Browser.html"><strong aria-hidden="true">6.2.</strong> 浏览器</a></li></ol></li><li class="chapter-item expanded "><a href="../android.html"><strong aria-hidden="true">7.</strong> 安卓</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../android/Activity.html"><strong aria-hidden="true">7.1.</strong> 活动</a></li><li class="chapter-item expanded "><a href="../android/System.html"><strong aria-hidden="true">7.2.</strong> 系统</a></li></ol></li><li class="chapter-item expanded "><a href="../others.html"><strong aria-hidden="true">8.</strong> 其他</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../others/Distributed.html"><strong aria-hidden="true">8.1.</strong> 分布式</a></li><li class="chapter-item expanded "><a href="../others/Server.html"><strong aria-hidden="true">8.2.</strong> 服务器</a></li><li class="chapter-item expanded "><a href="../others/Middleware.html"><strong aria-hidden="true">8.3.</strong> 中间件</a></li><li class="chapter-item expanded "><a href="../others/Docker.html"><strong aria-hidden="true">8.4.</strong> Docker</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Notes</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="容器"><a class="header" href="#容器">容器</a></h1>
+<h2 id="map"><a class="header" href="#map">Map</a></h2>
+<h3 id="hashmap"><a class="header" href="#hashmap">HashMap</a></h3>
+<h4 id="实现原理"><a class="header" href="#实现原理">实现原理</a></h4>
+<p>HashMap底层为Entry数组+链表(JDK7)/Node数组+链表+红黑树(JDK8)。</p>
+<p>初始化默认容量为16，加载因子为0.75。若初始化指定容量，则容量大小会扩充为大于该容量值的2的最小整数幂。</p>
+<pre><code class="language-java">public Object put(Object key, Object value);
+</code></pre>
+<p>JDK1.7：</p>
+<ul>
+<li>判断数组是否为空，为空则进行初始化；</li>
+<li>若不为空则计算key的hash值，通过<code>h &amp; (length - 1)</code>计算应当存放在数组中的下标<code>index</code>；</li>
+<li>查看<code>table[index]</code>是否存在数据，没有数据就构造一个<code>Entry</code>节点存放在<code>table[index]</code>中；</li>
+<li>存在数据，说明发生了hash冲突，继续判断key是否相等，若相等，用新的value替换原数据；</li>
+<li>若不相等，创建<code>Entry</code>节点加入链表中（头插法）；</li>
+<li>插入前判断当前节点数是否大于阈值（数组容量与加载因子的乘积），如果是则开始扩容为原数组的2倍，再插入节点。</li>
+</ul>
+<p>JDK1.8：</p>
+<ul>
+<li>判断数组是否为空，为空则进行初始化；</li>
+<li>若不为空则计算key的hash值，通过<code>h &amp; (length - 1)</code>计算应当存放在数组中的下标<code>index</code>；</li>
+<li>查看<code>table[index]</code>是否存在数据，没有数据就构造一个<code>Node</code>节点存放在<code>table[index]</code>中；</li>
+<li>存在数据，说明发生了hash冲突，继续判断key是否相等，若相等，用新的value替换原数据（<code>onlyIfAbsent</code>为<code>false</code>）；</li>
+<li>若不相等，判断当前节点类型是否为红黑树节点，如果是则创建红黑树节点插入到树中；</li>
+<li>如果不是红黑树节点则创建普通<code>Node</code>加入链表中（尾插法）；</li>
+<li>判断链表长度是否大于8并且数组长度是否大于64，若是则将链表转为红黑树；</li>
+<li>插入完成后判断当前节点数是否大于阈值（数组容量与加载因子的乘积），如果是则开始扩容为原数组的2倍。</li>
+</ul>
+<pre><code class="language-java">public Object get(Object key);
+</code></pre>
+<ul>
+<li>计算key的hash值，通过<code>h &amp; (length - 1)</code>计算应当存放在数组中的下标<code>index</code>；</li>
+<li>对链表/红黑树进行遍历，使用<code>equals()</code>方法查找其中相等的key对应的value。</li>
+</ul>
+<p><code>resize()</code>：数组容量翻倍。扩容后，原数组中的所有元素需要找到在新数组中的位置。</p>
+<p>相关问题：</p>
+<ol>
+<li>
+<p>为什么HashMap的数组长度须为2的整数次幂？</p>
+<p>为了能让HashMap存储高效，尽量减少碰撞，尽量让数组分配均匀。利用key的散列值对数组的长度进行取模运算可以得到数组的下标，当数组长度为2的整数次幂时，key的散列值对数组长度取余等价于key的散列值与数组长度减1的值相与。由于采用二进制位与操作，相对于%能够提高效率。</p>
+</li>
+<li>
+<p>为什么默认加载因子为0.75？</p>
+<p>加载因子表示哈希表中元素的填满程度。加载因子越大，填满的元素越多，空间利用率高，但发生冲突的几率也增加；加载因子越小，填满的元素越少，冲突发生几率减小，但空间浪费多，还会提高扩容时rehash的次数。</p>
+<p>在理想情况下，使用随机哈希码，在加载因子为0.75的情况下，节点出现的频率在哈希表中遵循参数平均为0.5的泊松分布。</p>
+<p>选择0.75作为加载因子，完全是时间和空间成本上寻求的一种折衷选择。</p>
+</li>
+<li>
+<p>为什么说HashMap线程不安全？</p>
+<p>主要原因在于并发条件下，由于链表插入节点采用头插法，扩容时会导致链表反转形成一个循环链表，后续在调用<code>get()</code>时会进入死循环。JDK8解决了此问题，改用尾插法插入节点，此时扩容转移前后链表顺序不变，保持之前节点的引用关系。不过在并发条件下使用HashMap还是会存在其他问题诸如数据丢失。</p>
+<p><em>头插法：新值会作为链表的头部替换原来的值，原来的值会被顺推到链表当中。设计者认为后来插入的值被查找的概率较高，使用头插法可以提高查找的效率。</em></p>
+</li>
+<li>
+<p>JDK8为什么增加红黑树？选择红黑树而不是二叉查找树？</p>
+<p>当链表长度过长时，查找效率降低（时间复杂度<code>O(n)</code>）；红黑树可以提高数据检索的速度（时间复杂度<code>O(logn)</code>）。</p>
+<p>二叉树在特殊情况下会退化成链表，使用红黑树可以解决二叉树的缺陷。</p>
+</li>
+<li>
+<p>为什么不一直使用红黑树？</p>
+<p>红黑树在插入时需要通过旋转、变色等操作来保持平衡，为了维持这种平衡需要付出代价。当链表很短时不必要使用红黑树，否则会导致效率更低；当链表很长时使用红黑树，保持平衡所消耗的资源要远小于遍历链表所消耗的效率，所以设定一个阈值来判断链表转为红黑树的时机。</p>
+</li>
+<li>
+<p>为什么选择将链表长度为8作为将链表转换为红黑树的阈值？</p>
+<p>通常如果哈希算法正常，那么链表长度也不会很长，那么红黑树也不会带来明显的查询时间上的优势，反而会增加空间负担，所以通常情况下没有必要转化为红黑树，所以就选择了概率非常小，也就是长度为8的概率（泊松分布），将长度为8作为转换阈值。</p>
+</li>
+<li>
+<p>哈希函数的实现？</p>
+<pre><code class="language-java">// JDK1.8
+static final int hash(Object key) {
+    int h;
+    return key == null ? 0 : (h = key.hashCode()) ^ (h &gt;&gt;&gt; 16);
+}
+//JDK 1.7
+static int hash(int h) {
+    h ^= (h &gt;&gt;&gt; 20) ^ (h &gt;&gt;&gt; 12);
+    return h ^ (h &gt;&gt;&gt; 7) ^ (h &gt;&gt;&gt; 4);
+}
+</code></pre>
+<p>使用扰动函数可以对一些实现比较差的<code>hashCode()</code>方法进行扰动以减少碰撞。</p>
+</li>
+</ol>
+<h4 id="hashmap与hashtable的区别"><a class="header" href="#hashmap与hashtable的区别">HashMap与HashTable的区别</a></h4>
+<ol>
+<li>HashMap线程不安全，HashTable线程安全；</li>
+<li>因为线程安全问题，HashMap效率高于HashTable；</li>
+<li>HashMap可以存储值为null的key和value，但null的key只能有一个，null的value可以有多个；HashTable不允许出现值为null的key或
+value（会抛出NullPointerException）；</li>
+<li>JDK8以后的HashMap在链表长度大于阈值时将链表转化为红黑树，HashTable没有这样的机制；</li>
+<li>若不指定初始容量，HashMap会默认初始容量为16，以后每次扩容容量翻倍，而HashTable默认初始容量为11，以后每次扩容容量变为原来的2n+1；若指定初始容量，HashTable会直接使用指定的容量，而HashMap会将其扩充为2的整数次幂。</li>
+</ol>
+<p><em>注：不要在代码中使用HashTable，如果需要使用能保证并发安全的HashMap请使用ConcurrentHashMap。</em></p>
+<h3 id="hashset"><a class="header" href="#hashset">HashSet</a></h3>
+<p>底层是HashMap。如何检查重复：</p>
+<p>当把元素加入HashSet时，HashSet会先计算对象的hashCode值来判断元素加入的位置，同时也会与其他元素的hashCode值相比较。若没有相同的hashCode，hashSet会假设元素没有重复出现，否则调用equals方法来检查hashCode相等的对象是否真的相等。若两者相等则HashSet不会让加入操作成功。</p>
+<p><strong><code>hashCode()</code>和<code>equals()</code>相关</strong></p>
+<ol>
+<li>如果两个对象相等，则<code>hashCode()</code>相等</li>
+<li>两个对象相等，<code>equals()</code>返回<code>true</code></li>
+<li>两个对象<code>hashCode()</code>相等，两个对象不一定相等</li>
+<li>综上，<code>equals()</code>被覆盖，<code>hashCode()</code>必须被覆盖</li>
+<li><code>hashCode()</code>默认行为是对堆上的对象产生独特值。若不重写<code>hashCode()</code>则两个对象无论如何都不会相等</li>
+</ol>
+<h3 id="concurrenthashmap"><a class="header" href="#concurrenthashmap">ConcurrentHashMap</a></h3>
+<h4 id="实现原理-1"><a class="header" href="#实现原理-1">实现原理</a></h4>
+<p>JDK7和JDK8以后的ConcurrentHashMap实现底层不同。</p>
+<ul>
+<li>
+<p>JDK7</p>
+<p>首先将数组分割成一段一段，每段配一把锁，当一个线程访问其中一个段的数据时，其他段的数据能被其他线程访问。</p>
+<p>ConcurrentHashMap由Segment数组和HashEntry数据结构构成。Segment实现了ReentrantLock，所以Segment是一种可重入锁，HashEntry用于存储键值对数据：</p>
+<pre><code class="language-java">static class Segment&lt;K, V&gt; extends ReentrantLock implements Serializable {}
+</code></pre>
+<p>一个ConcurrentHashMap包含一个Segment数组，Segment结构与HashMap类似，是一种数组+链表的结构，一个Segment包含一个HashEntry数组，每个HashEntry是链表结构的元素，每个Segment守护着一个HashEntry数组的元素，当对HashEntry数组进行修改时须获得对应的Segment的锁。</p>
+</li>
+<li>
+<p>JDK8</p>
+<p>ConcurrentHashMap取消了Segment分段锁，采用CAS和synchronized来保证并发安全，数据结构与JDK8的HashMap类似，都是数组+链表/红黑树。在链表长度大于阈值（默认为8）时将链表转换为红黑树。</p>
+<p>synchronized只锁当前的链表或者红黑树首节点。只要不发生hash冲突，就不会产生并发。</p>
+</li>
+</ul>
+<h4 id="concurrenthashmap与hashtable的区别"><a class="header" href="#concurrenthashmap与hashtable的区别">ConcurrentHashMap与HashTable的区别</a></h4>
+<ol>
+<li>
+<p>HashTable底层采用数组+链表实现，JDK7的ConcurrentHashMap底层采用分段数组+链表实现，JDK8以后改为Node数组+链表+红黑树。</p>
+</li>
+<li>
+<p>实现线程安全的方式不同：</p>
+<ol>
+<li>JDK7的ConcurrentHashMap采用分段锁(<code>Segment</code>)对整个桶数组进行分割分段，每一把锁只锁容器其中一部分数据，多线程访问容器里不同数据段的数据，就不会存在锁竞争，提高并发访问率。但JDK8以后弃用分段锁的概念，而直接使用Node数组+链表+红黑树的数据结构来实现，并发控制使用synchronized和CAS来操作，整个看起来就像是优化过且线程安全的HashMap。即使在JDK8中还能看到Segment，但已经简化了属性，只是为了兼容旧版本。</li>
+<li>HashTable使用synchronized来确保线程安全，但效率低下。当一个线程访问同步方法时，其他线程也访问同步方法可能会进入阻塞或轮询的状态（对整张表加锁），竞争激烈，并发效率低。</li>
+</ol>
+</li>
+</ol>
+<h2 id="list"><a class="header" href="#list">List</a></h2>
+<h3 id="arraylistvectorlinkedlist区别"><a class="header" href="#arraylistvectorlinkedlist区别">ArrayList，Vector，LinkedList区别</a></h3>
+<ol>
+<li>
+<p>ArrayList底层基于数组实现，查找快，增删慢；LinkedList底层基于双向链表实现（JDK6以前是双向循环链表，JDK7以后取消循环），查找慢，增删快；</p>
+</li>
+<li>
+<p>ArrayList、LinkedList皆为线程不安全集合，Vector线程安全。</p>
+</li>
+</ol>
+<h3 id="arraylist与数组的区别"><a class="header" href="#arraylist与数组的区别">ArrayList与数组的区别</a></h3>
+<ol>
+<li>数组可以容纳基本数据类型的数据和对象，ArrayList只能容纳对象；</li>
+<li>数组大小可以自行指定，ArrayList不能。</li>
+</ol>
+<h3 id="randomaccess接口"><a class="header" href="#randomaccess接口">RandomAccess接口</a></h3>
+<p>ArrayList实现了该接口，而LinkedList没有实现。</p>
+<p>ArrayList实现该接口的作用：</p>
+<p>实现该接口的集合支持快速随机访问。实现了该接口的集合一般采用for循环遍历，而未实现该接口的集合一般采用迭代器进行遍历。ArrayList用for遍历要比用迭代器快，而LinkedList则是反过来。</p>
+<h3 id="arraylist扩容机制"><a class="header" href="#arraylist扩容机制">ArrayList扩容机制</a></h3>
+<p><em><strong>TODO</strong></em></p>
+<h2 id="迭代器iterator"><a class="header" href="#迭代器iterator">迭代器（Iterator）</a></h2>
+<p><em><strong>TODO</strong></em></p>
+<h3 id="fail-fast--fail-safe"><a class="header" href="#fail-fast--fail-safe">fail-fast &amp; fail-safe</a></h3>
+<ul>
+<li>
+<p>fail-fast（快速失败）：直接在容器上遍历，在遍历过程中一旦发现容器中的数据被修改了，会立刻抛出<code>ConcurrentModificationException</code>导致遍历失败</p>
+<p>常见的集合如ArrayList、HashMap都使用fail-fast机制，在单线程或多线程环境下都有可能出现快速失败。</p>
+<p>原理：迭代器在遍历时直接访问集合中的内容，并且在遍历过程中使用一个<code>modCount</code>变量，集合在被遍历期间如果内容发生变化就会改变<code>modCount</code>的值，每当迭代器使用<code>hashNext()</code>/<code>next()</code>遍历下一个元素之前，都会检测<code>modCount</code>变量和<code>expectedModCount</code>是否相等，若相等就返回遍历，否则抛出<code>ConcurrentModificationException</code>，终止遍历。</p>
+<p>避免措施：使用迭代器上的修改数据的方法而不是集合内置的方法，但该方法不能指定元素，存在局限性。</p>
+</li>
+<li>
+<p>fail-safe（安全失败）：这种遍历基于容器的一个克隆，因此对容器内容的修改不影响遍历</p>
+<p>JUC下的容器均为安全失败，可以在多线程下并发使用、修改，常见的使用fail-safe方式遍历的容器有ConcurrentHashMap、CopyOnWriteArrayList等。</p>
+<p>原理：遍历时不是直接在集合内容上访问，而是先复制原有集合内容，在拷贝的集合上进行遍历，由于迭代时是对原集合的拷贝进行遍历，所以在遍历过程中对原集合所做的修改不能被迭代器检测到，所以不会触发<code>ConcurrentModificationException</code>。</p>
+<p>缺点：迭代器不能访问到修改后的内容，即迭代器遍历的是开始遍历那一刻拿到的集合拷贝，在遍历期间原集合发生的修改迭代器是不知道的。</p>
+</li>
+</ul>
+<h2 id="选用集合"><a class="header" href="#选用集合">选用集合</a></h2>
+<p>根据集合的特点进行选用：</p>
+<ul>
+<li>需要根据键值对获取元素值：Map
+<ul>
+<li>需要排序：TreeMap</li>
+<li>不需要排序：HashMap</li>
+<li>线程安全：ConcurrentHashMap</li>
+</ul>
+</li>
+<li>需要存放元素值：Collection
+<ul>
+<li>需要保证元素唯一：Set
+<ul>
+<li>有序：TreeSet</li>
+<li>无序：HashSet</li>
+</ul>
+</li>
+<li>不需要保证元素唯一：List
+<ul>
+<li>数组（查询快，插入/删除慢）：ArrayList</li>
+<li>链表（查询慢，插入/删除快）：LinkedList</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../java/JavaSE.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../java/Concurrent.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../java/JavaSE.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../java/Concurrent.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

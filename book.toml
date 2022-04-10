@@ -1,8 +1,0 @@
-[book]
-authors = ["Alanisia"]
-language = "zh-CN"
-multilingual = false
-src = "src"
-title = "Notes"
-
-[preprocessor.index]

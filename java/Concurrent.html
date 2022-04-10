@@ -1,0 +1,584 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>并发 - Notes</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">README</li><li class="chapter-item expanded "><a href="../basis.html"><strong aria-hidden="true">1.</strong> 基础</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basis/DataStructuresAndAlgorithms.html"><strong aria-hidden="true">1.1.</strong> 数据结构与算法</a></li><li class="chapter-item expanded "><a href="../basis/OS.html"><strong aria-hidden="true">1.2.</strong> 操作系统</a></li><li class="chapter-item expanded "><a href="../basis/Network.html"><strong aria-hidden="true">1.3.</strong> 计算机网络</a></li><li class="chapter-item expanded "><a href="../basis/Project.html"><strong aria-hidden="true">1.4.</strong> 项目管理</a></li></ol></li><li class="chapter-item expanded "><a href="../java.html"><strong aria-hidden="true">2.</strong> Java</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../java/JavaSE.html"><strong aria-hidden="true">2.1.</strong> 基础</a></li><li class="chapter-item expanded "><a href="../java/Collections.html"><strong aria-hidden="true">2.2.</strong> 集合</a></li><li class="chapter-item expanded "><a href="../java/Concurrent.html" class="active"><strong aria-hidden="true">2.3.</strong> 并发</a></li><li class="chapter-item expanded "><a href="../java/JVM.html"><strong aria-hidden="true">2.4.</strong> 虚拟机</a></li><li class="chapter-item expanded "><a href="../java/IO.html"><strong aria-hidden="true">2.5.</strong> 输入输出</a></li><li class="chapter-item expanded "><a href="../java/Frameworks.html"><strong aria-hidden="true">2.6.</strong> 框架</a></li><li class="chapter-item expanded "><a href="../java/DesignPatterns.html"><strong aria-hidden="true">2.7.</strong> 设计模式</a></li><li class="chapter-item expanded "><a href="../java/BigData.html"><strong aria-hidden="true">2.8.</strong> 大数据</a></li></ol></li><li class="chapter-item expanded "><a href="../database/Database.html"><strong aria-hidden="true">3.</strong> 数据库</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../database/SQL.html"><strong aria-hidden="true">3.1.</strong> SQL</a></li><li class="chapter-item expanded "><a href="../database/MySQL.html"><strong aria-hidden="true">3.2.</strong> MySQL</a></li></ol></li><li class="chapter-item expanded "><a href="../Linux.html"><strong aria-hidden="true">4.</strong> Linux</a></li><li class="chapter-item expanded "><a href="../go.html"><strong aria-hidden="true">5.</strong> Go</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../go/Go.html"><strong aria-hidden="true">5.1.</strong> 基础</a></li><li class="chapter-item expanded "><a href="../go/Goroutine.html"><strong aria-hidden="true">5.2.</strong> 协程</a></li></ol></li><li class="chapter-item expanded "><a href="../frontend.html"><strong aria-hidden="true">6.</strong> 前端</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../frontend/HTML&CSS.html"><strong aria-hidden="true">6.1.</strong> HTML &amp; CSS</a></li><li class="chapter-item expanded "><a href="../frontend/Browser.html"><strong aria-hidden="true">6.2.</strong> 浏览器</a></li></ol></li><li class="chapter-item expanded "><a href="../android.html"><strong aria-hidden="true">7.</strong> 安卓</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../android/Activity.html"><strong aria-hidden="true">7.1.</strong> 活动</a></li><li class="chapter-item expanded "><a href="../android/System.html"><strong aria-hidden="true">7.2.</strong> 系统</a></li></ol></li><li class="chapter-item expanded "><a href="../others.html"><strong aria-hidden="true">8.</strong> 其他</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../others/Distributed.html"><strong aria-hidden="true">8.1.</strong> 分布式</a></li><li class="chapter-item expanded "><a href="../others/Server.html"><strong aria-hidden="true">8.2.</strong> 服务器</a></li><li class="chapter-item expanded "><a href="../others/Middleware.html"><strong aria-hidden="true">8.3.</strong> 中间件</a></li><li class="chapter-item expanded "><a href="../others/Docker.html"><strong aria-hidden="true">8.4.</strong> Docker</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Notes</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="java并发"><a class="header" href="#java并发">Java并发</a></h1>
+<h2 id="thread类"><a class="header" href="#thread类">Thread类</a></h2>
+<h3 id="线程的状态"><a class="header" href="#线程的状态">线程的状态</a></h3>
+<ul>
+<li>创建（NEW）：初始状态，线程被构建，但尚未调用<code>start()</code>方法</li>
+<li>就绪（RUNNABLE）：运行状态，包含就绪和运行</li>
+<li>阻塞（BLOCKED）：阻塞状态，表示线程阻塞于锁</li>
+<li>等待（WAITING）：等待状态，表示当前线程需要等待其他线程做出一些特定动作（通知或中断）</li>
+<li>超时等待（TIME_WAITING）：超时等待状态，不同于WAITING，可以在指定时间自行返回</li>
+<li>死亡（TERMINATED）：终止状态，表示当前线程已执行完毕</li>
+</ul>
+<h3 id="方法"><a class="header" href="#方法">方法</a></h3>
+<pre><code class="language-java">public static native void sleep(long millis) throws InterruptedException;
+</code></pre>
+<p>在指定的毫秒数使当前线程休眠，进入阻塞状态（暂停执行），若线程在睡眠状态被中断会抛出<code>InterruptedException</code>异常。另还有方法</p>
+<pre><code class="language-java">public static void sleep(long millis, int nanos) throws InterruptedException;
+</code></pre>
+<p>此方法在指定的毫秒数加指定的纳秒数让当前正在执行的线程休眠（暂停执行）。</p>
+<pre><code class="language-java">public final void join() throws InterruptedException;
+</code></pre>
+<p>主线程等待子线程的终止，在子线程调用了<code>join()</code>，之后的代码只能等到子线程结束了才能执行。</p>
+<pre><code class="language-java">public static native void yield();
+</code></pre>
+<p>使当前线程从执行状态（运行状态）变为可执行态（就绪状态）。当一个线程使用了这个方法之后，它会把自己CPU执行的时间让掉，让自己或者其它线程运行。</p>
+<pre><code class="language-java">public void interrupt();
+</code></pre>
+<p>给线程设置中断标志，中断调用该方法的Thread实例所代表的线程。</p>
+<pre><code class="language-java">public boolean isInterrupted();
+</code></pre>
+<p>检测调用该方法的Thread实例所代表的线程是否中断。</p>
+<pre><code class="language-java">public static boolean interrupted();
+</code></pre>
+<p>检测中断并清除中断状态，作用于当前线程。</p>
+<pre><code class="language-java">public final void setPriority(int newPriority);
+</code></pre>
+<p>用于设置更改线程的优先级，每个线程都有一个优先级，由1到10之间的整数表示，Thread类提供3个常量属性：</p>
+<pre><code class="language-java">public static final int MIN_PRIORITY = 1;  // 最大优先级
+public static final int NORM_PRIORITY = 5; // 普通优先级
+public static final int MAX_PRIORITY = 10; // 最小优先级
+</code></pre>
+<p>以下为Object类中的方法：</p>
+<pre><code class="language-java">public final native void wait(long timeoutMillis) throws InterruptedException;
+public final void wait() throws InterruptedException; // 调用以上方法
+</code></pre>
+<p>该方法须在synchronized块中调用。</p>
+<p><em><code>wait()</code>与<code>sleep()</code>的区别：</em></p>
+<ol>
+<li><em><code>sleep()</code>方法正在执行的线程主动让出CPU（不会释放同步锁），在sleep指定时间后CPU再回到该线程继续往下执行；<code>wait()</code>则是指当前线程让自己暂时退让同步资源锁，以便等其他等待该资源的线程得到该资源进而运行，只有调用了<code>notify()</code>或<code>notifyAll()</code>方法才能解除之前调用<code>wait()</code>方法的线程的WAIT状态，可以去参与竞争同步资源锁进而得到运行；</em></li>
+<li><em><code>sleep()</code>可在任何地方使用，<code>wait()</code>只能在同步块或同步方法中使用；</em></li>
+<li><em><code>sleep()</code>是<code>Thread</code>类中的方法，<code>wait()</code>是<code>Object</code>类中的方法。</em></li>
+</ol>
+<pre><code class="language-java">public final native void notify();
+</code></pre>
+<p>该方法须在synchronized块中调用。</p>
+<pre><code class="language-java">public final native void notifyAll();
+</code></pre>
+<p>该方法须在synchronized块中调用。</p>
+<p><em><code>notify()</code>与<code>notifyAll()</code>的区别：</em></p>
+<blockquote>
+<p>等待池：假设一个线程调用了某个对象的<code>wait()</code>方法，该线程会释放对象的锁，进入那个对象的等待池，等待池中的线程不会去竞争该对象的锁。</p>
+<p>锁池：只有获得了对象的锁，线程才能执行对象的synchronized代码，对象的锁每次只能有一个线程可以获得，其他线程只能在锁池等待。</p>
+</blockquote>
+<p><em><code>notify()</code>随机唤醒对象的等待池中的一个线程，进入锁池；<code>notifyAll()</code>唤醒对象的等待池中的所有线程，进入锁池。</em></p>
+<h2 id="synchronized关键字"><a class="header" href="#synchronized关键字">synchronized关键字</a></h2>
+<p>用法：</p>
+<ol>
+<li>通过对一个对象进行加锁来实现同步：</li>
+</ol>
+<pre><code class="language-java">synchronized (object) {}
+</code></pre>
+<ol start="2">
+<li>对一个方法进行加锁实现同步：</li>
+</ol>
+<pre><code class="language-java">public synchronized void method() {}
+</code></pre>
+<p><em>无论是对对象加锁还是对方法加锁，本质上都是对对象加锁。对于方法2，虚拟机会根据synchronized修饰的是实例方法还是静态方法，去取对应的实例对象或类对象进行加锁。</em></p>
+<h3 id="锁升级过程"><a class="header" href="#锁升级过程">锁升级过程</a></h3>
+<p>锁的状态会随着竞争激烈逐渐升级（无锁 -&gt; 偏向锁 -&gt; 轻量级锁 -&gt; 重量级锁），通常情况下锁的状态只能升级不能降级。这种策略是为了提高获得锁和释放锁的效率。</p>
+<blockquote>
+<p>对象头结构</p>
+<table><thead><tr><th>长度</th><th>内容</th><th>说明</th></tr></thead><tbody>
+<tr><td>32/64bit</td><td>Mark Word</td><td>hashCode GC分代年龄，锁信息</td></tr>
+<tr><td>32/64bit</td><td>Class Pointer</td><td>指向对象类型的指针</td></tr>
+<tr><td>32/64bit</td><td>Array Length</td><td>数组长度（当对象为数组时）</td></tr>
+</tbody></table>
+</blockquote>
+<p>由此可以看出，锁信息存在Mark Word里。当创建一个对象时，该对象的Mark Word关键数据如下：</p>
+<table><thead><tr><th>bit fields</th><th>是否偏向锁</th><th>锁标志位</th></tr></thead><tbody>
+<tr><td>hash</td><td>0</td><td>01</td></tr>
+</tbody></table>
+<p>偏向锁状态为0表示该对象尚未被加上偏向锁（1表示被加上偏向锁）。</p>
+<p><strong>偏向锁</strong></p>
+<p>偏向锁会偏向于第一个获得它的线程，在接下来的执行过程中，假如该锁未被其他线程获取，没有其他线程来竞争该锁，那么持有偏向锁的线程将永远不需要进行同步操作。</p>
+<p>偏向锁获取流程：检查对象头中Mark Word是否为可偏向状态，若不是则直接升级为轻量级锁；若是，判断Mark Word中的线程ID是否指向当前线程，若是则执行同步代码块，若不是则进行CAS操作竞争锁，如果竞争到锁则将Mark Word中的线程ID设定为当前线程ID，执行同步代码块；如果竞争失败则升级为轻量级锁。</p>
+<pre><code>+----------------------------------+  Y   +-------------------------------------+
+| 检查对象头中Mark Word是否为可偏向状态 | ---&gt; | 判断Mark Word中的线程ID是否指向当前线程 |
++----------------------------------+      +-------------------------------------+
+                 |                              |                      |
+                 | N                            | N                    | Y
+                 v                              v                      v
+         +---------------+      N      +----------------+   Y   +--------------+
+         |  升级为轻量级锁  | &lt;--------- | 进行CAS操作竞争锁 | ----&gt; | 执行同步代码块 |
+         +---------------+             +----------------+       +--------------+
+</code></pre>
+<ul>
+<li>
+<p>锁膨胀：当有两个以上的线程竞争锁，则偏向锁失效，此时锁膨胀为轻量级锁</p>
+</li>
+<li>
+<p>锁撤销：撤销失效的偏向锁，只有等到竞争，持有偏向锁的线程才会撤销偏向锁，偏向锁撤销后会恢复到无锁或轻量级锁的状态</p>
+<ol>
+<li>偏向锁的撤销需要到达全局安全点，全局安全点表示一种状态，该状态下所有线程都处于暂停状态；</li>
+<li>判断锁对象是否处于无锁状态，即获得偏向锁的线程如果已经退出了临界区，表示同步代码已执行完了，重新竞争锁的线程会进行CAS操作替代原来的线程ID；</li>
+<li>如果获得偏向锁的线程还处于临界区之内，表示同步代码未执行完，将获得偏向锁的线程升级为轻量级锁。</li>
+</ol>
+</li>
+</ul>
+<p><strong>轻量级锁</strong></p>
+<p>在多线程交替执行同步代码块时（未发生竞争），减少传统重量级锁使用操作系统互斥量产生的性能消耗，在使用轻量级锁时不需要申请互斥量，加解锁使用CAS操作。</p>
+<p><em>如果存在锁竞争，除了互斥量开销外，还有额外的CAS操作，轻量级锁将比传统重量级锁更慢，锁竞争激烈时将膨胀为重量级锁。</em></p>
+<p>偏向锁升级为轻量级锁后的Mark Word部分数据如下：</p>
+<table><thead><tr><th>bit fields</th><th>锁标志位</th></tr></thead><tbody>
+<tr><td>指向LockRecord的指针</td><td>00</td></tr>
+</tbody></table>
+<p>轻量级锁获取流程：</p>
+<ol>
+<li>首先判断当前对象是否处于一个无锁的状态，若是则Java虚拟机将在当前线程的栈帧建立一个锁记录（Lock Record）用于存储对象目前的Mark Word拷贝；</li>
+<li>将对象的Mark Word复制到栈帧中的Lock Record中并将Lock Record中的owner指向当前对象，并使用CAS操作将对象的Mark Word更新为指向Lock Record的指针；</li>
+<li>若第2步执行成功，表示该线程获得了这个对象的锁，将对象Mark Word中的锁标志位设为00，执行同步代码块；</li>
+<li>若第2步未执行成功，需要先判断当前对象的Mark Word是否指向当前线程的栈帧，若是表示当前线程已经持有了当前对象的锁，这是一次重入，直接执行同步代码块；若不是则表示多个线程存在竞争，该线程通过自旋尝试获得锁，即重复步骤2，自旋超过一定次数，轻量级锁升级为重量级锁。</li>
+</ol>
+<p>轻量级锁的解锁：线程会通过CAS操作将Lock Record中的Mark Word（官方称为Displaced Mark Word）替换回来，若成功表示没有竞争发生，成功释放锁，恢复至无锁状态；如果失败则表示当前存在竞争，升级为重量级锁。</p>
+<p><strong>自旋锁</strong></p>
+<ol>
+<li>
+<p>自旋锁</p>
+<p>自旋锁指当一个线程在获取锁的时候，如果锁已经被其他线程获取，那么该线程将循环等待，然后不断判断锁是否能被成功获取，直到获取到锁后才退出循环。获取锁的线程一直处于活跃状态，但是并没有执行有效的任务，使用这种锁会造成busy-waiting。</p>
+</li>
+<li>
+<p>自适应自旋锁</p>
+<p>JDK1.6引入自适应自旋锁，自适应自旋锁的自旋次数不再固定，而是由上一次在同一个锁上的自旋时间及锁的拥有者的状态来决定的，如果对于某个锁对象，刚刚有线程自旋等待成功获取到锁，那么虚拟机将认为这次自旋等待的成功率也很高，会允许线程自旋等待的时间更长一些。如果对于某个锁对象，线程自旋等待很少成功获取到锁，那么虚拟机将会减少线程自旋等待的时间。</p>
+</li>
+</ol>
+<p><strong>重量级锁</strong></p>
+<p>轻量级锁膨胀后升级为重量级锁。重量级锁依赖对象内部的monitor锁实现，monitor锁又依赖于操作系统的MutexLock实现，所以重量级锁又被称为互斥锁。（JDK1.6以前的synchronized为重量级锁）</p>
+<p>当轻量级锁经过锁撤销等步骤升级为重量级锁之后，它的Mark Word部分数据大体如下：</p>
+<table><thead><tr><th>bit fields</th><th>锁标志位</th></tr></thead><tbody>
+<tr><td>指向Mutex的指针</td><td>10</td></tr>
+</tbody></table>
+<p><em>重量级锁开销大的原因：</em></p>
+<p><em>监视器锁依赖于底层操作系统的<code>MutexLock</code>实现，Java的线程是映射到操作系统的原生线程上的，若要挂起或唤醒一个线程，都需要操作系统帮忙完成，而操作系统实现线程之间的切换时需要从用户态切换到内核态，这个状态之间的转换需要相对比较长的时间，时间成本高。</em></p>
+<h2 id="悲观锁"><a class="header" href="#悲观锁">悲观锁</a></h2>
+<p>总是假设最坏的情况，每次拿数据的时候都认为别人会修改，所以悲观锁在持有资源或数据的时候总会把资源或数据锁住，这样其他线程想要请求这个资源的时候就会阻塞，直到等到悲观锁把资源释放为止。<code>synchronized</code>和<code>ReentrantLock</code>就是悲观锁思想的实现，不管是否持有资源都会尝试加锁。</p>
+<h2 id="volatile"><a class="header" href="#volatile">volatile</a></h2>
+<p><code>volatile</code>关键字用于保证程序指令的有序性和可见性。被<code>volatile</code>修饰的变量，具有以下两条特性：</p>
+<ol>
+<li>禁止指令重排序；</li>
+<li>保证不同线程对该变量操作的内存可见性。</li>
+</ol>
+<h2 id="线程池"><a class="header" href="#线程池">线程池</a></h2>
+<p>线程池提供了一种限制和管理资源（包括执行一个任务）的方式。每个线程池还维护了一些基本统计信息，例如：已完成任务的数量。</p>
+<p>为什么要使用线程池：</p>
+<ol>
+<li>降低资源消耗</li>
+<li>提高响应速度</li>
+<li>提高线程的可管理性</li>
+</ol>
+<h3 id="创建"><a class="header" href="#创建">创建</a></h3>
+<p>两种创建线程池的方式：</p>
+<ol>
+<li>
+<p>通过创建<code>ThreadPoolExecutor</code>对象</p>
+<p><code>ThreadPoolExecutor</code>类的七个参数：</p>
+<ul>
+<li><code>corePoolSize</code>：线程池核心线程数量</li>
+<li><code>maximumPoolSize</code>：线程池最大线程数量</li>
+<li><code>keepAliveTime</code>：多余的空闲线程存活时间</li>
+<li><code>unit</code>：<code>keepAliveTime</code>的单位</li>
+<li><code>workQueue</code>：任务队列，用于保存等待任务的阻塞队列</li>
+<li><code>threadFactory</code>：线程工厂</li>
+<li><code>handler</code>(<code>rejectPolicy</code>)：拒绝策略</li>
+</ul>
+</li>
+<li>
+<p>通过Executors创建</p>
+<ol>
+<li><code>Executors.newFixedThreadPool()</code>：定长线程池，可控制线程最大并发数；</li>
+<li><code>Executors.newSingleThreadPool()</code>：单线程线程池，只会用唯一的工作线程来执行任务，保证所有任务按指定顺序/优先级执行；</li>
+<li><code>Executors.newCachedThreadPool()</code>：可缓存线程池，若线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程；</li>
+<li><code>Executors.newScheduledThreadPool()</code>：定长线程池，支持定时及周期性任务执行。</li>
+</ol>
+</li>
+</ol>
+<p><em>注：尽量不要使用该方法创建线程池，各个Executors的弊端如下：</em></p>
+<ul>
+<li><em><code>FixedThreadPool</code>和<code>SingleThreadPool</code>：主要问题是堆积的请求处理队列可能会耗费非常大的内存甚至OOM；</em></li>
+<li><em><code>CachedThreadPool</code>和<code>ScheduledThreadPool</code>：主要问题是线程数最大数是<code>Integer.MAX_VALUE	</code>，可能会创建数量非常多的线程甚至OOM。</em></li>
+</ul>
+<h3 id="阻塞队列"><a class="header" href="#阻塞队列">阻塞队列</a></h3>
+<ol>
+<li><code>ArrayBlockingQueue</code>：<em><strong>TODO</strong></em></li>
+<li><code>LinkedBlockingQueue</code>：<em><strong>TODO</strong></em></li>
+<li><code>SynchronousQueue</code>：<em><strong>TODO</strong></em></li>
+<li><code>PriorityBlockingQueue</code>：<em><strong>TODO</strong></em></li>
+</ol>
+<h3 id="拒绝策略"><a class="header" href="#拒绝策略">拒绝策略</a></h3>
+<p>四种拒绝策略：</p>
+<ul>
+<li><code>DiscardOldestPolicy</code>：丢弃队列里最近任务并执行</li>
+<li><code>DiscardPolicy</code>：丢弃任务</li>
+<li><code>CallRunsPolicy</code>：调用任务所在线程执行任务</li>
+<li><code>AbortPolicy</code>：抛出异常</li>
+</ul>
+<h2 id="乐观锁"><a class="header" href="#乐观锁">乐观锁</a></h2>
+<p>总是假设最好的情况，每次拿数据的时候都认为别人不会修改，所以不会上锁，但在更新的时候会判断一下在此期间别人有没有去更新这个数据，可以使用版本号和CAS算法实现。乐观锁多用于<strong>读多写少</strong>的情景，可以提高吞吐量。</p>
+<ul>
+<li>
+<p>版本号</p>
+<p>一般是在数据库表中加上一个version字段，表示表被修改的次数，每次表被修改的时候version + 1。当一个线程读取这个数据库表的时候也会一并读取version值，在提交更新时，会检查当前的version值是否与刚才读取过的version值相等，若相等才更新表，否则尝试更新操作，直至更新成功。</p>
+</li>
+<li>
+<p>CAS(Compare And Swap，比较并替换)</p>
+<p>无锁状态下实现多线程之间的变量同步，亦即在没有线程被阻塞时实现多线程之间的变量同步。</p>
+<p>涉及三个操作数：</p>
+<ol>
+<li>需要读写的内存值V</li>
+<li>进行比较的值A</li>
+<li>拟写入的新值B</li>
+</ol>
+<p>当且仅当V的值为A时，使用原子操作用新值B来更新V的值，否则不会进行任何操作；一般情况下会进行自旋，即不断地重试。</p>
+<p><strong>CAS缺点</strong></p>
+<ol>
+<li>ABA问题：<em><strong>TODO</strong></em></li>
+<li>循环时间开销过大：<em><strong>TODO</strong></em></li>
+<li>只能保证一个共享变量的原子操作：<em><strong>TODO</strong></em></li>
+</ol>
+</li>
+</ul>
+<h2 id="atomic类"><a class="header" href="#atomic类">Atomic类</a></h2>
+<p>JUC下的原子类可以分为4类：</p>
+<ol>
+<li>
+<p>基本类型</p>
+<ul>
+<li>AtomicInteger：整型原子类</li>
+<li>AtomicLong：长整型原子类</li>
+<li>AtomicBoolean：布尔型原子类</li>
+</ul>
+</li>
+<li>
+<p>数组类型</p>
+<ul>
+<li>AtomicIntegerArray：整型数组原子类</li>
+<li>AtomicLongArray：长整型数组原子类</li>
+<li>AtomicReferenceArray：引用类型数组原子类</li>
+</ul>
+</li>
+<li>
+<p>引用类型</p>
+<ul>
+<li>AtomicReference：引用类型原子类</li>
+<li>AtomicStampedReference：原子更新引用类型里的字段原子类</li>
+<li>AtomicMarkableReference：原子更新带有标记位的引用类型</li>
+</ul>
+</li>
+<li>
+<p>对象的属性修改类型</p>
+<ul>
+<li>AtomicIntegerFieldUpdater：原子更新整型字段的更新器</li>
+<li>AtomicLongFieldUpdater：原子更新长整型字段的更新器</li>
+<li>AtomicStampedReference：原子更新带有版本号的引用类型</li>
+</ul>
+</li>
+</ol>
+<p><strong>Atomic原理</strong></p>
+<p>多线程环境下，当有多个线程同时对单个变量进行操作时，具有排他性，即当多个线程同时对该变量的值进行更新时，仅有一个线程能成功，而未成功的线程可以像自旋锁一样继续尝试，直到执行成功。</p>
+<h2 id="aqsabstractqueuedsynchronizer抽象队列同步器"><a class="header" href="#aqsabstractqueuedsynchronizer抽象队列同步器">AQS(AbstractQueuedSynchronizer，抽象队列同步器)</a></h2>
+<p>AQS核心思想是，如果被请求的共享资源空闲，则将请求资源的线程设置为有效的工作线程，并将共享资源设定为锁定状态。如果被请求的共享资源被占用，那么就需要一套线程阻塞等待以及被唤醒时锁分配机制，这个机制AQS使用CLH队列锁实现，即将暂时获取不到锁的线程加入到队列中。</p>
+<blockquote>
+<p><strong>CLH队列</strong></p>
+<p>CLH队列是一个虚拟的双向队列（虚拟的双向队列即不存在队列实例，仅存在结点之间的关联关系）。AQS是将每条请求共享资源的线程封装成一个CLH锁队列的一个结点（Node）来实现锁的分配。</p>
+</blockquote>
+<p>AQS使用一个int成员变量来表示同步状态（加锁状态），通过内置的FIFO队列来完成获取资源线程的排队工作。AQS使用CAS对该同步状态进行原子操作实现对其值的修改。</p>
+<pre><code class="language-java">private volatile int state; // 共享变量，使用volatile保证线程可见性
+</code></pre>
+<p>状态信息通过<code>protected</code>类型的<code>getState</code>，<code>setState</code>，<code>compareAndSetState</code>进行操作。初始状态下，该值为0；加锁时，该值通过CAS操作加1，解锁时减1。</p>
+<pre><code class="language-java">private transient Thread exclusiveOwnerThread;
+</code></pre>
+<p>该变量用于记录当前加锁的是哪个线程，初始状态为null。加锁时将该变量赋值为当前加锁的线程。</p>
+<h4 id="aqs对资源的共享方式"><a class="header" href="#aqs对资源的共享方式">AQS对资源的共享方式</a></h4>
+<ul>
+<li>
+<p>Exclusive（独占）</p>
+<p>只有一个线程能执行，如<code>ReentrantLock</code>。又分公平锁与非公平锁：</p>
+<ul>
+<li>公平锁：按照线程在队列中的排队顺序，先到者先拿到锁</li>
+<li>非公平锁：当线程要获取锁时，无视队列顺序直接去抢锁，谁抢到就是谁的</li>
+</ul>
+</li>
+<li>
+<p>Share（共享）：多个线程同时执行，如<code>CountDownLatch</code>、<code>Semaphore</code>、<code>ReadWriteLock</code>、<code>CyclicBarrier</code>。</p>
+</li>
+</ul>
+<p><code>ReentrantReadWriteLock</code>可以看作是组合式，因为<code>ReentrantReadWriteLock</code>也就是读写锁允许多个线程同时对某一资源进行读。</p>
+<h3 id="lock"><a class="header" href="#lock">Lock</a></h3>
+<p>一个接口，实例化时通常使用<code>ReentrantLock</code>类：</p>
+<pre><code class="language-java">Lock lock = new ReentrantLock();
+</code></pre>
+<p>针对需要同步处理的代码设置对象监视器，比整个方法用synchronized修饰要好。通过Lock对象，用<code>lock.lock()</code>加锁，用<code>lock.unlock()</code>解锁，在二者之中放置需要同步处理的代码。</p>
+<p>使用Lock对象加锁时也是一个对象锁，持有对象监视器的线程才能同步执行代码，其他线程只能等待该线程释放对象监视器。</p>
+<h4 id="lock与synchronized区别"><a class="header" href="#lock与synchronized区别">Lock与synchronized区别</a></h4>
+<ol>
+<li>synchronized是关键字，Lock是类</li>
+<li>synchronized在线程执行完毕或线程产生异常时释放锁，Lock需要手动释放锁否则容易产生死锁</li>
+<li>synchronized在需要同步的对象加入此控制，Lock一般使用ReentrantLock，手动加解锁</li>
+<li>synchronized不可判断锁的状态，Lock可以</li>
+<li>对于synchronized，当一个线程获得锁，另一个线程需要等待，当获得锁的线程阻塞，则另一线程须一直等待；对于Lock，当一个线程获得锁，另一个线程会尝试判断，不会一直等待</li>
+<li>synchronized通过Object类的<code>wait()</code>/<code>notify()</code>/<code>notifyAll()</code>调度，Lock类通过Condition类调度</li>
+<li>synchronized是非公平锁，Lock是公平锁</li>
+<li>synchronized不可中断， Lock可中断</li>
+<li>synchronized少量同步，Lock大量同步</li>
+<li>synchronized底层通过操作系统指令码控制，Lock通过CAS乐观锁实现</li>
+</ol>
+<h3 id="condition条件变量"><a class="header" href="#condition条件变量">Condition（条件变量）</a></h3>
+<p>由Lock对象所创建：</p>
+<pre><code class="language-java">Lock lock = new ReetrantLock();
+Condition condition = lock.newCondition();
+</code></pre>
+<p>同步调度方法：</p>
+<pre><code class="language-java">void await() throws InterruptedException;
+</code></pre>
+<p>用以实现让线程等待，让线程进入阻塞，作用同<code>wait()</code>，需要在同步代码区使用。</p>
+<pre><code class="language-java">void signal();
+</code></pre>
+<p>唤醒线程，作用同<code>notify()</code>，需要在同步代码区使用。</p>
+<pre><code class="language-java">void signalAll();
+</code></pre>
+<p>作用同<code>notifyAll()</code>，需要在同步代码区使用。</p>
+<h3 id="reentrantlock可重入锁"><a class="header" href="#reentrantlock可重入锁">ReentrantLock（可重入锁）</a></h3>
+<p>可重入锁：如果当前线程已经获得执行序列中的锁，那么执行序列之后的所有方法都可以获得这个锁。</p>
+<p>ReentrantLock基于AQS实现。加锁时<code>state</code>变量加1，并把<code>exclusiveOwnerThread</code>设置为加锁线程；解锁时<code>state</code>变量减1。ReentrantLock的可重入性基于<code>Thread.currentThread()</code>实现，如果当前线程已经获得锁，那么该线程下的所有方法都可以获得锁。可重入加锁时会先判断当前加锁的线程，若当前加锁的线程是自己则会对<code>state</code>变量进行累加1。</p>
+<p>若<code>state</code>不为0，当前线程欲争得锁，此时会先判断<code>exclusiveOwnerThread</code>的值，若非当前线程则该线程会进入等待队列等待加锁的线程释放锁。进入等待队列的线程会通过调用<code>LockSupport.park()</code>被挂起，而唤醒时则是通过调用<code>LockSupport.unpark()</code>。</p>
+<p>ReentrantLock有两个内部类：<code>FairSync</code>（公平锁）和<code>NonFairSync</code>（非公平锁）。默认采用非公平锁，可在构造方法中传入<code>true</code>采用公平锁。</p>
+<p>非公平锁在调用<code>lock()</code>后，首先就会调用CAS进行一次抢锁，如果此时恰巧锁未被占用，直接获取锁并返回。CAS失败后会进入<code>tryAcquire()</code>方法，在<code>tryAcquire()</code>方法中如果发现锁这个时候被释放了，非公平锁会直接CAS抢锁，若CAS失败就进入等待队列；公平锁会判断等待队列是否有线程处于等待状态，如果有则不会抢锁而是进入等待队列。</p>
+<p>相对来说非公平锁会有更好的性能，因为它的吞吐量较大，但非公平锁让获取锁的时间变得更加不确定，可能会导致在阻塞队列中的线程长期处于饥饿状态。</p>
+<h3 id="readwritelock读写锁"><a class="header" href="#readwritelock读写锁">ReadWriteLock（读写锁）</a></h3>
+<p>读写锁分为两个锁，读锁和写锁。读锁与读锁之间是共享的，写锁与读锁之间是互斥的，写锁与写锁之间亦是互斥的。</p>
+<h3 id="semaphore信号量"><a class="header" href="#semaphore信号量">Semaphore（信号量）</a></h3>
+<p>允许多个线程同时访问。<code>synchronized</code>和<code>ReentrantLock</code>都是一次只允许一个线程访问某个资源，<code>Semaphore</code>可以指定多个线程同时访问某个资源。</p>
+<h3 id="countdownlatch倒计时器"><a class="header" href="#countdownlatch倒计时器">CountDownLatch（倒计时器）</a></h3>
+<p>用于协调多个线程之间的同步。这个工具常用于控制线程的等待，它可以让某个线程等待直到倒计时结束，再开始执行。</p>
+<p>应用场景：</p>
+<ol>
+<li>死锁检测</li>
+<li>实现多个线程开始执行任务的最大并行性</li>
+<li>某一个线程在开始运行前等待n个线程执行完毕</li>
+</ol>
+<h3 id="cyclicbarrier循环栅栏"><a class="header" href="#cyclicbarrier循环栅栏">CyclicBarrier（循环栅栏）</a></h3>
+<p>应用场景：用于多线程计算数据，最后合并计算结果的应用场景。</p>
+<h2 id="threadlocal"><a class="header" href="#threadlocal">ThreadLocal</a></h2>
+<p>线程局部变量，同一个ThreadLocal所包含的对象，在不同的线程中有不同的副本。</p>
+<p>ThreadLocal类能够实现每一个线程都有自己的专属本地变量，让每个线程绑定自己的值。创建一个ThreadLocal变量，那么访问该变量的每个线程都有这个变量的本地副本，并可以使用<code>get()</code>和<code>set()</code>来获取默认值或者将其值修改为当前线程所存副本之值，从而避免线程安全问题。</p>
+<h3 id="threadlocal原理"><a class="header" href="#threadlocal原理">ThreadLocal原理</a></h3>
+<p><code>ThreadLocal</code>是一个泛型类，保证可以接受任何类型的对象。由于一个线程内可以存在多个<code>ThreadLocal</code>对象，<code>ThreadLocal</code>内部维护了一个<code>ThreadLocalMap</code>的静态类。ThreadLocal的<code>set()</code>/<code>get()</code>方法调用了<code>ThreadLocalMap</code>对应的<code>set()</code>/<code>get()</code>方法。即<code>ThreadLocal</code>其实为<code>ThreadLocalMap</code>的封装，传递了变量值。</p>
+<p><strong>为何将key设置为弱引用？</strong></p>
+<p>Entry中key被设计成弱引用就是为了让程序自动地对访问不到的数据进行回收提醒，所以在访问不到的数据被回收之前，内存泄漏确实是存在的。</p>
+<h3 id="threadlocal内存泄露问题"><a class="header" href="#threadlocal内存泄露问题">ThreadLocal内存泄露问题</a></h3>
+<p><code>ThreadLocalMap</code>中使用的key是弱引用，而value是强引用，所以，如果ThreadLocal没有被外部强引用的情况下，在垃圾回收的时候，key会被清理掉而value没有被清理。这样一来ThreadLocalMap就会出现key为<code>null</code>的Entry，如果不做任何措施则value永远不会被GC，这个时候就容易产生内存泄露。</p>
+<p><code>ThreadLocalMap</code>实现中已经考虑这种情况，在调用<code>set()</code>，<code>get()</code>，<code>remove()</code>时会清理掉key为<code>null</code>的记录。使用完ThreadLocal方法后最好手动调用<code>remove()</code>方法。</p>
+<h2 id="future"><a class="header" href="#future">Future</a></h2>
+<p>JUC包下的一个接口。对于某些耗时的操作，如果一直原地等待其执行完毕，会使得程序的执行效率大大降低，这时可以把该耗时任务放到子线程去执行，再通过Future去控制子线程执行的过程，最后获取结果，使程序执行效率提高，是一种异步思想。对于具体的Runnable或Callable任务的执行结果进行获取、取消、查询是否完成等操作，必要时可以通过<code>get()</code>方法获取执行结果，该方法会阻塞直到任务返回结果。</p>
+<pre><code class="language-java">boolean cancel(boolean mayInterruptIfRunning);
+</code></pre>
+<p>用来取消任务，取消成功返回<code>true</code>。参数<code>mayInterruptedRunning</code>表示是否允许取消正在执行却没有执行完毕的任务，如设置为<code>true</code>则表示可以取消。若任务已完成，则无论该参数为<code>true</code>或<code>false</code>，此方法肯定返回<code>false</code>；若任务尚未执行，则无论该参数为<code>true</code>或<code>false</code>，此方法肯定返回<code>true</code>；若参数<code>mayInterruptedRunning</code>设置为<code>true</code>，则该方法返回<code>true</code>，否则返回<code>false</code>。</p>
+<pre><code class="language-java">boolean isCancelled();
+</code></pre>
+<p>表示任务是否被取消成功，如果在任务正常完成前被取消成功，返回<code>true</code>。</p>
+<pre><code class="language-java">boolean isDone();
+</code></pre>
+<p>表示任务是否已经完成，若任务完成则返回<code>true</code>。</p>
+<pre><code class="language-java">V get() throws InterruptedException, ExecutionException;
+</code></pre>
+<p>用来获取执行结果，这个方法会产生阻塞，会一直等到任务执行完毕才返回。</p>
+<pre><code class="language-java">V get(long timeout, TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException;
+</code></pre>
+<p>用来获取执行结果，如果在指定时间内还未获取到结果，直接返回<code>null</code>。</p>
+<h3 id="futuretask"><a class="header" href="#futuretask">FutureTask</a></h3>
+<p>实现了<code>RunnableFuture</code>接口，而<code>RunnableFuture</code>接口继承了<code>Runnable</code>和<code>Future</code>接口。该类是<code>Future</code>接口的唯一实现类。</p>
+<p><em><strong>TODO</strong></em></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../java/Collections.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../java/JVM.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../java/Collections.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../java/JVM.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>
