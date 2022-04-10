@@ -1,39 +1,3 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
-
-- [Java并发](#java%E5%B9%B6%E5%8F%91)
-  - [Thread类](#thread%E7%B1%BB)
-    - [线程的状态](#%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81)
-    - [方法](#%E6%96%B9%E6%B3%95)
-  - [synchronized关键字](#synchronized%E5%85%B3%E9%94%AE%E5%AD%97)
-    - [锁升级过程](#%E9%94%81%E5%8D%87%E7%BA%A7%E8%BF%87%E7%A8%8B)
-  - [悲观锁](#%E6%82%B2%E8%A7%82%E9%94%81)
-  - [volatile](#volatile)
-  - [线程池](#%E7%BA%BF%E7%A8%8B%E6%B1%A0)
-    - [创建](#%E5%88%9B%E5%BB%BA)
-    - [阻塞队列](#%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97)
-    - [拒绝策略](#%E6%8B%92%E7%BB%9D%E7%AD%96%E7%95%A5)
-  - [乐观锁](#%E4%B9%90%E8%A7%82%E9%94%81)
-  - [Atomic类](#atomic%E7%B1%BB)
-  - [AQS(AbstractQueuedSynchronizer，抽象队列同步器)](#aqsabstractqueuedsynchronizer%E6%8A%BD%E8%B1%A1%E9%98%9F%E5%88%97%E5%90%8C%E6%AD%A5%E5%99%A8)
-      - [AQS对资源的共享方式](#aqs%E5%AF%B9%E8%B5%84%E6%BA%90%E7%9A%84%E5%85%B1%E4%BA%AB%E6%96%B9%E5%BC%8F)
-    - [Lock](#lock)
-      - [Lock与synchronized区别](#lock%E4%B8%8Esynchronized%E5%8C%BA%E5%88%AB)
-    - [Condition（条件变量）](#condition%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F)
-    - [ReentrantLock（可重入锁）](#reentrantlock%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81)
-    - [ReadWriteLock（读写锁）](#readwritelock%E8%AF%BB%E5%86%99%E9%94%81)
-    - [Semaphore（信号量）](#semaphore%E4%BF%A1%E5%8F%B7%E9%87%8F)
-    - [CountDownLatch（倒计时器）](#countdownlatch%E5%80%92%E8%AE%A1%E6%97%B6%E5%99%A8)
-    - [CyclicBarrier（循环栅栏）](#cyclicbarrier%E5%BE%AA%E7%8E%AF%E6%A0%85%E6%A0%8F)
-  - [ThreadLocal](#threadlocal)
-    - [ThreadLocal原理](#threadlocal%E5%8E%9F%E7%90%86)
-    - [ThreadLocal内存泄露问题](#threadlocal%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E9%97%AE%E9%A2%98)
-  - [Future](#future)
-    - [FutureTask](#futuretask)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 # Java并发
 
 ## Thread类

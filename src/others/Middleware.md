@@ -1,31 +1,3 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
-
-- [中间件](#%E4%B8%AD%E9%97%B4%E4%BB%B6)
-  - [Redis](#redis)
-    - [数据类型](#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B)
-    - [应用场景](#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF)
-    - [缓存](#%E7%BC%93%E5%AD%98)
-    - [持久化](#%E6%8C%81%E4%B9%85%E5%8C%96)
-    - [过期时间](#%E8%BF%87%E6%9C%9F%E6%97%B6%E9%97%B4)
-      - [过期键的删除策略](#%E8%BF%87%E6%9C%9F%E9%94%AE%E7%9A%84%E5%88%A0%E9%99%A4%E7%AD%96%E7%95%A5)
-    - [淘汰策略](#%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5)
-    - [线程模型](#%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B)
-    - [事务](#%E4%BA%8B%E5%8A%A1)
-    - [集群](#%E9%9B%86%E7%BE%A4)
-    - [分区](#%E5%88%86%E5%8C%BA)
-  - [消息队列](#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97)
-    - [ActiveMQ](#activemq)
-    - [RocketMQ](#rocketmq)
-    - [Kafka](#kafka)
-    - [RabbitMQ](#rabbitmq)
-      - [模式](#%E6%A8%A1%E5%BC%8F)
-    - [RocketMQ](#rocketmq-1)
-  - [Druid](#druid)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 # 中间件
 
 ## Redis

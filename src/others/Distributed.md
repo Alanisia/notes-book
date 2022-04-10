@@ -1,32 +1,3 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
-
-- [分布式](#%E5%88%86%E5%B8%83%E5%BC%8F)
-  - [幂等性](#%E5%B9%82%E7%AD%89%E6%80%A7)
-  - [分布式锁](#%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81)
-    - [分布式锁的实现](#%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0)
-  - [分布式事务](#%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1)
-  - [集群](#%E9%9B%86%E7%BE%A4)
-  - [微服务](#%E5%BE%AE%E6%9C%8D%E5%8A%A1)
-  - [RPC](#rpc)
-    - [RPC实现](#rpc%E5%AE%9E%E7%8E%B0)
-    - [Dubbo](#dubbo)
-    - [Spring Cloud](#spring-cloud)
-  - [服务发现与注册](#%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0%E4%B8%8E%E6%B3%A8%E5%86%8C)
-    - [ZooKeeper](#zookeeper)
-      - [部署模式](#%E9%83%A8%E7%BD%B2%E6%A8%A1%E5%BC%8F)
-      - [数据存储](#%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8)
-      - [节点](#%E8%8A%82%E7%82%B9)
-      - [服务器](#%E6%9C%8D%E5%8A%A1%E5%99%A8)
-      - [事务](#%E4%BA%8B%E5%8A%A1)
-      - [通知机制](#%E9%80%9A%E7%9F%A5%E6%9C%BA%E5%88%B6)
-      - [宕机处理](#%E5%AE%95%E6%9C%BA%E5%A4%84%E7%90%86)
-      - [负载均衡](#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1)
-      - [分布式锁](#%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81-1)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 # 分布式
 
 当计算机的程序和数据通过网络分布在多于一台计算机上时，计算就成为分布式的。

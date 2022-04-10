@@ -1,33 +1,3 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
-
-- [JVM](#jvm)
-  - [运行时数据区](#%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA)
-  - [对象创建过程](#%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E8%BF%87%E7%A8%8B)
-  - [类加载](#%E7%B1%BB%E5%8A%A0%E8%BD%BD)
-    - [类加载器（ClassLoader）](#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8classloader)
-    - [类加载器与类的关系](#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E4%B8%8E%E7%B1%BB%E7%9A%84%E5%85%B3%E7%B3%BB)
-    - [双亲委派](#%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE)
-      - [打破双亲委派](#%E6%89%93%E7%A0%B4%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE)
-  - [GC（垃圾回收）](#gc%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6)
-    - [判断是否可以进行垃圾回收的算法](#%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E8%BF%9B%E8%A1%8C%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E7%AE%97%E6%B3%95)
-    - [finalizer机制](#finalizer%E6%9C%BA%E5%88%B6)
-    - [判断常量已废弃](#%E5%88%A4%E6%96%AD%E5%B8%B8%E9%87%8F%E5%B7%B2%E5%BA%9F%E5%BC%83)
-    - [判断无用的类](#%E5%88%A4%E6%96%AD%E6%97%A0%E7%94%A8%E7%9A%84%E7%B1%BB)
-    - [垃圾收集算法](#%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95)
-    - [垃圾收集器](#%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8)
-    - [垃圾回收策略](#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AD%96%E7%95%A5)
-    - [垃圾回收时机](#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%97%B6%E6%9C%BA)
-    - [内存分配与空间担保](#%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E4%B8%8E%E7%A9%BA%E9%97%B4%E6%8B%85%E4%BF%9D)
-    - [引用](#%E5%BC%95%E7%94%A8)
-  - [Java内存模型(JMM)](#java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8Bjmm)
-    - [Happens-before](#happens-before)
-    - [Java内存模型的实现](#java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AE%9E%E7%8E%B0)
-  - [JVM监控工具](#jvm%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 # JVM
 
 主要组成部分：

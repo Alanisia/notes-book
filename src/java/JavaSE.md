@@ -1,34 +1,3 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
-
-- [Java基础](#java%E5%9F%BA%E7%A1%80)
-  - [面向对象](#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1)
-    - [特征](#%E7%89%B9%E5%BE%81)
-    - [与面向过程的区别](#%E4%B8%8E%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB)
-    - [接口和抽象类](#%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB)
-  - [String](#string)
-    - [String内存模型](#string%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B)
-  - [包装类](#%E5%8C%85%E8%A3%85%E7%B1%BB)
-  - [静态属性&静态方法](#%E9%9D%99%E6%80%81%E5%B1%9E%E6%80%A7%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95)
-  - [克隆](#%E5%85%8B%E9%9A%86)
-  - [序列化](#%E5%BA%8F%E5%88%97%E5%8C%96)
-    - [序列化ID](#%E5%BA%8F%E5%88%97%E5%8C%96id)
-    - [transient关键字](#transient%E5%85%B3%E9%94%AE%E5%AD%97)
-  - [异常](#%E5%BC%82%E5%B8%B8)
-  - [泛型](#%E6%B3%9B%E5%9E%8B)
-    - [限定泛型类型变量](#%E9%99%90%E5%AE%9A%E6%B3%9B%E5%9E%8B%E7%B1%BB%E5%9E%8B%E5%8F%98%E9%87%8F)
-    - [通配符](#%E9%80%9A%E9%85%8D%E7%AC%A6)
-    - [继承原则](#%E7%BB%A7%E6%89%BF%E5%8E%9F%E5%88%99)
-    - [实现原理](#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86)
-    - [约束与局限性](#%E7%BA%A6%E6%9D%9F%E4%B8%8E%E5%B1%80%E9%99%90%E6%80%A7)
-  - [反射](#%E5%8F%8D%E5%B0%84)
-  - [代理](#%E4%BB%A3%E7%90%86)
-    - [静态代理](#%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86)
-    - [动态代理](#%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 # Java基础
 
 ## 面向对象
